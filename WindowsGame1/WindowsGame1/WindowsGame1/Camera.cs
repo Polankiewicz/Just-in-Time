@@ -18,7 +18,7 @@ namespace WindowsGame1
         private MouseState currentMouseState;
         private MouseState prevMouseState;
         private float mouseRotationSpeed;
-        
+        Game game;
         //Properties
 
         public Vector3 Position
@@ -65,7 +65,7 @@ namespace WindowsGame1
                 1000.0f);
 
             MoveTo(position, rotation);
-
+            this.game = game;
             
             prevMouseState = Mouse.GetState();
 
@@ -109,66 +109,71 @@ namespace WindowsGame1
         //update method
         public override void Update(GameTime gameTime)
         {
-            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds; // delta time
-
-            currentMouseState = Mouse.GetState();
-
-
-            ///////////////handle basic key movement
-            KeyboardState ks = Keyboard.GetState();
-
-            Vector3 moveVector = Vector3.Zero;
-
-            if (ks.IsKeyDown(Keys.W))
-                moveVector.Z = 1;
-            if (ks.IsKeyDown(Keys.S))
-                moveVector.Z = -1;
-            if (ks.IsKeyDown(Keys.A))
-                moveVector.X = 1;
-            if (ks.IsKeyDown(Keys.D))
-                moveVector.X = -1;
-
-            if(moveVector != Vector3.Zero)
+            if (game.IsActive)
             {
-                //normalize the vector
-                moveVector.Normalize();
-                moveVector *= dt * cameraSpeed;
+                
+                float dt = (float)gameTime.ElapsedGameTime.TotalSeconds; // delta time
 
-                //move camera
-                Move(moveVector);
+                currentMouseState = Mouse.GetState();
+
+
+                ///////////////handle basic key movement
+                KeyboardState ks = Keyboard.GetState();
+
+                Vector3 moveVector = Vector3.Zero;
+
+                if (ks.IsKeyDown(Keys.W))
+                    moveVector.Z = 1;
+                if (ks.IsKeyDown(Keys.S))
+                    moveVector.Z = -1;
+                if (ks.IsKeyDown(Keys.A))
+                    moveVector.X = 1;
+                if (ks.IsKeyDown(Keys.D))
+                    moveVector.X = -1;
+                if (ks.IsKeyDown(Keys.T))
+                    moveVector.Y= 100;
+                if (moveVector != Vector3.Zero)
+                {
+                    //normalize the vector
+                    moveVector.Normalize();
+                    moveVector *= dt * cameraSpeed;
+
+                    //move camera
+                    Move(moveVector);
+                }
+
+                /////////////////handle mouse movement
+                float deltaX, deltaY;
+
+                if (currentMouseState != prevMouseState)
+                {
+                    //cache mouse location
+                    deltaX = currentMouseState.X - (Game.GraphicsDevice.Viewport.Width / 2);
+                    deltaY = currentMouseState.Y - (Game.GraphicsDevice.Viewport.Height / 2);
+
+                    mouseRotationBuffer.X -= 0.03f * deltaX * dt;
+                    mouseRotationBuffer.Y -= 0.03f * deltaY * dt;
+
+                    if (mouseRotationBuffer.Y < MathHelper.ToRadians(-75.0f))
+                        mouseRotationBuffer.Y = mouseRotationBuffer.Y - (mouseRotationBuffer.Y - MathHelper.ToRadians(-75.0f));
+                    if (mouseRotationBuffer.Y > MathHelper.ToRadians(75.0f))
+                        mouseRotationBuffer.Y = mouseRotationBuffer.Y - (mouseRotationBuffer.Y - MathHelper.ToRadians(75.0f));
+
+                    Rotation = new Vector3(-MathHelper.Clamp(mouseRotationBuffer.Y, MathHelper.ToRadians(-75.0f), MathHelper.ToRadians(75.0f)),
+                        MathHelper.WrapAngle(mouseRotationBuffer.X), 0);
+
+                    deltaX = 0;
+                    deltaY = 0;
+
+                }
+
+                Mouse.SetPosition(Game.GraphicsDevice.Viewport.Width / 2, Game.GraphicsDevice.Viewport.Height / 2);
+
+
+                prevMouseState = currentMouseState;
+
+                base.Update(gameTime);
             }
-
-            /////////////////handle mouse movement
-            float deltaX, deltaY;
-
-            if(currentMouseState != prevMouseState)
-            {
-                //cache mouse location
-                deltaX = currentMouseState.X - (Game.GraphicsDevice.Viewport.Width / 2);
-                deltaY = currentMouseState.Y - (Game.GraphicsDevice.Viewport.Height / 2);
-
-                mouseRotationBuffer.X -= 0.03f * deltaX * dt;
-                mouseRotationBuffer.Y -= 0.03f * deltaY * dt;
-
-                if (mouseRotationBuffer.Y < MathHelper.ToRadians(-75.0f))
-                    mouseRotationBuffer.Y = mouseRotationBuffer.Y - (mouseRotationBuffer.Y - MathHelper.ToRadians(-75.0f));
-                if (mouseRotationBuffer.Y > MathHelper.ToRadians(75.0f))
-                    mouseRotationBuffer.Y = mouseRotationBuffer.Y - (mouseRotationBuffer.Y - MathHelper.ToRadians(75.0f));
-
-                Rotation = new Vector3(-MathHelper.Clamp(mouseRotationBuffer.Y, MathHelper.ToRadians(-75.0f), MathHelper.ToRadians(75.0f)),
-                    MathHelper.WrapAngle(mouseRotationBuffer.X), 0);
-
-                deltaX = 0;
-                deltaY = 0;
-
-            }
-
-            Mouse.SetPosition(Game.GraphicsDevice.Viewport.Width / 2, Game.GraphicsDevice.Viewport.Height / 2);
-
-
-            prevMouseState = currentMouseState;
-
-            base.Update(gameTime);
         }
 
 

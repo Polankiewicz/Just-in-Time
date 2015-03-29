@@ -23,11 +23,18 @@ namespace WindowsGame1
         Floor floor;
         BasicEffect effect;
 
+        List<Building> buildingsList = new List<Building>();
+        Model buildingModel;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferMultiSampling = true;
+            graphics.IsFullScreen = false;
+            graphics.PreferredBackBufferHeight = 720;
+            graphics.PreferredBackBufferWidth = 1280;
             Content.RootDirectory = "Content";
+
         }
 
         /// <summary>
@@ -42,8 +49,10 @@ namespace WindowsGame1
 
             camera = new Camera(this, new Vector3(10f, 1f, 5f), Vector3.Zero, 5f);
             Components.Add(camera);
+          //  graphics.ToggleFullScreen();
             floor = new Floor(GraphicsDevice, 20, 20);
             effect = new BasicEffect(GraphicsDevice);
+            
 
             base.Initialize();
         }
@@ -54,10 +63,17 @@ namespace WindowsGame1
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
+           
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            buildingModel = Content.Load<Model>("Models\\7pieter");
+            
+            buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(0,1.75f,0),Vector3.Zero));
+            buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(64,1.75f,16),new Vector3(0,90,0)));
+            buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(-24,1.75f,-24),new Vector3(0,90,0)));
+            buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(0,1.75f,-64),new Vector3(0, 0,0)));
+         //   buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(100,0,0)));
+            
         }
 
         /// <summary>
@@ -97,6 +113,7 @@ namespace WindowsGame1
 
             floor.Draw(camera, effect);
 
+            foreach (Building b in buildingsList) b.Draw(camera);
             base.Draw(gameTime);
         }
     }
