@@ -15,10 +15,13 @@ namespace WindowsGame1
         private Vector3 cameraLookAt;
         //mouse
         private Vector3 mouseRotationBuffer;
+        private Vector3 holderForMouseRotation;
         private MouseState currentMouseState;
         private MouseState prevMouseState;
-        private float mouseRotationSpeed;
+        //private float mouseRotationSpeed;
         Game game;
+        // gamePad
+        GamePadState gamePad;
         //Properties
 
         public Vector3 Position
@@ -117,21 +120,28 @@ namespace WindowsGame1
                 currentMouseState = Mouse.GetState();
 
 
-                ///////////////handle basic key movement
+                //////////////////////////// handle movement ////////////////////////////////////////
                 KeyboardState ks = Keyboard.GetState();
+                gamePad = GamePad.GetState(PlayerIndex.One);
 
                 Vector3 moveVector = Vector3.Zero;
 
-                if (ks.IsKeyDown(Keys.W))
+                // left ThumbStick control
+                moveVector.Z = gamePad.ThumbSticks.Left.Y;
+                moveVector.X = -gamePad.ThumbSticks.Left.X;
+
+                // keyboard and DPad control
+                if (ks.IsKeyDown(Keys.W) || gamePad.DPad.Up == ButtonState.Pressed)
                     moveVector.Z = 1;
-                if (ks.IsKeyDown(Keys.S))
+                if (ks.IsKeyDown(Keys.S) || gamePad.DPad.Down == ButtonState.Pressed)
                     moveVector.Z = -1;
-                if (ks.IsKeyDown(Keys.A))
+                if (ks.IsKeyDown(Keys.A) || gamePad.DPad.Left == ButtonState.Pressed)
                     moveVector.X = 1;
-                if (ks.IsKeyDown(Keys.D))
+                if (ks.IsKeyDown(Keys.D) || gamePad.DPad.Right == ButtonState.Pressed)
                     moveVector.X = -1;
                 if (ks.IsKeyDown(Keys.T))
                     moveVector.Y= 100;
+
                 if (moveVector != Vector3.Zero)
                 {
                     //normalize the vector
@@ -142,10 +152,12 @@ namespace WindowsGame1
                     Move(moveVector);
                 }
 
-                /////////////////handle mouse movement
+                //////////////////////////// handle rotation ////////////////////////////////////////
                 float deltaX, deltaY;
 
-                if (currentMouseState != prevMouseState)
+                
+
+                if (currentMouseState != prevMouseState )
                 {
                     //cache mouse location
                     deltaX = currentMouseState.X - (Game.GraphicsDevice.Viewport.Width / 2);
@@ -159,16 +171,25 @@ namespace WindowsGame1
                     if (mouseRotationBuffer.Y > MathHelper.ToRadians(75.0f))
                         mouseRotationBuffer.Y = mouseRotationBuffer.Y - (mouseRotationBuffer.Y - MathHelper.ToRadians(75.0f));
 
-                    Rotation = new Vector3(-MathHelper.Clamp(mouseRotationBuffer.Y, MathHelper.ToRadians(-75.0f), MathHelper.ToRadians(75.0f)),
-                        MathHelper.WrapAngle(mouseRotationBuffer.X), 0);
+                    //Rotation = new Vector3(-MathHelper.Clamp(mouseRotationBuffer.Y, MathHelper.ToRadians(-75.0f), MathHelper.ToRadians(75.0f)),
+                    //    MathHelper.WrapAngle(mouseRotationBuffer.X), 0);
+                    holderForMouseRotation.X = -MathHelper.Clamp(mouseRotationBuffer.Y, MathHelper.ToRadians(-75.0f), MathHelper.ToRadians(75.0f));
+                    holderForMouseRotation.Y = MathHelper.WrapAngle(mouseRotationBuffer.X);
+                    holderForMouseRotation.Z =0;
+                    Rotation = holderForMouseRotation;
 
                     deltaX = 0;
                     deltaY = 0;
 
                 }
+                else if (gamePad.ThumbSticks.Right != Vector2.Zero)
+                {
+                    Rotation = new Vector3(MathHelper.Clamp(-gamePad.ThumbSticks.Right.Y, MathHelper.ToRadians(-75.0f), MathHelper.ToRadians(75.0f)),
+                    -gamePad.ThumbSticks.Right.X, 0);
+                }
 
                 Mouse.SetPosition(Game.GraphicsDevice.Viewport.Width / 2, Game.GraphicsDevice.Viewport.Height / 2);
-
+                
 
                 prevMouseState = currentMouseState;
 
