@@ -49,6 +49,7 @@ namespace WindowsGame1
                     effect.Projection = camera.Projection;
                 }
                 mesh.Draw();
+                // hehe test
             }
 
         }
