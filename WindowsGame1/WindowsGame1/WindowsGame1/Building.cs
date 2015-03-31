@@ -17,7 +17,7 @@ namespace WindowsGame1
         Matrix position = Matrix.Identity;
         Matrix rotation;
         Vector3 offset;
-        float scale = 0.01f;
+        float scale = 0.001f;
         public Building(GraphicsDevice device, Model model, Vector3 position, Vector3 rotationDegrees)
         {
             this.device = device;
@@ -34,15 +34,17 @@ namespace WindowsGame1
         //build our vertex buffer
         public void Draw(Camera camera)
         {
-            
+            // Copy any parent transforms.
+            Matrix[] transforms = new Matrix[model.Bones.Count];
+            model.CopyAbsoluteBoneTransformsTo(transforms);
            
             foreach (ModelMesh mesh in model.Meshes)
-            {   
-                
+            {
+
                 foreach (BasicEffect effect in mesh.Effects)
                 {
-                    effect.EnableDefaultLighting();
-                    effect.World = this.rotation * Matrix.CreateScale(scale) * Matrix.CreateTranslation(offset); 
+                   // effect.EnableDefaultLighting();
+                    effect.World = transforms[mesh.ParentBone.Index] * this.rotation * Matrix.CreateTranslation(offset) * Matrix.CreateScale(scale);
                     
                     effect.View = camera.View;
 
