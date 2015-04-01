@@ -184,8 +184,20 @@ namespace WindowsGame1
                 }
                 else if (gamePad.ThumbSticks.Right != Vector2.Zero)
                 {
-                    Rotation = new Vector3(MathHelper.Clamp(-gamePad.ThumbSticks.Right.Y, MathHelper.ToRadians(-75.0f), MathHelper.ToRadians(75.0f)),
-                    -gamePad.ThumbSticks.Right.X, 0);
+                    //Rotation = new Vector3(MathHelper.Clamp(-gamePad.ThumbSticks.Right.Y, MathHelper.ToRadians(-75.0f), MathHelper.ToRadians(75.0f)),
+                    //-gamePad.ThumbSticks.Right.X, 0);
+
+                    if (holderForMouseRotation.X < MathHelper.ToRadians(-75.0f))
+                        holderForMouseRotation.X = holderForMouseRotation.X - (holderForMouseRotation.X - MathHelper.ToRadians(-75.0f));
+                    if (holderForMouseRotation.X > MathHelper.ToRadians(75.0f))
+                        holderForMouseRotation.X = holderForMouseRotation.X - (holderForMouseRotation.X - MathHelper.ToRadians(75.0f));
+
+                    holderForMouseRotation.X += -MathHelper.Clamp(gamePad.ThumbSticks.Right.Y, MathHelper.ToRadians(-75.0f), MathHelper.ToRadians(75.0f)) * 0.05f;
+                    holderForMouseRotation.Y += MathHelper.WrapAngle(-gamePad.ThumbSticks.Right.X) * 0.05f;
+                    holderForMouseRotation.Z = 0;
+                    Rotation = holderForMouseRotation;
+
+                    
                 }
 
                 Mouse.SetPosition(Game.GraphicsDevice.Viewport.Width / 2, Game.GraphicsDevice.Viewport.Height / 2);

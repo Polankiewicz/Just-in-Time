@@ -17,7 +17,7 @@ namespace WindowsGame1
         Matrix position = Matrix.Identity;
         Matrix rotation;
         Vector3 offset;
-        float scale = 0.001f;
+        float scale = 0.005f;
         public Building(GraphicsDevice device, Model model, Vector3 position, Vector3 rotationDegrees)
         {
             this.device = device;
