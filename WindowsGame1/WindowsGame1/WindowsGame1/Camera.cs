@@ -166,8 +166,8 @@ namespace WindowsGame1
                     mouseRotationBuffer.X -= 0.03f * deltaX * dt;
                     mouseRotationBuffer.Y -= 0.03f * deltaY * dt;
 
-                    if (mouseRotationBuffer.Y < MathHelper.ToRadians(-75.0f))
-                        mouseRotationBuffer.Y = mouseRotationBuffer.Y - (mouseRotationBuffer.Y - MathHelper.ToRadians(-75.0f));
+                    if (mouseRotationBuffer.Y < MathHelper.ToRadians(-55.0f))
+                        mouseRotationBuffer.Y = mouseRotationBuffer.Y - (mouseRotationBuffer.Y - MathHelper.ToRadians(-55.0f));
                     if (mouseRotationBuffer.Y > MathHelper.ToRadians(75.0f))
                         mouseRotationBuffer.Y = mouseRotationBuffer.Y - (mouseRotationBuffer.Y - MathHelper.ToRadians(75.0f));
 
@@ -182,15 +182,15 @@ namespace WindowsGame1
                     deltaY = 0;
 
                 }
-                else if (gamePad.ThumbSticks.Right != Vector2.Zero)
+                if (gamePad.ThumbSticks.Right != Vector2.Zero)
                 {
                     //Rotation = new Vector3(MathHelper.Clamp(-gamePad.ThumbSticks.Right.Y, MathHelper.ToRadians(-75.0f), MathHelper.ToRadians(75.0f)),
                     //-gamePad.ThumbSticks.Right.X, 0);
 
                     if (holderForMouseRotation.X < MathHelper.ToRadians(-75.0f))
                         holderForMouseRotation.X = holderForMouseRotation.X - (holderForMouseRotation.X - MathHelper.ToRadians(-75.0f));
-                    if (holderForMouseRotation.X > MathHelper.ToRadians(75.0f))
-                        holderForMouseRotation.X = holderForMouseRotation.X - (holderForMouseRotation.X - MathHelper.ToRadians(75.0f));
+                    if (holderForMouseRotation.X > MathHelper.ToRadians(55.0f))
+                        holderForMouseRotation.X = holderForMouseRotation.X - (holderForMouseRotation.X - MathHelper.ToRadians(55.0f));
 
                     holderForMouseRotation.X += -MathHelper.Clamp(gamePad.ThumbSticks.Right.Y, MathHelper.ToRadians(-75.0f), MathHelper.ToRadians(75.0f)) * 0.05f;
                     holderForMouseRotation.Y += MathHelper.WrapAngle(-gamePad.ThumbSticks.Right.X) * 0.05f;

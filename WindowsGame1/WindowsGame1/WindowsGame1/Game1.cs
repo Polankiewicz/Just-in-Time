@@ -68,7 +68,7 @@ namespace WindowsGame1
 
             buildingModel = Content.Load<Model>("Models\\7pieter");
             Model skaner = Content.Load<Model>("Models\\scan");
-        //    buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(0,1.75f,0),Vector3.Zero));
+            buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(0,1.75f,0),Vector3.Zero));
          //   buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(64,1.75f,16),new Vector3(0,90,0)));
            // buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(-24,1.75f,-24),new Vector3(0,90,0)));
             //buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(0,1.75f,-64),new Vector3(0, 0,0)));

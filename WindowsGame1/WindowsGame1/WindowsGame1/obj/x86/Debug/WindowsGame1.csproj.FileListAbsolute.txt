@@ -5,3 +5,4 @@ C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\Window
 C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.exe
 C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.pdb
+C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Models\scan.xnb
