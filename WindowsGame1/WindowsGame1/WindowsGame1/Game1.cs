@@ -25,16 +25,19 @@ namespace WindowsGame1
 
         List<Building> buildingsList = new List<Building>();
         Model buildingModel;
+        Model skaner;
+
+        PlayerInteractions playerInteractions;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferMultiSampling = true;
-            graphics.IsFullScreen = false;
+            graphics.IsFullScreen = true;
             graphics.PreferredBackBufferHeight = 720;
             graphics.PreferredBackBufferWidth = 1280;
             Content.RootDirectory = "Content";
-
+            
         }
 
         /// <summary>
@@ -67,13 +70,18 @@ namespace WindowsGame1
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             buildingModel = Content.Load<Model>("Models\\7pieter");
-            Model skaner = Content.Load<Model>("Models\\scan");
-            buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(0,1.75f,0),Vector3.Zero));
-         //   buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(64,1.75f,16),new Vector3(0,90,0)));
-           // buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(-24,1.75f,-24),new Vector3(0,90,0)));
-            //buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(0,1.75f,-64),new Vector3(0, 0,0)));
-         //   buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(100,0,0)));
-            buildingsList.Add(new Building(GraphicsDevice,skaner,new Vector3(-10,2,-10),Vector3.Zero));            
+            skaner = Content.Load<Model>("Models\\scan");
+            
+            buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(0,0,-10),Vector3.Zero, 0.005f));
+            //buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(64,1.75f,16),new Vector3(0,90,0), 0.005f));
+            //buildingsList.Add(new Building(GraphicsDevice, buildingModel, new Vector3(-24, 1.75f, -24), new Vector3(0, 90, 0), 0.005f));
+            //buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(0,1.75f,-64),new Vector3(0, 0,0), 0.005f));
+            //buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(100,0,0)));
+            buildingsList.Add(new Building(GraphicsDevice,skaner,new Vector3(10,0,10),Vector3.Zero, 0.05f));
+
+
+            // set objects to interact with player
+            playerInteractions = new PlayerInteractions(this, buildingsList);
         }
 
         /// <summary>
@@ -97,6 +105,8 @@ namespace WindowsGame1
                 this.Exit();
 
             // TODO: Add your update logic here
+
+            playerInteractions.catchInteraction(camera);
 
             base.Update(gameTime);
         }

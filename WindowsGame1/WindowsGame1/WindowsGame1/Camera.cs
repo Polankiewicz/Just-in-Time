@@ -19,9 +19,9 @@ namespace WindowsGame1
         private MouseState currentMouseState;
         private MouseState prevMouseState;
         //private float mouseRotationSpeed;
-        Game game;
+        private Game game;
         // gamePad
-        GamePadState gamePad;
+        private GamePadState gamePad;
         //Properties
 
         public Vector3 Position

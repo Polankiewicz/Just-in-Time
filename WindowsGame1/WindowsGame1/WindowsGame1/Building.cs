@@ -16,12 +16,19 @@ namespace WindowsGame1
         Model model;
         Matrix position = Matrix.Identity;
         Matrix rotation;
-        Vector3 offset;
+        private Vector3 offset;
         float scale = 0.005f;
-        public Building(GraphicsDevice device, Model model, Vector3 position, Vector3 rotationDegrees)
+
+        public Vector3 Position
+        {
+            get { return offset; }
+        }
+
+        public Building(GraphicsDevice device, Model model, Vector3 position, Vector3 rotationDegrees, float scale)
         {
             this.device = device;
             this.model = model;
+            this.scale = scale;
 
             offset.X = position.X;
             offset.Y = position.Y;
@@ -44,7 +51,7 @@ namespace WindowsGame1
                 foreach (BasicEffect effect in mesh.Effects)
                 {
                    // effect.EnableDefaultLighting();
-                    effect.World = transforms[mesh.ParentBone.Index] * this.rotation * Matrix.CreateTranslation(offset) * Matrix.CreateScale(scale);
+                    effect.World = transforms[mesh.ParentBone.Index] * this.rotation * Matrix.CreateScale(scale) * Matrix.CreateTranslation(offset);
                     
                     effect.View = camera.View;
 
