@@ -1,4 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,19 +11,43 @@ namespace WindowsGame1
 {
     class PlayerInteractions
     {
+        //interactive objects
         List<Building> buildingsList;
+        int buildingsListSize;
+
         Game game;
 
-        public PlayerInteractions(Game game, List<Building> buildingsList)
+        HudTexts hudTexts;
+
+        public PlayerInteractions(Game game, HudTexts hudTexts, List<Building> buildingsList)
         {
             this.buildingsList = buildingsList;
+            buildingsListSize = buildingsList.Count;
             this.game = game;
+
+            this.hudTexts = hudTexts;
         }
 
         public void catchInteraction(Camera camera)
         {
-            if (Vector3.Distance(buildingsList[1].Position, camera.Position) < 3.0f)
-                game.Exit();
+
+            if (buildingsList.Count >= buildingsListSize && Vector3.Distance(buildingsList[1].Position, camera.Position) < 3.0f)
+            {
+                hudTexts.DisplayText = "Press X to destroy scaner!";
+
+                if(GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed)
+                    buildingsList.RemoveAt(1);
+            }
+            else
+            {
+                hudTexts.DisplayText = "";
+            }
+            
+            
+            
+            
+
+
 
 
         }

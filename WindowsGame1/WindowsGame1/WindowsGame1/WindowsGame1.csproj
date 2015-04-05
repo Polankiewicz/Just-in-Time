@@ -75,6 +75,7 @@
     <Compile Include="Building.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Floor.cs" />
+    <Compile Include="HudTexts.cs" />
     <Compile Include="PlayerInteractions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />

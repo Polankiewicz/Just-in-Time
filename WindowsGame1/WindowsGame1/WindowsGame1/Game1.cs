@@ -29,11 +29,16 @@ namespace WindowsGame1
 
         PlayerInteractions playerInteractions;
 
+        //display texts
+        SpriteFont spriteFont;
+        HudTexts hudTexts = new HudTexts();
+
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferMultiSampling = true;
-            graphics.IsFullScreen = true;
+            graphics.IsFullScreen = false;
             graphics.PreferredBackBufferHeight = 720;
             graphics.PreferredBackBufferWidth = 1280;
             Content.RootDirectory = "Content";
@@ -69,6 +74,7 @@ namespace WindowsGame1
            
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            //objects
             buildingModel = Content.Load<Model>("Models\\7pieter");
             skaner = Content.Load<Model>("Models\\scan");
             
@@ -79,9 +85,11 @@ namespace WindowsGame1
             //buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(100,0,0)));
             buildingsList.Add(new Building(GraphicsDevice,skaner,new Vector3(10,0,10),Vector3.Zero, 0.05f));
 
+            //texts
+            spriteFont = Content.Load<SpriteFont>("Sprites\\PressXtoInteract");
 
             // set objects to interact with player
-            playerInteractions = new PlayerInteractions(this, buildingsList);
+            playerInteractions = new PlayerInteractions(this, hudTexts, buildingsList);
         }
 
         /// <summary>
@@ -123,7 +131,13 @@ namespace WindowsGame1
 
             floor.Draw(camera, effect);
 
+
+
+            hudTexts.drawText(spriteBatch, spriteFont); //draw gui texts
+
+
             foreach (Building b in buildingsList) b.Draw(camera);
+
             base.Draw(gameTime);
         }
     }

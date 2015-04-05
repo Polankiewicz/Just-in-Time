@@ -41,6 +41,15 @@
       <Output>C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\Models\scan_0.xml</Output>
       <Time>2015-04-01T13:38:15.7469874+02:00</Time>
     </Item>
+    <Item>
+      <Source>Sprites\PressXtoInteract.spritefont</Source>
+      <Name>Sprites\PressXtoInteract</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Sprites\PressXtoInteract.xnb</Output>
+      <Time>2015-04-05T19:38:04.6171572+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{DCFAF750-7FF6-4C26-9D9D-B8F106E75BFE}</ContentProjectGUID>
