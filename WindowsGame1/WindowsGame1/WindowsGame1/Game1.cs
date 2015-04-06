@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
+    
 namespace WindowsGame1
 {
     /// <summary>
@@ -24,9 +25,9 @@ namespace WindowsGame1
         BasicEffect effect;
 
         List<Building> buildingsList = new List<Building>();
-        Model buildingModel;
-        Model skaner;
+        Model buildingModel,skaner,enemyModel;
 
+        Enemy enemy;
         PlayerInteractions playerInteractions;
 
         //display texts
@@ -77,7 +78,10 @@ namespace WindowsGame1
             //objects
             buildingModel = Content.Load<Model>("Models\\7pieter");
             skaner = Content.Load<Model>("Models\\scan");
-            
+            enemyModel = Content.Load<Model>("Models\\przeciwnik");
+            enemy = new Enemy(GraphicsDevice, enemyModel, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f);
+           
+
             buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(0,0,-10),Vector3.Zero, 0.005f));
             //buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(64,1.75f,16),new Vector3(0,90,0), 0.005f));
             //buildingsList.Add(new Building(GraphicsDevice, buildingModel, new Vector3(-24, 1.75f, -24), new Vector3(0, 90, 0), 0.005f));
@@ -115,7 +119,8 @@ namespace WindowsGame1
             // TODO: Add your update logic here
 
             playerInteractions.catchInteraction(camera);
-
+    
+            enemy.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -133,9 +138,9 @@ namespace WindowsGame1
 
 
 
-            hudTexts.drawText(spriteBatch, spriteFont); //draw gui texts
-
-
+           // hudTexts.drawText(spriteBatch, spriteFont); //draw gui texts
+            enemy.Draw(camera);
+          
             foreach (Building b in buildingsList) b.Draw(camera);
 
             base.Draw(gameTime);

@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="Building.cs" />
     <Compile Include="Camera.cs" />
+    <Compile Include="Enemy.cs" />
     <Compile Include="Floor.cs" />
     <Compile Include="HudTexts.cs" />
     <Compile Include="PlayerInteractions.cs" />
@@ -88,6 +89,14 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\SkinnedModelPipeline\SkinnedModelPipeline.csproj">
+      <Project>{4636c7e1-b845-4b83-b96d-64a11b8a4515}</Project>
+      <Name>SkinnedModelPipeline</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SkinnedModel\SkinnedModelWindows.csproj">
+      <Project>{0d41e29b-829f-4255-bca5-64dc2677da6d}</Project>
+      <Name>SkinnedModelWindows</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WindowsGame1Content\WindowsGame1Content.contentproj">
       <Name>WindowsGame1Content</Name>
       <XnaReferenceType>Content</XnaReferenceType>

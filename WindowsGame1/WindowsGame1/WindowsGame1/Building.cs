@@ -56,6 +56,8 @@ namespace WindowsGame1
                     effect.View = camera.View;
 
                     effect.Projection = camera.Projection;
+                    effect.SpecularColor = new Vector3(0.25f);
+                    effect.SpecularPower = 16;
                 }
                 mesh.Draw();
                 // hehe test
