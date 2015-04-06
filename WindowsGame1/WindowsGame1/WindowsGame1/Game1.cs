@@ -24,8 +24,8 @@ namespace WindowsGame1
         Floor floor;
         BasicEffect effect;
 
-        List<Building> buildingsList = new List<Building>();
-        Model buildingModel,skaner,enemyModel;
+        List<StaticModel> staticModelsList = new List<StaticModel>();
+        Model buildingModel,skaner,enemyModel,sidewalk;
 
         Enemy enemy;
         PlayerInteractions playerInteractions;
@@ -46,15 +46,9 @@ namespace WindowsGame1
             
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+           
 
             camera = new Camera(this, new Vector3(10f, 1f, 5f), Vector3.Zero, 5f);
             Components.Add(camera);
@@ -66,10 +60,6 @@ namespace WindowsGame1
             base.Initialize();
         }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
         protected override void LoadContent()
         {
            
@@ -79,21 +69,30 @@ namespace WindowsGame1
             buildingModel = Content.Load<Model>("Models\\7pieter");
             skaner = Content.Load<Model>("Models\\scan");
             enemyModel = Content.Load<Model>("Models\\przeciwnik");
+            sidewalk = Content.Load<Model>("Models\\sidewalk_grass");
+
             enemy = new Enemy(GraphicsDevice, enemyModel, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f);
            
 
-            buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(0,0,-10),Vector3.Zero, 0.005f));
+            staticModelsList.Add(new StaticModel(GraphicsDevice,buildingModel,new Vector3(0,0,-10),Vector3.Zero, 0.005f));
             //buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(64,1.75f,16),new Vector3(0,90,0), 0.005f));
             //buildingsList.Add(new Building(GraphicsDevice, buildingModel, new Vector3(-24, 1.75f, -24), new Vector3(0, 90, 0), 0.005f));
             //buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(0,1.75f,-64),new Vector3(0, 0,0), 0.005f));
             //buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(100,0,0)));
-            buildingsList.Add(new Building(GraphicsDevice,skaner,new Vector3(10,0,10),Vector3.Zero, 0.05f));
-
+            staticModelsList.Add(new StaticModel(GraphicsDevice,skaner,new Vector3(10,0,10),Vector3.Zero, 0.05f));
+            for (int i = -5; i < 10; i++ ) //proste tworzenie podlogi z elemenu sidewalk_grass
+            {
+                for (int j = 0; j < 20; j++)
+                {
+                    staticModelsList.Add(new StaticModel(GraphicsDevice, sidewalk, new Vector3(j*6.25f, 0, i * 5), new Vector3(0,j*180, 0),0.001f));
+                    
+                }
+        }
             //texts
             spriteFont = Content.Load<SpriteFont>("Sprites\\PressXtoInteract");
 
             // set objects to interact with player
-            playerInteractions = new PlayerInteractions(this, hudTexts, buildingsList);
+            playerInteractions = new PlayerInteractions(this, hudTexts, staticModelsList);
         }
 
         /// <summary>
@@ -134,14 +133,14 @@ namespace WindowsGame1
 
             // TODO: Add your drawing code here
 
-            floor.Draw(camera, effect);
+            //floor.Draw(camera, effect);
 
 
 
            // hudTexts.drawText(spriteBatch, spriteFont); //draw gui texts
             enemy.Draw(camera);
           
-            foreach (Building b in buildingsList) b.Draw(camera);
+            foreach (StaticModel b in staticModelsList) b.Draw(camera);
 
             base.Draw(gameTime);
         }

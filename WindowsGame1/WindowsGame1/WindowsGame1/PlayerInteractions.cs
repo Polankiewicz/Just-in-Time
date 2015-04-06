@@ -12,14 +12,14 @@ namespace WindowsGame1
     class PlayerInteractions
     {
         //interactive objects
-        List<Building> buildingsList;
+        List<StaticModel> buildingsList;
         int buildingsListSize;
 
         Game game;
 
         HudTexts hudTexts;
 
-        public PlayerInteractions(Game game, HudTexts hudTexts, List<Building> buildingsList)
+        public PlayerInteractions(Game game, HudTexts hudTexts, List<StaticModel> buildingsList)
         {
             this.buildingsList = buildingsList;
             buildingsListSize = buildingsList.Count;
