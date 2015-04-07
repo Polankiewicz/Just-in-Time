@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline" xmlns:Framework="Microsoft.Xna.Framework" xmlns:Processors="Microsoft.Xna.Framework.Content.Pipeline.Processors">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
       <Source>Models\7pieter.FBX</Source>
@@ -11,15 +11,8 @@
       <Time>2015-03-31T10:30:19.2510222+02:00</Time>
       <Dependency>
         <Key>C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\Models\7pieter_0.xml</Key>
-        <Value>2015-03-31T10:38:47.8185793+02:00</Value>
+        <Value>2015-04-07T19:24:30.1084239+02:00</Value>
       </Dependency>
-    </Item>
-    <Item>
-      <Source>Models\7pieter.FBX</Source>
-      <Importer>FbxImporter</Importer>
-      <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\Models\7pieter_0.xml</Output>
-      <Time>2015-03-31T10:30:19.2510222+02:00</Time>
     </Item>
     <Item>
       <Source>Models\scan.FBX</Source>
@@ -31,8 +24,52 @@
       <Time>2015-04-01T13:38:15.7469874+02:00</Time>
       <Dependency>
         <Key>C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\Models\scan_0.xml</Key>
-        <Value>2015-04-03T14:53:43.0706487+02:00</Value>
+        <Value>2015-04-07T19:24:31.1395247+02:00</Value>
       </Dependency>
+    </Item>
+    <Item>
+      <Source>Models\przeciwnik.FBX</Source>
+      <Name>Models\przeciwnik</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Models\przeciwnik.xnb</Output>
+      <Time>2015-04-06T21:54:12.5091898+02:00</Time>
+      <Dependency>
+        <Key>C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\Models\przeciwnik_0.xml</Key>
+        <Value>2015-04-07T19:24:34.533035+02:00</Value>
+      </Dependency>
+      <Request>C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\skin_0.xnb</Request>
+      <Request>C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\RosettaStoneDetail_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\sidewalk_grass.FBX</Source>
+      <Name>Models\sidewalk_grass</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Models\sidewalk_grass.xnb</Output>
+      <Time>2015-04-06T22:35:28.3089908+02:00</Time>
+      <Dependency>
+        <Key>C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\Models\sidewalk_grass_0.xml</Key>
+        <Value>2015-04-07T19:24:37.8774184+02:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>Sprites\PressXtoInteract.spritefont</Source>
+      <Name>Sprites\PressXtoInteract</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Sprites\PressXtoInteract.xnb</Output>
+      <Time>2015-04-05T20:34:49.6580533+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\7pieter.FBX</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\Models\7pieter_0.xml</Output>
+      <Time>2015-03-31T10:30:19.2510222+02:00</Time>
     </Item>
     <Item>
       <Source>Models\scan.FBX</Source>
@@ -42,13 +79,50 @@
       <Time>2015-04-01T13:38:15.7469874+02:00</Time>
     </Item>
     <Item>
-      <Source>Sprites\PressXtoInteract.spritefont</Source>
-      <Name>Sprites\PressXtoInteract</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
+      <Source>Models\przeciwnik.FBX</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\Models\przeciwnik_0.xml</Output>
+      <Time>2015-04-06T21:54:12.5091898+02:00</Time>
+    </Item>
+    <Item>
+      <Source>C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\FBX\32A52D9C\przeciwnik.fbm\skin.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Sprites\PressXtoInteract.xnb</Output>
-      <Time>2015-04-05T19:38:04.6171572+02:00</Time>
+      <Output>C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\skin_0.xnb</Output>
+      <Time>2015-04-07T19:24:31.7416591+02:00</Time>
+    </Item>
+    <Item>
+      <Source>C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\FBX\32A52D9C\przeciwnik.fbm\RosettaStoneDetail.png</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\RosettaStoneDetail_0.xnb</Output>
+      <Time>2015-04-07T19:24:31.7396592+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\sidewalk_grass.FBX</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\Models\sidewalk_grass_0.xml</Output>
+      <Time>2015-04-06T22:35:28.3089908+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -63,6 +137,10 @@
       <OutputDirectory>C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
+      <Assembly>
+        <Key>C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.dll</Key>
+        <Value>2015-04-07T19:24:21.2042834+02:00</Value>
+      </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
         <Value>2011-09-01T17:22:30+02:00</Value>

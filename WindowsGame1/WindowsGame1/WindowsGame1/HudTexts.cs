@@ -21,6 +21,7 @@ namespace WindowsGame1
             spriteBatch.Begin();
             spriteBatch.DrawString(spriteFont, text, new Vector2(300, 200), Color.Black);
             spriteBatch.End();
+            
         }
 
 

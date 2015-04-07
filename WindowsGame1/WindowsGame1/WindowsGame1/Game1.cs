@@ -55,7 +55,7 @@ namespace WindowsGame1
           //  graphics.ToggleFullScreen();
             floor = new Floor(GraphicsDevice, 20, 20);
             effect = new BasicEffect(GraphicsDevice);
-            
+            spriteBatch = new SpriteBatch(GraphicsDevice);
 
             base.Initialize();
         }
@@ -63,7 +63,7 @@ namespace WindowsGame1
         protected override void LoadContent()
         {
            
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            
 
             //objects
             buildingModel = Content.Load<Model>("Models\\7pieter");
@@ -87,7 +87,7 @@ namespace WindowsGame1
                     staticModelsList.Add(new StaticModel(GraphicsDevice, sidewalk, new Vector3(j*6.25f, 0, i * 5), new Vector3(0,j*180, 0),0.001f));
                     
                 }
-        }
+            }
             //texts
             spriteFont = Content.Load<SpriteFont>("Sprites\\PressXtoInteract");
 
@@ -136,13 +136,17 @@ namespace WindowsGame1
             //floor.Draw(camera, effect);
 
 
+            hudTexts.drawText(spriteBatch, spriteFont); //draw gui texts
+            // spriteBatch.Begin() set GraphicsDevice.DepthStencilState to DepthStencilState.None
+            GraphicsDevice.DepthStencilState = DepthStencilState.Default; 
 
-           // hudTexts.drawText(spriteBatch, spriteFont); //draw gui texts
             enemy.Draw(camera);
           
             foreach (StaticModel b in staticModelsList) b.Draw(camera);
 
             base.Draw(gameTime);
+
+            
         }
     }
 }

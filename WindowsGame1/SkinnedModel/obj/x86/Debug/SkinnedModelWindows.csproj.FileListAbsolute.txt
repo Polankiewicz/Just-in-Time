@@ -1,0 +1,6 @@
+C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\SkinnedModel\bin\x86\Debug\SkinnedModel.dll
+C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\SkinnedModel\bin\x86\Debug\SkinnedModel.pdb
+C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\SkinnedModel\obj\x86\Debug\SkinnedModelWindows.csprojResolveAssemblyReference.cache
+C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\SkinnedModel\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\SkinnedModel\obj\x86\Debug\SkinnedModel.dll
+C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\SkinnedModel\obj\x86\Debug\SkinnedModel.pdb

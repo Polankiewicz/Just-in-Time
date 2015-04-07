@@ -1,3 +1,7 @@
 Content\Models\7pieter.xnb
 Content\Models\scan.xnb
+Content\Models\przeciwnik.xnb
+Content\Models\sidewalk_grass.xnb
 Content\Sprites\PressXtoInteract.xnb
+Content\skin_0.xnb
+Content\RosettaStoneDetail_0.xnb
