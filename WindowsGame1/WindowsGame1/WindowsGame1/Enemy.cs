@@ -21,6 +21,7 @@ namespace WindowsGame1
         AnimationPlayer enemy;// This calculates the Matrices of the animation
         AnimationClip enemyClip;// This contains the keyframes of the animation
         SkinningData enemySkin;// This contains all the skinning data
+
         public Vector3 Position
         {
             get { return offset; }

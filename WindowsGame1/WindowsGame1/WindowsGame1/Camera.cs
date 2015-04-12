@@ -22,6 +22,9 @@ namespace WindowsGame1
         private Game game;
         // gamePad
         private GamePadState gamePad;
+        // collisions
+        CameraCollisions cameraCollisions;
+        
         //Properties
 
         public Vector3 Position
@@ -72,6 +75,11 @@ namespace WindowsGame1
             
             prevMouseState = Mouse.GetState();
 
+        }
+
+        public void setCameraCollision(CameraCollisions cameraCollisions)
+        {
+            this.cameraCollisions = cameraCollisions;
         }
 
         //set camera's position and rotation
@@ -148,8 +156,10 @@ namespace WindowsGame1
                     moveVector.Normalize();
                     moveVector *= dt * cameraSpeed;
 
-                    //move camera
-                    Move(moveVector);
+                    // simulate next move and check for collision
+                    if (cameraCollisions.cameraNextMoveCollisionDetect(PreviewMove(moveVector)))
+                        Move(moveVector);
+
                 }
 
                 //////////////////////////// handle rotation ////////////////////////////////////////

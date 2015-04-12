@@ -34,6 +34,8 @@ namespace WindowsGame1
         SpriteFont spriteFont;
         HudTexts hudTexts = new HudTexts();
 
+        CameraCollisions cameraCollisions;
+
 
         public Game1()
         {
@@ -48,7 +50,7 @@ namespace WindowsGame1
 
         protected override void Initialize()
         {
-           
+
 
             camera = new Camera(this, new Vector3(10f, 1f, 5f), Vector3.Zero, 5f);
             Components.Add(camera);
@@ -72,14 +74,15 @@ namespace WindowsGame1
             sidewalk = Content.Load<Model>("Models\\sidewalk_grass");
 
             enemy = new Enemy(GraphicsDevice, enemyModel, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f);
-           
 
+
+            staticModelsList.Add(new StaticModel(GraphicsDevice, skaner, new Vector3(10, 0, 10), Vector3.Zero, 0.05f));
             staticModelsList.Add(new StaticModel(GraphicsDevice,buildingModel,new Vector3(0,0,-10),Vector3.Zero, 0.005f));
             //buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(64,1.75f,16),new Vector3(0,90,0), 0.005f));
             //buildingsList.Add(new Building(GraphicsDevice, buildingModel, new Vector3(-24, 1.75f, -24), new Vector3(0, 90, 0), 0.005f));
             //buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(0,1.75f,-64),new Vector3(0, 0,0), 0.005f));
             //buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(100,0,0)));
-            staticModelsList.Add(new StaticModel(GraphicsDevice,skaner,new Vector3(10,0,10),Vector3.Zero, 0.05f));
+            
             for (int i = -5; i < 10; i++ ) //proste tworzenie podlogi z elemenu sidewalk_grass
             {
                 for (int j = 0; j < 20; j++)
@@ -88,11 +91,16 @@ namespace WindowsGame1
                     
                 }
             }
+
             //texts
             spriteFont = Content.Load<SpriteFont>("Sprites\\PressXtoInteract");
 
-            // set objects to interact with player
+            // set all objects to interact with player
             playerInteractions = new PlayerInteractions(this, hudTexts, staticModelsList);
+
+            // collisions
+            cameraCollisions = new CameraCollisions(camera, enemy);
+            camera.setCameraCollision(cameraCollisions);
         }
 
         /// <summary>
@@ -116,6 +124,11 @@ namespace WindowsGame1
                 this.Exit();
 
             // TODO: Add your update logic here
+
+
+            // objects position for collision with player/camera
+            cameraCollisions.updateBoundingSpherePosition(enemy.Position);
+
 
             playerInteractions.catchInteraction(camera);
     
@@ -148,5 +161,6 @@ namespace WindowsGame1
 
             
         }
+
     }
 }

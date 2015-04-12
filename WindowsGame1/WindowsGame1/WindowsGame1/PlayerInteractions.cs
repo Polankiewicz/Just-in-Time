@@ -31,12 +31,12 @@ namespace WindowsGame1
         public void catchInteraction(Camera camera)
         {
 
-            if (buildingsList.Count >= buildingsListSize && Vector3.Distance(buildingsList[1].Position, camera.Position) < 3.0f)
+            if (buildingsList.Count >= buildingsListSize && Vector3.Distance(buildingsList[0].Position, camera.Position) < 3.0f)
             {
                 hudTexts.DisplayText = "Press X to destroy scaner!";
 
                 if(GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed)
-                    buildingsList.RemoveAt(1);
+                    buildingsList.RemoveAt(0);
             }
             else
             {
