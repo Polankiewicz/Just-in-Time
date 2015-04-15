@@ -3,7 +3,7 @@
   <Asset Type="Graphics:NodeContent">
     <Name>RootNode</Name>
     <Identity>
-      <SourceFilename>C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1Content\Models\sidewalk_grass.FBX</SourceFilename>
+      <SourceFilename>D:\home\Desktop\studia\PBL\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1Content\Models\sidewalk_grass.FBX</SourceFilename>
       <SourceTool>FbxImporter</SourceTool>
     </Identity>
     <Transform>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</Transform>
@@ -56,7 +56,7 @@
     <Resource ID="#Resource1" Type="Graphics:BasicMaterialContent">
       <Name>03 - Default</Name>
       <Identity>
-        <SourceFilename>C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1Content\Models\sidewalk_grass.FBX</SourceFilename>
+        <SourceFilename>D:\home\Desktop\studia\PBL\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1Content\Models\sidewalk_grass.FBX</SourceFilename>
         <SourceTool>FbxImporter</SourceTool>
       </Identity>
       <OpaqueData>
@@ -70,7 +70,7 @@
     <Resource ID="#Resource2" Type="Graphics:BasicMaterialContent">
       <Name>Material #0</Name>
       <Identity>
-        <SourceFilename>C:\Users\damia_000\Desktop\PBLrepo\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1Content\Models\sidewalk_grass.FBX</SourceFilename>
+        <SourceFilename>D:\home\Desktop\studia\PBL\Just-in-Time\WindowsGame1\WindowsGame1\WindowsGame1Content\Models\sidewalk_grass.FBX</SourceFilename>
         <SourceTool>FbxImporter</SourceTool>
       </Identity>
     </Resource>

@@ -25,7 +25,7 @@ namespace WindowsGame1
         BasicEffect effect;
 
         List<StaticModel> staticModelsList = new List<StaticModel>();
-        Model buildingModel,skaner,enemyModel,sidewalk;
+        Model buildingModel,skaner,enemyModel,sidewalk,shop;
 
         Enemy enemy;
         PlayerInteractions playerInteractions;
@@ -72,7 +72,7 @@ namespace WindowsGame1
             skaner = Content.Load<Model>("Models\\scan");
             enemyModel = Content.Load<Model>("Models\\przeciwnik");
             sidewalk = Content.Load<Model>("Models\\sidewalk_grass");
-
+            shop = Content.Load<Model>("Models\\shop");
             enemy = new Enemy(GraphicsDevice, enemyModel, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f);
 
 
@@ -82,7 +82,7 @@ namespace WindowsGame1
             //buildingsList.Add(new Building(GraphicsDevice, buildingModel, new Vector3(-24, 1.75f, -24), new Vector3(0, 90, 0), 0.005f));
             //buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(0,1.75f,-64),new Vector3(0, 0,0), 0.005f));
             //buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(100,0,0)));
-            
+            staticModelsList.Add(new StaticModel(GraphicsDevice, shop, new Vector3(-10,0,20),new Vector3(0,90,0),0.01f));
             for (int i = -5; i < 10; i++ ) //proste tworzenie podlogi z elemenu sidewalk_grass
             {
                 for (int j = 0; j < 20; j++)

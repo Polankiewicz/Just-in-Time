@@ -18,8 +18,8 @@ namespace WindowsGame1
             this.camera = camera;
             this.enemy = enemy;
             
-            b1 = new BoundingSphere(camera.Position, 1.0f);
-            b2 = new BoundingSphere(enemy.Position, 1.0f);
+            b1 = new BoundingSphere(camera.Position, 0.50f);
+            b2 = new BoundingSphere(enemy.Position, 0.50f);
         }
 
         public void updateBoundingSpherePosition(Vector3 enemyPosition)
