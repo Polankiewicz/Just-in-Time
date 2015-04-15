@@ -151,7 +151,10 @@ namespace WindowsGame1
 
             hudTexts.drawText(spriteBatch, spriteFont); //draw gui texts
             // spriteBatch.Begin() set GraphicsDevice.DepthStencilState to DepthStencilState.None
-            GraphicsDevice.DepthStencilState = DepthStencilState.Default; 
+            GraphicsDevice.DepthStencilState = DepthStencilState.Default;
+            GraphicsDevice.BlendState = BlendState.Opaque;
+            GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
+            GraphicsDevice.RasterizerState = RasterizerState.CullNone;
 
             enemy.Draw(camera);
           
