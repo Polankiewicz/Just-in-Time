@@ -24,7 +24,13 @@ namespace WindowsGame1
         private GamePadState gamePad;
         // collisions
         CameraCollisions cameraCollisions;
+        Enemy enemy;
+        //////////////////////////////////////// TODO: staticModels and dynamicModels //////////////////////////////////////////////
+        //StaticModel staticModel;
+        //DynamicModel dynamicModel
         
+
+
         //Properties
 
         public Vector3 Position
@@ -77,9 +83,11 @@ namespace WindowsGame1
 
         }
 
-        public void setCameraCollision(CameraCollisions cameraCollisions)
+        public void setCameraCollision(Enemy enemy) // object for collisions 
         {
-            this.cameraCollisions = cameraCollisions;
+            //////////////////////////////////////// TODO: set staticModels and dynamicModels //////////////////////////////////////////////
+            this.enemy = enemy;
+            cameraCollisions = new CameraCollisions(this, enemy);
         }
 
         //set camera's position and rotation
@@ -122,7 +130,12 @@ namespace WindowsGame1
         {
             if (game.IsActive)
             {
-                
+                // objects position for collision with player/camera
+                //////////////////////////////////////// TODO: set staticModels and dynamicModels positions /////////////////////////////////////////
+                cameraCollisions.updateBoundingSpherePosition(enemy.Position);
+
+
+
                 float dt = (float)gameTime.ElapsedGameTime.TotalSeconds; // delta time
 
                 currentMouseState = Mouse.GetState();
