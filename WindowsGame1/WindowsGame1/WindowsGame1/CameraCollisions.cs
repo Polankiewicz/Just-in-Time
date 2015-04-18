@@ -22,9 +22,9 @@ namespace WindowsGame1
             b2 = new BoundingSphere(enemy.Position, 0.50f);
         }
 
-        public void updateBoundingSpherePosition(Vector3 enemyPosition)
+        public void updateBoundingSpherePosition()
         {
-            b2.Center = enemyPosition;
+            b2.Center = enemy.Position;
         }
 
         public bool cameraNextMoveCollisionDetect(Vector3 nextCameraMove)
