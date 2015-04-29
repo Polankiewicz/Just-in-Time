@@ -80,12 +80,19 @@ namespace WindowsGame1
 
             staticModelsList.Add(new StaticModel(GraphicsDevice, skaner, new Vector3(10, 0, 10), Vector3.Zero, 0.05f));
             staticModelsList.Add(new StaticModel(GraphicsDevice,buildingModel,new Vector3(0,0,-10),Vector3.Zero, 0.005f));
+            staticModelsList.Add(new StaticModel(GraphicsDevice, buildingModel, new Vector3(50, 0,30), new Vector3(0, 90, 0), 0.005f));
+            staticModelsList.Add(new StaticModel(GraphicsDevice, buildingModel, new Vector3(0, 0, 30), Vector3.Zero, 0.005f));
+            staticModelsList.Add(new StaticModel(GraphicsDevice, buildingModel,  new Vector3(-50, 0, 20), new Vector3(0, 45, 0), 0.005f));
+            staticModelsList.Add(new StaticModel(GraphicsDevice, buildingModel, new Vector3(-40, 0, 60), new Vector3(0, 135, 0), 0.005f));
             //buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(64,1.75f,16),new Vector3(0,90,0), 0.005f));
             //buildingsList.Add(new Building(GraphicsDevice, buildingModel, new Vector3(-24, 1.75f, -24), new Vector3(0, 90, 0), 0.005f));
             //buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(0,1.75f,-64),new Vector3(0, 0,0), 0.005f));
             //buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(100,0,0)));
-            staticModelsList.Add(new StaticModel(GraphicsDevice, shop, new Vector3(-10,0,20),new Vector3(0,90,0),0.01f));
-            staticModelsList.Add(new StaticModel(GraphicsDevice, shop, new Vector3(-10, 0, 20), new Vector3(0, 90, 0), 0.01f));
+            staticModelsList.Add(new StaticModel(GraphicsDevice, shop, new Vector3(-20,0,18),new Vector3(0,135,0),0.01f));
+          
+
+
+
           //  staticModelsList.Add(new StaticModel(GraphicsDevice, trash_can, new Vector3(0, 10, 0), new Vector3(0, 90, 0), 0.1f));
             for (int i = -5; i < 10; i++ ) //proste tworzenie podlogi z elemenu sidewalk_grass
             {
@@ -158,7 +165,7 @@ namespace WindowsGame1
             GraphicsDevice.BlendState = BlendState.Opaque;
             GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
             GraphicsDevice.RasterizerState = RasterizerState.CullNone;
-
+           
             enemy.Draw(camera);
             //hand.Position = new Vector3(10, 10, 10);// camera.Position;
           //  hand.Draw(camera);
