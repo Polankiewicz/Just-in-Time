@@ -13,9 +13,10 @@ namespace WindowsGame1
         private GraphicsDevice device;
         private Color[] floorColors = new Color[2] { Color.White, Color.Black };
         Model model;
-        Matrix position = Matrix.Identity;
+        Matrix position;
         Matrix rotation;
         private Vector3 offset;
+
         float scale = 0.005f;
 
         AnimationPlayer enemy;// This calculates the Matrices of the animation
@@ -25,10 +26,12 @@ namespace WindowsGame1
         public Vector3 Position
         {
             get { return offset; }
+            set { offset = value; }
         }
 
         public Enemy(GraphicsDevice device, Model model, Vector3 position, Vector3 rotationDegrees, float scale)
         {
+            this.position = Matrix.Identity;
             this.device = device;
             this.model = model;
             this.scale = scale;

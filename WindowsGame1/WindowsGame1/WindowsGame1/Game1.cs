@@ -25,9 +25,9 @@ namespace WindowsGame1
         BasicEffect effect;
 
         List<StaticModel> staticModelsList = new List<StaticModel>();
-        Model buildingModel,skaner,enemyModel,sidewalk,shop;
+        Model buildingModel,skaner,enemyModel,sidewalk,shop,trash_can,hands;
 
-        Enemy enemy;
+        Enemy enemy,hand;
         PlayerInteractions playerInteractions;
 
         //display texts
@@ -74,7 +74,9 @@ namespace WindowsGame1
             sidewalk = Content.Load<Model>("Models\\sidewalk_grass");
             shop = Content.Load<Model>("Models\\shop");
             enemy = new Enemy(GraphicsDevice, enemyModel, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f);
-
+           // trash_can = Content.Load<Model>("Models\\trash_can_blue");
+            //hands =  Content.Load<Model>("Models\\hand");
+          //  hand = new Enemy(GraphicsDevice, hands,new Vector3(0,10,0), new Vector3(0, 180, 0), 0.1f);
 
             staticModelsList.Add(new StaticModel(GraphicsDevice, skaner, new Vector3(10, 0, 10), Vector3.Zero, 0.05f));
             staticModelsList.Add(new StaticModel(GraphicsDevice,buildingModel,new Vector3(0,0,-10),Vector3.Zero, 0.005f));
@@ -83,11 +85,13 @@ namespace WindowsGame1
             //buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(0,1.75f,-64),new Vector3(0, 0,0), 0.005f));
             //buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(100,0,0)));
             staticModelsList.Add(new StaticModel(GraphicsDevice, shop, new Vector3(-10,0,20),new Vector3(0,90,0),0.01f));
+            staticModelsList.Add(new StaticModel(GraphicsDevice, shop, new Vector3(-10, 0, 20), new Vector3(0, 90, 0), 0.01f));
+          //  staticModelsList.Add(new StaticModel(GraphicsDevice, trash_can, new Vector3(0, 10, 0), new Vector3(0, 90, 0), 0.1f));
             for (int i = -5; i < 10; i++ ) //proste tworzenie podlogi z elemenu sidewalk_grass
             {
                 for (int j = 0; j < 20; j++)
                 {
-                    staticModelsList.Add(new StaticModel(GraphicsDevice, sidewalk, new Vector3(j*6.25f, 0, i * 5), new Vector3(0,j*180, 0),0.001f));
+                    staticModelsList.Add(new StaticModel(GraphicsDevice, sidewalk, new Vector3(-50+j*6.25f, 0, i * 5), new Vector3(0,0, 0),0.001f));
                     
                 }
             }
@@ -157,6 +161,8 @@ namespace WindowsGame1
             GraphicsDevice.RasterizerState = RasterizerState.CullNone;
 
             enemy.Draw(camera);
+            //hand.Position = new Vector3(10, 10, 10);// camera.Position;
+          //  hand.Draw(camera);
           
             foreach (StaticModel b in staticModelsList) b.Draw(camera);
 
