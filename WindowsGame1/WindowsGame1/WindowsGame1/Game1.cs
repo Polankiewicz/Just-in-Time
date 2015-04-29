@@ -34,7 +34,7 @@ namespace WindowsGame1
         SpriteFont spriteFont;
         HudTexts hudTexts = new HudTexts();
 
-        CameraCollisions cameraCollisions;
+        
 
 
         public Game1()
@@ -102,9 +102,10 @@ namespace WindowsGame1
             // set all objects to interact with player
             playerInteractions = new PlayerInteractions(this, hudTexts, staticModelsList);
 
+
             // collisions
-            cameraCollisions = new CameraCollisions(camera, enemy);
-            camera.setCameraCollision(cameraCollisions);
+            //////////////////////////////////////// TODO: set staticModels and dynamicModels //////////////////////////////////////////////
+            camera.setCameraCollision(enemy);
         }
 
         /// <summary>
@@ -130,9 +131,7 @@ namespace WindowsGame1
             // TODO: Add your update logic here
 
 
-            // objects position for collision with player/camera
-            cameraCollisions.updateBoundingSpherePosition(enemy.Position);
-
+            
 
             playerInteractions.catchInteraction(camera);
     
