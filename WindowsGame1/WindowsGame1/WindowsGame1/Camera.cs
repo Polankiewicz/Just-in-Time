@@ -78,12 +78,12 @@ namespace WindowsGame1
 
         }
 
-        public void setCameraCollision(Enemy enemy) // object for collisions 
+        public void setCameraCollision(Enemy enemy, List<StaticModel> staticModelsList) // object for collisions 
         {
             //////////////////////////////////////// TODO: set staticModels and dynamicModels //////////////////////////////////////////////
             //StaticModel staticModel;
             //DynamicModel dynamicModel;
-            cameraCollisions = new CameraCollisions(this, enemy);
+            cameraCollisions = new CameraCollisions(this, enemy, staticModelsList);
         }
 
         //set camera's position and rotation
@@ -158,6 +158,9 @@ namespace WindowsGame1
                 if (ks.IsKeyDown(Keys.T))
                     moveVector.Y= 100;
 
+                //gravity
+                //moveVector.Y = -100;
+
                 if (moveVector != Vector3.Zero)
                 {
                     //normalize the vector
@@ -166,7 +169,10 @@ namespace WindowsGame1
 
                     // simulate next move and check for collision
                     if (cameraCollisions.cameraNextMoveCollisionDetect(PreviewMove(moveVector)))
+                    {
                         Move(moveVector);
+                    }
+
 
                 }
 
