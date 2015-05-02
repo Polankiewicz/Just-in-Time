@@ -12,11 +12,11 @@ namespace WindowsGame1
         BoundingSphere cameraBoundingSphere;
         BoundingSphere b2;
         Camera camera;
-        Enemy enemy; // sie wyjebie i zamieni na dynamicModelsList
+        DynamicModel enemy; // sie wyjebie i zamieni na dynamicModelsList
         List<StaticModel> staticModelsList;
         List<BoundingSphere> staticBoundingSpheresList = new List<BoundingSphere>();
 
-        public CameraCollisions(Camera camera, Enemy enemy, List<StaticModel> staticModelsList)
+        public CameraCollisions(Camera camera, DynamicModel enemy, List<StaticModel> staticModelsList)
         {
             this.camera = camera;
             this.enemy = enemy;

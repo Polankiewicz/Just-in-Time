@@ -24,18 +24,15 @@ namespace WindowsGame1
         Floor floor;
         BasicEffect effect;
 
-        List<StaticModel> staticModelsList = new List<StaticModel>();
-        Model buildingModel,skaner,enemyModel,sidewalk,shop,trash_can,hands;
-
-        Enemy enemy,hand;
+       
         PlayerInteractions playerInteractions;
 
         //display texts
         SpriteFont spriteFont;
         HudTexts hudTexts = new HudTexts();
 
+        Scene actualScene;
         
-
 
         public Game1()
         {
@@ -45,6 +42,10 @@ namespace WindowsGame1
             graphics.PreferredBackBufferHeight = 720;
             graphics.PreferredBackBufferWidth = 1280;
             Content.RootDirectory = "Content";
+            
+           
+
+            
             
         }
 
@@ -58,61 +59,47 @@ namespace WindowsGame1
             floor = new Floor(GraphicsDevice, 20, 20);
             effect = new BasicEffect(GraphicsDevice);
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            actualScene = new Scene(Content, GraphicsDevice, camera);
+           
+           
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
+
+            actualScene.AddStaticModel("Models\\scan", new Vector3(10, 0, 10), Vector3.Zero, 0.05f);
+            actualScene.AddStaticModel("Models\\7pieter", new Vector3(0, 0, -10), Vector3.Zero, 0.005f);
+            actualScene.AddStaticModel("Models\\7pieter", new Vector3(50, 0, 30), new Vector3(0, 90, 0), 0.005f);
+            actualScene.AddStaticModel("Models\\7pieter", new Vector3(0, 0, 30), Vector3.Zero, 0.005f);
+            actualScene.AddStaticModel("Models\\7pieter", new Vector3(-50, 0, 20), new Vector3(0, 45, 0), 0.005f);
+            actualScene.AddStaticModel("Models\\7pieter", new Vector3(-40, 0, 60), new Vector3(0, 135, 0), 0.005f);
            
-            
+            actualScene.AddStaticModel("Models\\shop", new Vector3(-20, 0, 18), new Vector3(0, 135, 0), 0.01f);
 
-            //objects
-            buildingModel = Content.Load<Model>("Models\\7pieter");
-            skaner = Content.Load<Model>("Models\\scan");
-            enemyModel = Content.Load<Model>("Models\\przeciwnik");
-            sidewalk = Content.Load<Model>("Models\\sidewalk_grass");
-            shop = Content.Load<Model>("Models\\shop");
-            enemy = new Enemy(GraphicsDevice, enemyModel, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f);
-           // trash_can = Content.Load<Model>("Models\\trash_can_blue");
-            //hands =  Content.Load<Model>("Models\\hand");
-          //  hand = new Enemy(GraphicsDevice, hands,new Vector3(0,10,0), new Vector3(0, 180, 0), 0.1f);
-
-            staticModelsList.Add(new StaticModel(GraphicsDevice, skaner, new Vector3(10, 0, 10), Vector3.Zero, 0.05f));
-            staticModelsList.Add(new StaticModel(GraphicsDevice,buildingModel,new Vector3(0,0,-10),Vector3.Zero, 0.005f));
-            staticModelsList.Add(new StaticModel(GraphicsDevice, buildingModel, new Vector3(50, 0,30), new Vector3(0, 90, 0), 0.005f));
-            staticModelsList.Add(new StaticModel(GraphicsDevice, buildingModel, new Vector3(0, 0, 30), Vector3.Zero, 0.005f));
-            staticModelsList.Add(new StaticModel(GraphicsDevice, buildingModel,  new Vector3(-50, 0, 20), new Vector3(0, 45, 0), 0.005f));
-            staticModelsList.Add(new StaticModel(GraphicsDevice, buildingModel, new Vector3(-40, 0, 60), new Vector3(0, 135, 0), 0.005f));
-            //buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(64,1.75f,16),new Vector3(0,90,0), 0.005f));
-            //buildingsList.Add(new Building(GraphicsDevice, buildingModel, new Vector3(-24, 1.75f, -24), new Vector3(0, 90, 0), 0.005f));
-            //buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(0,1.75f,-64),new Vector3(0, 0,0), 0.005f));
-            //buildingsList.Add(new Building(GraphicsDevice,buildingModel,new Vector3(100,0,0)));
-            staticModelsList.Add(new StaticModel(GraphicsDevice, shop, new Vector3(-20,0,18),new Vector3(0,135,0),0.01f));
-          
-
-
-
-          //  staticModelsList.Add(new StaticModel(GraphicsDevice, trash_can, new Vector3(0, 10, 0), new Vector3(0, 90, 0), 0.1f));
-            for (int i = -5; i < 10; i++ ) //proste tworzenie podlogi z elemenu sidewalk_grass
+            for (int i = -5; i < 10; i++) //proste tworzenie podlogi z elementu sidewalk_grass
             {
                 for (int j = 0; j < 20; j++)
                 {
-                    staticModelsList.Add(new StaticModel(GraphicsDevice, sidewalk, new Vector3(-50+j*6.25f, 0, i * 5), new Vector3(0,0, 0),0.001f));
-                    
+                    actualScene.AddStaticModel("Models\\sidewalk_grass", new Vector3(-50 + j * 6.25f, 0, i * 5), new Vector3(0, 0, 0), 0.001f);
+
                 }
             }
+
+            actualScene.AddDynamicModel("Models\\przeciwnik", new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f);
+
+            
 
             //texts
             spriteFont = Content.Load<SpriteFont>("Sprites\\PressXtoInteract");
 
             // set all objects to interact with player
-            playerInteractions = new PlayerInteractions(this, hudTexts, staticModelsList);
+            playerInteractions = new PlayerInteractions(this, hudTexts, actualScene.getStaticModelsList());
 
 
             // collisions
             //////////////////////////////////////// TODO: set staticModels and dynamicModels //////////////////////////////////////////////
-            camera.setCameraCollision(enemy, staticModelsList);
+            camera.setCameraCollision(null,null); 
         }
 
         /// <summary>
@@ -142,7 +129,7 @@ namespace WindowsGame1
 
             playerInteractions.catchInteraction(camera);
     
-            enemy.Update(gameTime);
+           actualScene.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -154,23 +141,17 @@ namespace WindowsGame1
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
-
-            //floor.Draw(camera, effect);
-
 
             hudTexts.drawText(spriteBatch, spriteFont); //draw gui texts
-            // spriteBatch.Begin() set GraphicsDevice.DepthStencilState to DepthStencilState.None
+         
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             GraphicsDevice.BlendState = BlendState.Opaque;
             GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
             GraphicsDevice.RasterizerState = RasterizerState.CullNone;
            
-            enemy.Draw(camera);
-            //hand.Position = new Vector3(10, 10, 10);// camera.Position;
-          //  hand.Draw(camera);
-          
-            foreach (StaticModel b in staticModelsList) b.Draw(camera);
+    
+            actualScene.Draw();
+           
 
             base.Draw(gameTime);
 

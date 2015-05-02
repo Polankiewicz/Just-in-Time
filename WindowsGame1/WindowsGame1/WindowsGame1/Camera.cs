@@ -78,7 +78,7 @@ namespace WindowsGame1
 
         }
 
-        public void setCameraCollision(Enemy enemy, List<StaticModel> staticModelsList) // object for collisions 
+        public void setCameraCollision(DynamicModel enemy, List<StaticModel> staticModelsList) // object for collisions 
         {
             //////////////////////////////////////// TODO: set staticModels and dynamicModels //////////////////////////////////////////////
             //StaticModel staticModel;
@@ -128,7 +128,7 @@ namespace WindowsGame1
             {
                 
                 // update bounding sphares position for collision with player/camera
-                cameraCollisions.updateBoundingSpherePosition();
+               cameraCollisions.updateBoundingSpherePosition();
 
 
                 float dt = (float)gameTime.ElapsedGameTime.TotalSeconds; // delta time

@@ -73,9 +73,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CameraCollisions.cs" />
+    <Compile Include="Scene.cs" />
     <Compile Include="StaticModel.cs" />
     <Compile Include="Camera.cs" />
-    <Compile Include="Enemy.cs" />
+    <Compile Include="DynamicModel.cs" />
     <Compile Include="Floor.cs" />
     <Compile Include="HudTexts.cs" />
     <Compile Include="PlayerInteractions.cs" />

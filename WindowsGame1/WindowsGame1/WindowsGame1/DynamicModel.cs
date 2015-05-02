@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Content;
 using SkinnedModel;
 namespace WindowsGame1
 {
-    class Enemy
+    class DynamicModel
     {
         private GraphicsDevice device;
         private Color[] floorColors = new Color[2] { Color.White, Color.Black };
@@ -29,7 +29,7 @@ namespace WindowsGame1
             set { offset = value; }
         }
 
-        public Enemy(GraphicsDevice device, Model model, Vector3 position, Vector3 rotationDegrees, float scale)
+        public DynamicModel(GraphicsDevice device, Model model, Vector3 position, Vector3 rotationDegrees, float scale)
         {
             this.position = Matrix.Identity;
             this.device = device;
@@ -68,7 +68,11 @@ namespace WindowsGame1
                     a.World = this.rotation * Matrix.CreateScale(scale) * Matrix.CreateTranslation(offset);
                     a.View = camera.View;
                     a.Projection = camera.Projection;
-
+                    
+                    a.DirectionalLight0.DiffuseColor = new Vector3(0.4f, 0.4f, 0.49f); // a red light
+                    a.DirectionalLight0.Direction = new Vector3(-1, -1, 0.75f);  // coming along the x-axis
+                    a.DirectionalLight0.SpecularColor = new Vector3(1, 1, 1);
+                    a.AmbientLightColor = new Vector3(0.05f, 0.05f, 0.05f);
                     a.SpecularColor = new Vector3(0.25f);
                     a.SpecularPower = 16;
                 }
