@@ -2,24 +2,36 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace WindowsGame1
 {
     class CameraCollisions
     {
-        BoundingSphere b1;
+        BoundingSphere cameraBoundingSphere;
         BoundingSphere b2;
         Camera camera;
-        Enemy enemy;
+        Enemy enemy; // sie wyjebie i zamieni na dynamicModelsList
+        List<StaticModel> staticModelsList;
+        List<BoundingSphere> staticBoundingSpheresList = new List<BoundingSphere>();
 
-        public CameraCollisions(Camera camera, Enemy enemy)
+        public CameraCollisions(Camera camera, Enemy enemy, List<StaticModel> staticModelsList)
         {
             this.camera = camera;
             this.enemy = enemy;
-            
-            b1 = new BoundingSphere(camera.Position, 0.50f);
+            this.staticModelsList = staticModelsList;
+
+            cameraBoundingSphere = new BoundingSphere(camera.Position, 0.50f);
             b2 = new BoundingSphere(enemy.Position, 0.50f);
+
+
+            //for(int i = 0; i < staticModelsList.Count; i++)
+            //{
+                //if (staticModelsList[i].ToString)
+
+                //Console.WriteLine( staticModelsList[i].GetType() );
+            //}
         }
 
         public void updateBoundingSpherePosition()
@@ -29,9 +41,9 @@ namespace WindowsGame1
 
         public bool cameraNextMoveCollisionDetect(Vector3 nextCameraMove)
         {
-            b1.Center = nextCameraMove;
+            cameraBoundingSphere.Center = nextCameraMove;
 
-            if (b1.Intersects(b2))
+            if (cameraBoundingSphere.Intersects(b2))
                 return false;
             else
                 return true;
@@ -39,4 +51,6 @@ namespace WindowsGame1
 
 
     }
+
+
 }

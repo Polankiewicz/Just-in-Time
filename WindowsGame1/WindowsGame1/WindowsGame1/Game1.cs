@@ -112,7 +112,7 @@ namespace WindowsGame1
 
             // collisions
             //////////////////////////////////////// TODO: set staticModels and dynamicModels //////////////////////////////////////////////
-            camera.setCameraCollision(enemy);
+            camera.setCameraCollision(enemy, staticModelsList);
         }
 
         /// <summary>
