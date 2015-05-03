@@ -24,7 +24,7 @@ namespace WindowsGame1
         Floor floor;
         BasicEffect effect;
         DynamicModel hand;
-       
+
         PlayerInteractions playerInteractions;
 
         //display texts
@@ -34,7 +34,7 @@ namespace WindowsGame1
         Scene actualScene;
         Matrix cameraWorldMartix;
         Matrix handWorldMatrix;
-
+        
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -43,17 +43,10 @@ namespace WindowsGame1
             graphics.PreferredBackBufferHeight = 720;
             graphics.PreferredBackBufferWidth = 1280;
             Content.RootDirectory = "Content";
-            
-           
-
-            
-            
         }
 
         protected override void Initialize()
         {
-
-
             camera = new Camera(this, new Vector3(10f, 1f, 5f), Vector3.Zero, 5f);
             Components.Add(camera);
           //  graphics.ToggleFullScreen();
@@ -61,14 +54,14 @@ namespace WindowsGame1
             effect = new BasicEffect(GraphicsDevice);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             actualScene = new Scene(Content, GraphicsDevice, camera);
-            
+           
            
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
-
+            // TODO: replace adding objects
             actualScene.AddStaticModel("Models\\scan", new Vector3(10, 0, 10), Vector3.Zero, 0.05f);
             actualScene.AddStaticModel("Models\\7pieter", new Vector3(0, 0, -10), Vector3.Zero, 0.005f);
             actualScene.AddStaticModel("Models\\7pieter", new Vector3(50, 0, 30), new Vector3(0, 90, 0), 0.005f);
@@ -78,7 +71,8 @@ namespace WindowsGame1
            
             actualScene.AddStaticModel("Models\\shop", new Vector3(-20, 0, 18), new Vector3(0, 135, 0), 0.01f);
 
-            for (int i = -5; i < 10; i++) //proste tworzenie podlogi z elementu sidewalk_grass
+            // proste tworzenie podlogi z elementu sidewalk_grass
+            for (int i = -5; i < 10; i++) 
             {
                 for (int j = 0; j < 20; j++)
                 {
@@ -90,18 +84,18 @@ namespace WindowsGame1
             actualScene.AddDynamicModel("Models\\przeciwnik", new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f);
             Model temp = Content.Load<Model>("Models\\hand");
             hand = new DynamicModel(GraphicsDevice,temp, new Vector3(1, 1.2f, 1), new Vector3(-45, 90, 90),0.02f);
+
             
 
-            //texts
+            // hud texts
             spriteFont = Content.Load<SpriteFont>("Sprites\\PressXtoInteract");
 
-            // set all objects to interact with player
+            // set all objects to interact with player (Distance)
             playerInteractions = new PlayerInteractions(this, hudTexts, actualScene.getStaticModelsList());
 
+            // camera/player collisions with everything
+            camera.setCameraCollision(actualScene.getDynamicModelsList(), actualScene.getStaticModelsList()); 
 
-            // collisions
-            //////////////////////////////////////// TODO: set staticModels and dynamicModels //////////////////////////////////////////////
-           // camera.setCameraCollision(null,null); 
         }
 
         /// <summary>
@@ -127,8 +121,6 @@ namespace WindowsGame1
             // TODO: Add your update logic here
 
 
-            
-
             playerInteractions.catchInteraction(camera);
     
            actualScene.Update(gameTime);
@@ -144,17 +136,15 @@ namespace WindowsGame1
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-
-            hudTexts.drawText(spriteBatch, spriteFont); //draw gui texts
-         
+            hudTexts.drawText(spriteBatch, spriteFont);
+            // fixing GraphicsDevice after spriteBatch.Begin() method
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             GraphicsDevice.BlendState = BlendState.Opaque;
             GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
             GraphicsDevice.RasterizerState = RasterizerState.CullNone;
            
-    
             actualScene.Draw();
-
+           
             cameraWorldMartix = Matrix.Invert(camera.View);
             handWorldMatrix = cameraWorldMartix;
             
@@ -179,8 +169,6 @@ namespace WindowsGame1
 
             
             base.Draw(gameTime);
-
-            
         }
 
     }
