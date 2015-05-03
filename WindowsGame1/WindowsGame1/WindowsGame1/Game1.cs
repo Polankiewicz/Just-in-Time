@@ -77,7 +77,6 @@ namespace WindowsGame1
                 for (int j = 0; j < 20; j++)
                 {
                     actualScene.AddStaticModel("Models\\sidewalk_grass", new Vector3(-50 + j * 6.25f, 0, i * 5), new Vector3(0, 0, 0), 0.001f);
-
                 }
             }
 
@@ -163,7 +162,7 @@ namespace WindowsGame1
                                        (cameraWorldMartix.Right * 0.9f);
            
             hand.Model = handWorldMatrix;
-
+           
 
             hand.Draw(camera);
 

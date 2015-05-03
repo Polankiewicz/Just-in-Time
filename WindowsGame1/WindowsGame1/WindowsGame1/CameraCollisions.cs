@@ -9,41 +9,38 @@ namespace WindowsGame1
 {
     class CameraCollisions
     {
-        BoundingSphere cameraBoundingSphere;
-        BoundingSphere b2;
         Camera camera;
-        DynamicModel enemy; // sie wyjebie i zamieni na dynamicModelsList
-        List<StaticModel> staticModelsList;
-        List<BoundingSphere> staticBoundingSpheresList = new List<BoundingSphere>();
+        BoundingSphere cameraBoundingSphere;
 
-        public CameraCollisions(Camera camera, DynamicModel enemy, List<StaticModel> staticModelsList)
+        BoundingSphere enemyBoundingSphere;  // temp
+        
+        List<StaticModel> staticModelsList;
+        List<DynamicModel> dynamicModelsList;
+
+        List<BoundingSphere> staticBoundingSpheresList = new List<BoundingSphere>();
+        List<BoundingSphere> dynamicBoundingSpheresList = new List<BoundingSphere>();
+
+        public CameraCollisions(Camera camera, List<DynamicModel> dynamicModelsList, List<StaticModel> staticModelsList)
         {
             this.camera = camera;
-            this.enemy = enemy;
             this.staticModelsList = staticModelsList;
+            this.dynamicModelsList = dynamicModelsList;
 
             cameraBoundingSphere = new BoundingSphere(camera.Position, 0.50f);
-            b2 = new BoundingSphere(enemy.Position, 0.50f);
+            enemyBoundingSphere = new BoundingSphere(dynamicModelsList[0].Position, 0.50f);
 
-
-            //for(int i = 0; i < staticModelsList.Count; i++)
-            //{
-                //if (staticModelsList[i].ToString)
-
-                //Console.WriteLine( staticModelsList[i].GetType() );
-            //}
         }
 
         public void updateBoundingSpherePosition()
         {
-            b2.Center = enemy.Position;
+            enemyBoundingSphere.Center = dynamicModelsList[0].Position;
         }
 
         public bool cameraNextMoveCollisionDetect(Vector3 nextCameraMove)
         {
             cameraBoundingSphere.Center = nextCameraMove;
 
-            if (cameraBoundingSphere.Intersects(b2))
+            if (cameraBoundingSphere.Intersects(enemyBoundingSphere))
                 return false;
             else
                 return true;

@@ -78,12 +78,10 @@ namespace WindowsGame1
 
         }
 
-        public void setCameraCollision(DynamicModel enemy, List<StaticModel> staticModelsList) // object for collisions 
+        public void setCameraCollision(List<DynamicModel> dynamicModelsList, List<StaticModel> staticModelsList)
         {
-            //////////////////////////////////////// TODO: set staticModels and dynamicModels //////////////////////////////////////////////
-            //StaticModel staticModel;
-            //DynamicModel dynamicModel;
-            cameraCollisions = new CameraCollisions(this, enemy, staticModelsList);
+            cameraCollisions = new CameraCollisions(this, dynamicModelsList, staticModelsList);
+            // maybe player interactions also should be here...
         }
 
         //set camera's position and rotation
