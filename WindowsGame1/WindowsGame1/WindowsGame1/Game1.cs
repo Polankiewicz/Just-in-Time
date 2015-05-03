@@ -24,7 +24,6 @@ namespace WindowsGame1
         Floor floor;
         BasicEffect effect;
 
-       
         PlayerInteractions playerInteractions;
 
         //display texts
@@ -41,21 +40,14 @@ namespace WindowsGame1
             graphics.IsFullScreen = false;
             graphics.PreferredBackBufferHeight = 720;
             graphics.PreferredBackBufferWidth = 1280;
-            Content.RootDirectory = "Content";
-            
-           
-
-            
-            
+            Content.RootDirectory = "Content"; 
         }
 
         protected override void Initialize()
         {
-
-
             camera = new Camera(this, new Vector3(10f, 1f, 5f), Vector3.Zero, 5f);
             Components.Add(camera);
-          //  graphics.ToggleFullScreen();
+            //  graphics.ToggleFullScreen();
             floor = new Floor(GraphicsDevice, 20, 20);
             effect = new BasicEffect(GraphicsDevice);
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -67,7 +59,7 @@ namespace WindowsGame1
 
         protected override void LoadContent()
         {
-
+            // TODO: replace adding objects
             actualScene.AddStaticModel("Models\\scan", new Vector3(10, 0, 10), Vector3.Zero, 0.05f);
             actualScene.AddStaticModel("Models\\7pieter", new Vector3(0, 0, -10), Vector3.Zero, 0.005f);
             actualScene.AddStaticModel("Models\\7pieter", new Vector3(50, 0, 30), new Vector3(0, 90, 0), 0.005f);
@@ -77,12 +69,12 @@ namespace WindowsGame1
            
             actualScene.AddStaticModel("Models\\shop", new Vector3(-20, 0, 18), new Vector3(0, 135, 0), 0.01f);
 
-            for (int i = -5; i < 10; i++) //proste tworzenie podlogi z elementu sidewalk_grass
+            // proste tworzenie podlogi z elementu sidewalk_grass
+            for (int i = -5; i < 10; i++) 
             {
                 for (int j = 0; j < 20; j++)
                 {
                     actualScene.AddStaticModel("Models\\sidewalk_grass", new Vector3(-50 + j * 6.25f, 0, i * 5), new Vector3(0, 0, 0), 0.001f);
-
                 }
             }
 
@@ -90,16 +82,15 @@ namespace WindowsGame1
 
             
 
-            //texts
+            // hud texts
             spriteFont = Content.Load<SpriteFont>("Sprites\\PressXtoInteract");
 
-            // set all objects to interact with player
+            // set all objects to interact with player (Distance)
             playerInteractions = new PlayerInteractions(this, hudTexts, actualScene.getStaticModelsList());
 
+            // camera/player collisions with everything
+            camera.setCameraCollision(actualScene.getDynamicModelsList(), actualScene.getStaticModelsList()); 
 
-            // collisions
-            //////////////////////////////////////// TODO: set staticModels and dynamicModels //////////////////////////////////////////////
-            camera.setCameraCollision(null,null); 
         }
 
         /// <summary>
@@ -125,11 +116,10 @@ namespace WindowsGame1
             // TODO: Add your update logic here
 
 
-            
-
             playerInteractions.catchInteraction(camera);
     
-           actualScene.Update(gameTime);
+            actualScene.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -141,21 +131,16 @@ namespace WindowsGame1
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-
-            hudTexts.drawText(spriteBatch, spriteFont); //draw gui texts
-         
+            hudTexts.drawText(spriteBatch, spriteFont);
+            // fixing GraphicsDevice after spriteBatch.Begin() method
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             GraphicsDevice.BlendState = BlendState.Opaque;
             GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
             GraphicsDevice.RasterizerState = RasterizerState.CullNone;
-           
-    
+              
             actualScene.Draw();
            
-
             base.Draw(gameTime);
-
-            
         }
 
     }

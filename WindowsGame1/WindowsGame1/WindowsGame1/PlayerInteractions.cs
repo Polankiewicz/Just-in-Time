@@ -30,7 +30,7 @@ namespace WindowsGame1
 
         public void catchInteraction(Camera camera)
         {
-
+            // destroy scaner
             if (buildingsList.Count >= buildingsListSize && Vector3.Distance(buildingsList[0].Position, camera.Position) < 3.0f)
             {
                 hudTexts.DisplayText = "Press X to destroy scaner!";
@@ -46,10 +46,6 @@ namespace WindowsGame1
             
             
             
-
-
-
-
         }
 
     }
