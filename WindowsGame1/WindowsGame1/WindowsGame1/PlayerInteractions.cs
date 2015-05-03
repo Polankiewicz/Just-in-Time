@@ -11,41 +11,41 @@ namespace WindowsGame1
 {
     class PlayerInteractions
     {
-        //interactive objects
-        List<StaticModel> buildingsList;
-        int buildingsListSize;
-
+        List<StaticModel> staticModelsList;
+        List<DynamicModel> dynamicModelsList;
         Game game;
-
         HudTexts hudTexts;
 
-        public PlayerInteractions(Game game, HudTexts hudTexts, List<StaticModel> buildingsList)
+        public PlayerInteractions(Game game, HudTexts hudTexts, List<StaticModel> staticModelsList, List<DynamicModel> dynamicModelsList)
         {
-            this.buildingsList = buildingsList;
-            buildingsListSize = buildingsList.Count;
+            this.staticModelsList = staticModelsList;
+            this.dynamicModelsList = dynamicModelsList;
             this.game = game;
-
             this.hudTexts = hudTexts;
         }
 
         public void catchInteraction(Camera camera)
         {
-            // destroy scaner
-            if (buildingsList.Count >= buildingsListSize && Vector3.Distance(buildingsList[0].Position, camera.Position) < 3.0f)
-            {
-                hudTexts.DisplayText = "Press X to destroy scaner!";
 
-                if(GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed)
-                    buildingsList.RemoveAt(0);
-            }
-            else
+            for (int i = 0; i < staticModelsList.Count; i++)
             {
-                hudTexts.DisplayText = "";
+                // destroy scaner
+                if (staticModelsList[i].Name == "scaner" && Vector3.Distance(staticModelsList[i].Position, camera.Position) < 3.0f)
+                {
+                    hudTexts.DisplayText = "Press X to destroy scaner!";
+
+                    if (GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed)
+                        staticModelsList.RemoveAt(i);
+                }
+                else
+                {
+                    hudTexts.DisplayText = "";
+                }
+
+                // next interaction
+                // ...
             }
-            
-            
-            
-            
+               
         }
 
     }

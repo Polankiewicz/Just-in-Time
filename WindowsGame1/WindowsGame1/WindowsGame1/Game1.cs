@@ -91,7 +91,7 @@ namespace WindowsGame1
             spriteFont = Content.Load<SpriteFont>("Sprites\\PressXtoInteract");
 
             // set all objects to interact with player (Distance)
-            playerInteractions = new PlayerInteractions(this, hudTexts, actualScene.getStaticModelsList());
+            playerInteractions = new PlayerInteractions(this, hudTexts, actualScene.getStaticModelsList(), actualScene.getDynamicModelsList());
 
             // camera/player collisions with everything
             camera.setCameraCollision(actualScene.getDynamicModelsList(), actualScene.getStaticModelsList()); 
