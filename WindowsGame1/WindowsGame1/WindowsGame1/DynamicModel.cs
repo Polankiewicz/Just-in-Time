@@ -28,7 +28,11 @@ namespace WindowsGame1
             get { return offset; }
             set { offset = value; }
         }
-
+        public Matrix Model
+        {
+            get { return position; }
+            set { position = value; }
+        }
         public DynamicModel(GraphicsDevice device, Model model, Vector3 position, Vector3 rotationDegrees, float scale)
         {
             this.position = Matrix.Identity;
@@ -39,6 +43,7 @@ namespace WindowsGame1
             offset.X = position.X;
             offset.Y = position.Y;
             offset.Z = position.Z;
+            this.position = Matrix.CreateTranslation(position);
             this.rotation =  Matrix.CreateRotationX(MathHelper.ToRadians(rotationDegrees.X))
                             * Matrix.CreateRotationY(MathHelper.ToRadians(rotationDegrees.Y))
                             * Matrix.CreateRotationZ(MathHelper.ToRadians(rotationDegrees.Z));
@@ -48,6 +53,7 @@ namespace WindowsGame1
             enemy = new AnimationPlayer(enemySkin);
             enemyClip = enemySkin.AnimationClips["Take 001"];
             enemy.StartClip(enemyClip);
+           
         }
         public void Update(GameTime gameTime)
         {
@@ -65,7 +71,7 @@ namespace WindowsGame1
                 {
                     a.EnableDefaultLighting();
                     a.SetBoneTransforms(bones);
-                    a.World = this.rotation * Matrix.CreateScale(scale) * Matrix.CreateTranslation(offset);
+                    a.World = Matrix.CreateScale(scale) * this.rotation * this.position;// Matrix.CreateTranslation(offset);
                     a.View = camera.View;
                     a.Projection = camera.Projection;
                     

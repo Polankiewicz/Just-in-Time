@@ -128,7 +128,7 @@ namespace WindowsGame1
             {
                 
                 // update bounding sphares position for collision with player/camera
-               cameraCollisions.updateBoundingSpherePosition();
+              // cameraCollisions.updateBoundingSpherePosition();
 
 
                 float dt = (float)gameTime.ElapsedGameTime.TotalSeconds; // delta time
@@ -168,10 +168,10 @@ namespace WindowsGame1
                     moveVector *= dt * cameraSpeed;
 
                     // simulate next move and check for collision
-                    if (cameraCollisions.cameraNextMoveCollisionDetect(PreviewMove(moveVector)))
-                    {
+                 //   if (cameraCollisions.cameraNextMoveCollisionDetect(PreviewMove(moveVector)))
+                   // {
                         Move(moveVector);
-                    }
+                 //   }
 
 
                 }

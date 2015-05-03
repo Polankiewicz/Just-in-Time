@@ -23,7 +23,7 @@ namespace WindowsGame1
         Camera camera;
         Floor floor;
         BasicEffect effect;
-
+        DynamicModel hand;
        
         PlayerInteractions playerInteractions;
 
@@ -32,7 +32,8 @@ namespace WindowsGame1
         HudTexts hudTexts = new HudTexts();
 
         Scene actualScene;
-        
+        Matrix cameraWorldMartix;
+        Matrix handWorldMatrix;
 
         public Game1()
         {
@@ -60,7 +61,7 @@ namespace WindowsGame1
             effect = new BasicEffect(GraphicsDevice);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             actualScene = new Scene(Content, GraphicsDevice, camera);
-           
+            
            
             base.Initialize();
         }
@@ -87,7 +88,8 @@ namespace WindowsGame1
             }
 
             actualScene.AddDynamicModel("Models\\przeciwnik", new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f);
-
+            Model temp = Content.Load<Model>("Models\\hand");
+            hand = new DynamicModel(GraphicsDevice,temp, new Vector3(1, 1.2f, 1), new Vector3(-45, 90, 90),0.02f);
             
 
             //texts
@@ -99,7 +101,7 @@ namespace WindowsGame1
 
             // collisions
             //////////////////////////////////////// TODO: set staticModels and dynamicModels //////////////////////////////////////////////
-            camera.setCameraCollision(null,null); 
+           // camera.setCameraCollision(null,null); 
         }
 
         /// <summary>
@@ -130,6 +132,7 @@ namespace WindowsGame1
             playerInteractions.catchInteraction(camera);
     
            actualScene.Update(gameTime);
+           hand.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -151,8 +154,30 @@ namespace WindowsGame1
            
     
             actualScene.Draw();
-           
 
+            cameraWorldMartix = Matrix.Invert(camera.View);
+            handWorldMatrix = cameraWorldMartix;
+            
+            handWorldMatrix.Translation += (cameraWorldMartix.Forward *1.4f) +
+                                       (-cameraWorldMartix.Down * 0.1f) +
+                                       (-cameraWorldMartix.Right *0.3f);
+          
+            hand.Model = handWorldMatrix;
+           
+            
+            hand.Draw(camera);
+            handWorldMatrix = cameraWorldMartix;
+            
+            handWorldMatrix.Translation += (cameraWorldMartix.Forward * 1.4f) +
+                                        (-cameraWorldMartix.Down * 0.1f) +
+                                       (cameraWorldMartix.Right * 0.9f);
+           
+            hand.Model = handWorldMatrix;
+
+
+            hand.Draw(camera);
+
+            
             base.Draw(gameTime);
 
             
