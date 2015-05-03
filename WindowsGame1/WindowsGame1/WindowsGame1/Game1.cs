@@ -62,30 +62,31 @@ namespace WindowsGame1
         protected override void LoadContent()
         {
             // TODO: replace adding objects
-            actualScene.AddStaticModel("Models\\scan", new Vector3(10, 0, 10), Vector3.Zero, 0.05f);
-            actualScene.AddStaticModel("Models\\7pieter", new Vector3(0, 0, -10), Vector3.Zero, 0.005f);
-            actualScene.AddStaticModel("Models\\7pieter", new Vector3(50, 0, 30), new Vector3(0, 90, 0), 0.005f);
-            actualScene.AddStaticModel("Models\\7pieter", new Vector3(0, 0, 30), Vector3.Zero, 0.005f);
-            actualScene.AddStaticModel("Models\\7pieter", new Vector3(-50, 0, 20), new Vector3(0, 45, 0), 0.005f);
-            actualScene.AddStaticModel("Models\\7pieter", new Vector3(-40, 0, 60), new Vector3(0, 135, 0), 0.005f);
+            actualScene.AddStaticModel("Models\\scan", new Vector3(10, 0, 10), Vector3.Zero, 0.05f, "scaner");
+            actualScene.AddStaticModel("Models\\7pieter", new Vector3(0, 0, -10), Vector3.Zero, 0.005f, "block");
+            actualScene.AddStaticModel("Models\\7pieter", new Vector3(50, 0, 30), new Vector3(0, 90, 0), 0.005f, "block");
+            actualScene.AddStaticModel("Models\\7pieter", new Vector3(0, 0, 30), Vector3.Zero, 0.005f, "block");
+            actualScene.AddStaticModel("Models\\7pieter", new Vector3(-50, 0, 20), new Vector3(0, 45, 0), 0.005f, "block");
+            actualScene.AddStaticModel("Models\\7pieter", new Vector3(-40, 0, 60), new Vector3(0, 135, 0), 0.005f, "block");
            
-            actualScene.AddStaticModel("Models\\shop", new Vector3(-20, 0, 18), new Vector3(0, 135, 0), 0.01f);
+            actualScene.AddStaticModel("Models\\shop", new Vector3(-20, 0, 18), new Vector3(0, 135, 0), 0.01f, "shop");
 
             // proste tworzenie podlogi z elementu sidewalk_grass
             for (int i = -5; i < 10; i++) 
             {
                 for (int j = 0; j < 20; j++)
                 {
-                    actualScene.AddStaticModel("Models\\sidewalk_grass", new Vector3(-50 + j * 6.25f, 0, i * 5), new Vector3(0, 0, 0), 0.001f);
+                    actualScene.AddStaticModel("Models\\sidewalk_grass", new Vector3(-50 + j * 6.25f, 0, i * 5), 
+                        new Vector3(0, 0, 0), 0.001f, "sidewalk_grass");
                 }
             }
 
-            actualScene.AddDynamicModel("Models\\przeciwnik", new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f);
+            actualScene.AddDynamicModel("Models\\przeciwnik", new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy");
+
             Model temp = Content.Load<Model>("Models\\hand");
-            hand = new DynamicModel(GraphicsDevice,temp, new Vector3(1, 1.2f, 1), new Vector3(-45, 90, 90),0.02f);
+            hand = new DynamicModel(GraphicsDevice, temp, new Vector3(1, 1.2f, 1), new Vector3(-45, 90, 90), 0.02f, "hand");
 
             
-
             // hud texts
             spriteFont = Content.Load<SpriteFont>("Sprites\\PressXtoInteract");
 
@@ -122,8 +123,9 @@ namespace WindowsGame1
 
             playerInteractions.catchInteraction(camera);
     
-           actualScene.Update(gameTime);
-           hand.Update(gameTime);
+            actualScene.Update(gameTime);
+            hand.Update(gameTime);
+
             base.Update(gameTime);
         }
 

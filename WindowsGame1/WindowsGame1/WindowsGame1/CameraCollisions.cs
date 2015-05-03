@@ -27,13 +27,23 @@ namespace WindowsGame1
             this.dynamicModelsList = dynamicModelsList;
 
             cameraBoundingSphere = new BoundingSphere(camera.Position, 0.50f);
-            enemyBoundingSphere = new BoundingSphere(dynamicModelsList[0].Position, 0.50f);
+            
+
+            for(int i=0; i<dynamicModelsList.Count; i++)
+            {
+                if(dynamicModelsList[i].Name == "enemy")
+                    enemyBoundingSphere = new BoundingSphere(dynamicModelsList[0].Position, 0.50f);
+            }
 
         }
 
         public void updateBoundingSpherePosition()
         {
-            enemyBoundingSphere.Center = dynamicModelsList[0].Position;
+            for (int i = 0; i < dynamicModelsList.Count; i++)
+            {
+                if (dynamicModelsList[i].Name == "enemy")
+                    enemyBoundingSphere.Center = dynamicModelsList[i].Position;
+            }
         }
 
         public bool cameraNextMoveCollisionDetect(Vector3 nextCameraMove)

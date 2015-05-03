@@ -52,20 +52,20 @@ namespace WindowsGame1
             }
         }
 
-        public void AddStaticModel(string assetName, Vector3 Positon, Vector3 Rotation, float Scale)
+        public void AddStaticModel(string assetName, Vector3 Positon, Vector3 Rotation, float Scale, String objectName)
         {
             if (!fbxList.ContainsKey(assetName)) 
                 fbxList.Add(assetName, content.Load<Model>(assetName));
-            
-            this.staticModelsList.Add(new StaticModel(graphicsDevice,fbxList[assetName], Positon,Rotation,Scale));
+
+            this.staticModelsList.Add(new StaticModel(graphicsDevice, fbxList[assetName], Positon, Rotation, Scale, objectName));
         }
 
-        public void AddDynamicModel(string assetName, Vector3 Positon, Vector3 Rotation, float Scale)
+        public void AddDynamicModel(string assetName, Vector3 Positon, Vector3 Rotation, float Scale, String objectName)
         {
             if (!fbxList.ContainsKey(assetName))
                 fbxList.Add(assetName, content.Load<Model>(assetName));
 
-            this.dynamicModelsList.Add(new DynamicModel(graphicsDevice, fbxList[assetName], Positon, Rotation, Scale));
+            this.dynamicModelsList.Add(new DynamicModel(graphicsDevice, fbxList[assetName], Positon, Rotation, Scale, objectName));
         }
 
         public void Draw()

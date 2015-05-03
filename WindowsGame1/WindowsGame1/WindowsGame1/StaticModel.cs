@@ -18,17 +18,24 @@ namespace WindowsGame1
         Matrix rotation;
         private Vector3 offset;
         float scale = 0.005f;
+        String objectName;
+
+        public String Name
+        {
+            get { return objectName; }
+        }
 
         public Vector3 Position
         {
             get { return offset; }
         }
 
-        public StaticModel(GraphicsDevice device, Model model, Vector3 position, Vector3 rotationDegrees, float scale)
+        public StaticModel(GraphicsDevice device, Model model, Vector3 position, Vector3 rotationDegrees, float scale, String objectName)
         {
             this.device = device;
             this.model = model;
             this.scale = scale;
+            this.objectName = objectName;
 
             offset.X = position.X;
             offset.Y = position.Y;

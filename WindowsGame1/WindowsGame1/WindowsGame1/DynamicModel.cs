@@ -18,27 +18,36 @@ namespace WindowsGame1
         private Vector3 offset;
 
         float scale = 0.005f;
+        String objectName;
 
         AnimationPlayer enemy;// This calculates the Matrices of the animation
         AnimationClip enemyClip;// This contains the keyframes of the animation
         SkinningData enemySkin;// This contains all the skinning data
+
+        public String Name
+        {
+            get { return objectName;  }
+        }
 
         public Vector3 Position
         {
             get { return offset; }
             set { offset = value; }
         }
+
         public Matrix Model
         {
             get { return position; }
             set { position = value; }
         }
-        public DynamicModel(GraphicsDevice device, Model model, Vector3 position, Vector3 rotationDegrees, float scale)
+
+        public DynamicModel(GraphicsDevice device, Model model, Vector3 position, Vector3 rotationDegrees, float scale, String objectName)
         {
             this.position = Matrix.Identity;
             this.device = device;
             this.model = model;
             this.scale = scale;
+            this.objectName = objectName;
 
             offset.X = position.X;
             offset.Y = position.Y;
@@ -55,6 +64,7 @@ namespace WindowsGame1
             enemy.StartClip(enemyClip);
            
         }
+
         public void Update(GameTime gameTime)
         {
             enemy.Update(gameTime.ElapsedGameTime, true, Matrix.Identity);
