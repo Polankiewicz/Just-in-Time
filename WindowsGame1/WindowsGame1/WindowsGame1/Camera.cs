@@ -113,7 +113,7 @@ namespace WindowsGame1
         }
 
         //method that actually moves the camera
-        private void Move(Vector3 scale)
+        public void Move(Vector3 scale)
         {
             MoveTo(PreviewMove(scale), Rotation);
         }

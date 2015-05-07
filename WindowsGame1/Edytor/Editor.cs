@@ -108,12 +108,99 @@ namespace Editor
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /// 
+
+        ///////////////////////////////////////////////////////////////////// Variables for camera move/rotation ///////////////////////////////
+        GamePadState gamePad;
+        Vector3 holderForMouseRotation;
+        MouseState currentMouseState;
+        MouseState prevMouseState;
+        Vector3 mouseRotationBuffer;
+
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
+
+            /////////////////////////////////////////////////////////////////// Camera magic ///////////////////////////////////////////////////
+            KeyboardState ks = Keyboard.GetState();
+            gamePad = GamePad.GetState(PlayerIndex.One);
             
+            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds; // delta time
+            Vector3 moveVector = Vector3.Zero;
+
+            // left ThumbStick control
+            moveVector.Z = gamePad.ThumbSticks.Left.Y;
+            moveVector.X = -gamePad.ThumbSticks.Left.X;
+
+            if (ks.IsKeyDown(Keys.W) )
+                moveVector.Z = 1;
+            if (ks.IsKeyDown(Keys.S) )
+                moveVector.Z = -1;
+            if (ks.IsKeyDown(Keys.A) )
+                moveVector.X = 1;
+            if (ks.IsKeyDown(Keys.D) )
+                moveVector.X = -1;
+            if (ks.IsKeyDown(Keys.T))
+                moveVector.Y = 100;
+            if (ks.IsKeyDown(Keys.Y))
+                moveVector.Y = -100;
+
+            if (moveVector != Vector3.Zero)
+            {
+                //normalize the vector
+                moveVector.Normalize();
+                moveVector *= dt * 50f;
+                camera.Move(moveVector);
+            }
+
+
+            if (gamePad.ThumbSticks.Right != Vector2.Zero)
+            {
+                if (holderForMouseRotation.X < MathHelper.ToRadians(-75.0f))
+                    holderForMouseRotation.X = holderForMouseRotation.X - (holderForMouseRotation.X - MathHelper.ToRadians(-75.0f));
+                if (holderForMouseRotation.X > MathHelper.ToRadians(55.0f))
+                    holderForMouseRotation.X = holderForMouseRotation.X - (holderForMouseRotation.X - MathHelper.ToRadians(55.0f));
+
+                holderForMouseRotation.X += -MathHelper.Clamp(gamePad.ThumbSticks.Right.Y, MathHelper.ToRadians(-75.0f), MathHelper.ToRadians(75.0f)) * 0.05f;
+                holderForMouseRotation.Y += MathHelper.WrapAngle(-gamePad.ThumbSticks.Right.X) * 0.05f;
+                holderForMouseRotation.Z = 0;
+                camera.Rotation = holderForMouseRotation;
+            }
+
+            float deltaX, deltaY;
+            currentMouseState = Mouse.GetState();
+
+            if (currentMouseState != prevMouseState && ks.IsKeyDown(Keys.Q))
+            {
+                //cache mouse location
+                deltaX = currentMouseState.X - (this.GraphicsDevice.Viewport.Width / 2);
+                deltaY = currentMouseState.Y - (this.GraphicsDevice.Viewport.Height / 2);
+
+                mouseRotationBuffer.X -= 0.03f * deltaX * dt;
+                mouseRotationBuffer.Y -= 0.03f * deltaY * dt;
+
+                if (mouseRotationBuffer.Y < MathHelper.ToRadians(-55.0f))
+                    mouseRotationBuffer.Y = mouseRotationBuffer.Y - (mouseRotationBuffer.Y - MathHelper.ToRadians(-55.0f));
+                if (mouseRotationBuffer.Y > MathHelper.ToRadians(75.0f))
+                    mouseRotationBuffer.Y = mouseRotationBuffer.Y - (mouseRotationBuffer.Y - MathHelper.ToRadians(75.0f));
+
+                holderForMouseRotation.X = -MathHelper.Clamp(mouseRotationBuffer.Y, MathHelper.ToRadians(-75.0f), MathHelper.ToRadians(75.0f));
+                holderForMouseRotation.Y = MathHelper.WrapAngle(mouseRotationBuffer.X);
+                holderForMouseRotation.Z = 0;
+                camera.Rotation = holderForMouseRotation;
+
+                deltaX = 0;
+                deltaY = 0;
+
+                Mouse.SetPosition(this.GraphicsDevice.Viewport.Width / 2, this.GraphicsDevice.Viewport.Height / 2);
+                prevMouseState = currentMouseState;
+            }
+
+            /////////////////////////////////////////////////////////////////////////// End of magic camera control //////////////////////////////
+
+
             // TODO: Add your update logic here
            //playerInteractions.catchInteraction(camera);
          //   camera.Update(gameTime);

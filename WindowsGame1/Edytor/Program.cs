@@ -10,7 +10,7 @@ namespace Editor
         /// </summary>
         static void Main(string[] args)
         {
-            bool useEditor = false;
+            bool useEditor = true;
             if (useEditor)
             {
                 EditorForm mainForm = new EditorForm();
