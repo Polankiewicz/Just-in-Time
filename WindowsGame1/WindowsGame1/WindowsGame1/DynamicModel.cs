@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Content;
 using SkinnedModel;
 namespace WindowsGame1
 {
-    class DynamicModel
+    public class DynamicModel
     {
         private GraphicsDevice device;
         private Color[] floorColors = new Color[2] { Color.White, Color.Black };

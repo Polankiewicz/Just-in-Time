@@ -10,14 +10,18 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.Xml;
+using System.Xml.XPath;
+using System.Xml.Serialization;
 
 namespace WindowsGame1
 {
-    class Scene
+    
+    public class Scene
     {
         Dictionary<string,Model> fbxList;
-        List<StaticModel> staticModelsList;
-        List<DynamicModel> dynamicModelsList;
+        public List<StaticModel> staticModelsList;
+        public List<DynamicModel> dynamicModelsList;
         
         ContentManager content {get; set; }
 
@@ -29,6 +33,15 @@ namespace WindowsGame1
             this.content = content;
             this.graphicsDevice = GraphicsDevice;
             this.camera = Camera;
+            this.staticModelsList = new List<StaticModel>();
+            this.dynamicModelsList = new List<DynamicModel>();
+            this.fbxList = new Dictionary<string, Model>();
+        }
+        public Scene()
+        {
+            this.content = null;
+            this.graphicsDevice = null;
+            this.camera = null;
             this.staticModelsList = new List<StaticModel>();
             this.dynamicModelsList = new List<DynamicModel>();
             this.fbxList = new Dictionary<string, Model>();
@@ -77,7 +90,9 @@ namespace WindowsGame1
                 n.Draw(camera);
         }
 
-        
+
+
+        public List<StaticModel> StaticModelsList { get; set; }
     }
 
    

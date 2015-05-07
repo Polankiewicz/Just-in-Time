@@ -7,7 +7,7 @@ using System.Text;
 
 namespace WindowsGame1
 {
-    class CameraCollisions
+   public class CameraCollisions
     {
         Camera camera;
         BoundingSphere cameraBoundingSphere;

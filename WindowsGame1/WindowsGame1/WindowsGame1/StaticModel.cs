@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 namespace WindowsGame1
 {
-    class StaticModel
+    public class StaticModel
     {
         
         
@@ -17,34 +17,49 @@ namespace WindowsGame1
         Matrix position = Matrix.Identity;
         Matrix rotation;
         private Vector3 offset;
-        float scale = 0.005f;
+        
         String objectName;
-
+        Vector3 rotationVector;
+        public float Scale { get; set; }
         public String Name
         {
             get { return objectName; }
+            set { objectName = value; }
         }
 
         public Vector3 Position
         {
             get { return offset; }
+            set { offset = value; }
         }
-
+        public Vector3 Rotation
+        {
+            get { return rotationVector; }
+            set { rotationVector = value; }
+        }
         public StaticModel(GraphicsDevice device, Model model, Vector3 position, Vector3 rotationDegrees, float scale, String objectName)
         {
             this.device = device;
             this.model = model;
-            this.scale = scale;
+            this.Scale = scale;
             this.objectName = objectName;
-
+         
             offset.X = position.X;
             offset.Y = position.Y;
             offset.Z = position.Z;
-            this.rotation =  Matrix.CreateRotationX(MathHelper.ToRadians(rotationDegrees.X))
-                            * Matrix.CreateRotationY(MathHelper.ToRadians(rotationDegrees.Y))
-                            * Matrix.CreateRotationZ(MathHelper.ToRadians(rotationDegrees.Z));
-        }
 
+            this.rotationVector = rotationDegrees;
+        }
+        public StaticModel()
+        {
+            this.device = null;
+            this.model = null;
+            this.Scale = 0;
+            this.objectName = null;
+
+            this.offset = new Vector3();
+            this.rotationVector = new Vector3();
+        }
         //build our vertex buffer
         public void Draw(Camera camera)
         {
@@ -58,8 +73,10 @@ namespace WindowsGame1
                 foreach (BasicEffect effect in mesh.Effects)
                 {
                     // effect.EnableDefaultLighting();
-
-                    effect.World = transforms[mesh.ParentBone.Index] * this.rotation * Matrix.CreateScale(scale) * Matrix.CreateTranslation(offset);
+                    this.rotation = Matrix.CreateRotationX(MathHelper.ToRadians(rotationVector.X))
+                          * Matrix.CreateRotationY(MathHelper.ToRadians(rotationVector.Y))
+                          * Matrix.CreateRotationZ(MathHelper.ToRadians(rotationVector.Z));
+                    effect.World = transforms[mesh.ParentBone.Index] * this.rotation * Matrix.CreateScale(Scale) * Matrix.CreateTranslation(offset);
 
                     effect.View = camera.View;
 

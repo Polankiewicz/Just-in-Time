@@ -7,7 +7,7 @@ using System.Text;
 
 namespace WindowsGame1
 {
-    class HudTexts
+    public class HudTexts
     {
         String text = "";
 

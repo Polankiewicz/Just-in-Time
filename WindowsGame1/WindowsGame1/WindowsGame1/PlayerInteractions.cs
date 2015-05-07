@@ -9,7 +9,7 @@ using System.Text;
 
 namespace WindowsGame1
 {
-    class PlayerInteractions
+   public class PlayerInteractions
     {
         List<StaticModel> staticModelsList;
         List<DynamicModel> dynamicModelsList;

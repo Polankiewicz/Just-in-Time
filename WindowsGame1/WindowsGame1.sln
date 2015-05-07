@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkinnedModelWindows", "Skin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkinnedModelPipeline", "SkinnedModelPipeline\SkinnedModelPipeline.csproj", "{4636C7E1-B845-4B83-B96D-64A11B8A4515}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Editor", "Edytor\Editor.csproj", "{1D9A026A-F471-43DA-93F5-B6B20FE2D0A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -45,6 +47,12 @@ Global
 		{4636C7E1-B845-4B83-B96D-64A11B8A4515}.Release|x86.Build.0 = Debug|x86
 		{4636C7E1-B845-4B83-B96D-64A11B8A4515}.Release|Xbox 360.ActiveCfg = Debug|x86
 		{4636C7E1-B845-4B83-B96D-64A11B8A4515}.Release|Xbox 360.Build.0 = Debug|x86
+		{1D9A026A-F471-43DA-93F5-B6B20FE2D0A6}.Debug|x86.ActiveCfg = Debug|x86
+		{1D9A026A-F471-43DA-93F5-B6B20FE2D0A6}.Debug|x86.Build.0 = Debug|x86
+		{1D9A026A-F471-43DA-93F5-B6B20FE2D0A6}.Debug|Xbox 360.ActiveCfg = Debug|x86
+		{1D9A026A-F471-43DA-93F5-B6B20FE2D0A6}.Release|x86.ActiveCfg = Release|x86
+		{1D9A026A-F471-43DA-93F5-B6B20FE2D0A6}.Release|x86.Build.0 = Release|x86
+		{1D9A026A-F471-43DA-93F5-B6B20FE2D0A6}.Release|Xbox 360.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace WindowsGame1
 {
-    class Camera : GameComponent
+    public class Camera : GameComponent
     {
         private Vector3 cameraPosition;
         private Vector3 cameraRotation;
