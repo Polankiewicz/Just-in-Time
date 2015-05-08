@@ -61,7 +61,7 @@ namespace WindowsGame1
 
         protected override void LoadContent()
         {
-            List<SceneSaveData> dataList =  x.Deserialize("../../../../scene.xml");
+            List<SceneSaveData> dataList = x.Deserialize("../../../../../scene.xml");
            
             foreach (SceneSaveData n in dataList)
                 actualScene.AddStaticModel(n.path, n.Position, n.Rotation, n.Scale, n.Name);
