@@ -77,20 +77,21 @@ namespace Editor
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            //actualScene.AddStaticModel("Models\\scan", new Vector3(10, 0, 10), Vector3.Zero, 0.05f, "scaner");
-            //actualScene.AddStaticModel("Models\\7pieter", new Vector3(40, 0, -20), Vector3.Zero, 0.005f, "block");
-            //actualScene.AddStaticModel("Models\\7pieter", new Vector3(0, 0, 30), Vector3.Zero, 0.005f, "block");
-            //actualScene.AddStaticModel("Models\\7pieter", new Vector3(40, 0, 30), Vector3.Zero, 0.005f, "block");
-           
-            //actualScene.AddStaticModel("Models\\7pieter", new Vector3(60, 0, 30), new Vector3(0, 90, 0), 0.005f, "block");
-            //actualScene.AddStaticModel("Models\\7pieter", new Vector3(20, 0, 0), new Vector3(0, 90, 0), 0.005f, "block");
-            //actualScene.AddStaticModel("Models\\shop", new Vector3(40, 0, 0), new Vector3(0, -45, 0), 0.01f, "shop");
-            //edytor.SetDataSource(actualScene.staticModelsList);
-            // TODO: use this.Content to load your game content here
+         
+
             var listNames = new List<string>();
             listNames.Add("Models\\scan");
             listNames.Add("Models\\7pieter");
             listNames.Add("Models\\shop");
+            listNames.Add("Models\\sidewalk_grass");
+            listNames.Add("Models\\2klatki-13pieter");
+            listNames.Add("Models\\2klatki-3pietra");
+            listNames.Add("Models\\2klatki-7pieter");
+            listNames.Add("Models\\3klatki-5pieter");
+            listNames.Add("Models\\metal_fence");
+            listNames.Add("Models\\street_dumbster");
+            listNames.Add("Models\\street_lantern");
+           
             edytor.SetComboBoxSource(listNames, actualScene);
         }
 

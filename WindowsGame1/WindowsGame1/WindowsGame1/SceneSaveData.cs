@@ -16,5 +16,13 @@ namespace WindowsGame1
         {
 
         }
+        public SceneSaveData(string path, string Name, float scale, Vector3 positon, Vector3 rotation)
+        {
+            this.Scale = scale;
+            this.Position = positon;
+            this.Rotation = rotation;
+            this.Name = Name;
+            this.path = path;
+        }
     }
 }

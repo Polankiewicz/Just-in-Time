@@ -24,7 +24,7 @@ namespace WindowsGame1
         Floor floor;
         BasicEffect effect;
         DynamicModel hand;
-
+        XmlConverter<List<SceneSaveData>> x = new XmlConverter<List<SceneSaveData>>();
         PlayerInteractions playerInteractions;
 
         //display texts
@@ -61,25 +61,11 @@ namespace WindowsGame1
 
         protected override void LoadContent()
         {
-            // TODO: replace adding objects
-            actualScene.AddStaticModel("Models\\scan", new Vector3(10, 0, 10), Vector3.Zero, 0.05f, "scaner");
-            actualScene.AddStaticModel("Models\\7pieter", new Vector3(40, 0, -20), Vector3.Zero, 0.005f, "block");
-            actualScene.AddStaticModel("Models\\7pieter", new Vector3(0, 0, 30), Vector3.Zero, 0.005f, "block");
-            actualScene.AddStaticModel("Models\\7pieter", new Vector3(40, 0, 30), Vector3.Zero, 0.005f, "block");
-            actualScene.AddStaticModel("Models\\7pieter", new Vector3(60, 0, 30), new Vector3(0, 90, 0), 0.005f, "block");
-            actualScene.AddStaticModel("Models\\7pieter", new Vector3(20, 0, 0), new Vector3(0, 90, 0), 0.005f, "block");
+            List<SceneSaveData> dataList =  x.Deserialize("../../../../scene.xml");
            
-            actualScene.AddStaticModel("Models\\shop", new Vector3(40, 0, 0), new Vector3(0, -45, 0), 0.01f, "shop");
+            foreach (SceneSaveData n in dataList)
+                actualScene.AddStaticModel(n.path, n.Position, n.Rotation, n.Scale, n.Name);
 
-            // proste tworzenie podlogi z elementu sidewalk_grass
-            for (int i = -5; i < 10; i++) 
-            {
-                for (int j = 0; j < 20; j++)
-                {
-                    actualScene.AddStaticModel("Models\\sidewalk_grass", new Vector3(-50 + j * 6.25f, 0, i * 5), 
-                        new Vector3(0, 0, 0), 0.001f, "sidewalk_grass");
-                }
-            }
 
             actualScene.AddDynamicModel("Models\\przeciwnik", new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy");
 

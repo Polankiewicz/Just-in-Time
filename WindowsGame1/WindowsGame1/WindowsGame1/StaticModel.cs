@@ -20,7 +20,7 @@ namespace WindowsGame1
         
         String objectName;
         Vector3 rotationVector;
-        public float Scale { get; set; }
+      
         public String Name
         {
             get { return objectName; }
@@ -37,17 +37,16 @@ namespace WindowsGame1
             get { return rotationVector; }
             set { rotationVector = value; }
         }
-        public StaticModel(GraphicsDevice device, Model model, Vector3 position, Vector3 rotationDegrees, float scale, String objectName)
+        public float Scale { get; set; }
+        public string path { get; set; }
+        public StaticModel(GraphicsDevice device, Model model, Vector3 position, Vector3 rotationDegrees, float scale, string objectName,string path)
         {
             this.device = device;
             this.model = model;
             this.Scale = scale;
             this.objectName = objectName;
-         
-            offset.X = position.X;
-            offset.Y = position.Y;
-            offset.Z = position.Z;
-
+            this.path = path;
+            this.offset = position;
             this.rotationVector = rotationDegrees;
         }
         public StaticModel()
