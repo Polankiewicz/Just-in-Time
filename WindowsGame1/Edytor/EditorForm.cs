@@ -14,7 +14,7 @@ namespace Editor
     {
         BindingList<StaticModel> blist;
         Scene scene;
-
+       
         XmlConverter<List<SceneSaveData>> x;
         public IntPtr CanvasHandle
         {
@@ -42,7 +42,7 @@ namespace Editor
 
             dataGridView1.DataSource = source;
             dataGridView1.Columns["path"].ReadOnly = true;
-            dataGridView1.EditMode = DataGridViewEditMode.EditOnEnter;
+           
         }
 
         public void SetComboBoxSource(List<string> list, Scene scene)
@@ -53,9 +53,9 @@ namespace Editor
         }
         public EditorForm()
         {
-
             InitializeComponent();
             dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.EditMode = DataGridViewEditMode.EditOnF2;
             x = new XmlConverter<List<SceneSaveData>>();
         }
 
@@ -169,6 +169,15 @@ namespace Editor
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGridView1_KeyDown_1(object sender, KeyEventArgs e)
+        {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    dataGridView1.EndEdit();
+                    dataGridView1.ClearSelection();
+                }
         }
     }
 }

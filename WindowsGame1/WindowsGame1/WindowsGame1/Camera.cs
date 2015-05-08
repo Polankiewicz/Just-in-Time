@@ -122,12 +122,16 @@ namespace WindowsGame1
         //update method
         public override void Update(GameTime gameTime)
         {
-            if (game.IsActive)
+            if (game.IsActive || game.ToString() == "Editor.Editor")
             {
                 
+                
                 // update bounding sphares position for collision with player/camera
-                cameraCollisions.updateBoundingSpherePosition();
+                 if(game.ToString()!="Editor.Editor") cameraCollisions.updateBoundingSpherePosition();
+                 
+               
 
+                
 
                 float dt = (float)gameTime.ElapsedGameTime.TotalSeconds; // delta time
 
@@ -153,12 +157,17 @@ namespace WindowsGame1
                     moveVector.X = 1;
                 if (ks.IsKeyDown(Keys.D) || gamePad.DPad.Right == ButtonState.Pressed)
                     moveVector.X = -1;
-                if (ks.IsKeyDown(Keys.T))
-                    moveVector.Y= 100;
 
-                //gravity
-                //moveVector.Y = -100;
+                if (game.ToString() == "Editor.Editor") //editor only controls
+                {
+                    if (ks.IsKeyDown(Keys.T))
+                        moveVector.Y = 100;
+                    if (ks.IsKeyDown(Keys.Y))
+                        moveVector.Y = -100;
+                }
 
+
+         
                 if (moveVector != Vector3.Zero)
                 {
                     //normalize the vector
@@ -166,7 +175,8 @@ namespace WindowsGame1
                     moveVector *= dt * cameraSpeed;
 
                     // simulate next move and check for collision
-                    if (cameraCollisions.cameraNextMoveCollisionDetect(PreviewMove(moveVector)))
+                    if (game.ToString() == "Editor.Editor") Move(moveVector);
+                    else if (cameraCollisions.cameraNextMoveCollisionDetect(PreviewMove(moveVector)))
                     {
                         Move(moveVector);
                     }
@@ -177,8 +187,8 @@ namespace WindowsGame1
                 //////////////////////////// handle rotation ////////////////////////////////////////
                 float deltaX, deltaY;
 
-                
 
+                if (game.ToString() != "Editor.Editor" || ks.IsKeyDown(Keys.Q))
                 if (currentMouseState != prevMouseState )
                 {
                     //cache mouse location
@@ -202,6 +212,10 @@ namespace WindowsGame1
 
                     deltaX = 0;
                     deltaY = 0;
+                    Mouse.SetPosition(Game.GraphicsDevice.Viewport.Width / 2, Game.GraphicsDevice.Viewport.Height / 2);
+
+
+                    prevMouseState = currentMouseState;
 
                 }
                 if (gamePad.ThumbSticks.Right != Vector2.Zero)
@@ -221,11 +235,8 @@ namespace WindowsGame1
 
                     
                 }
-
-                Mouse.SetPosition(Game.GraphicsDevice.Viewport.Width / 2, Game.GraphicsDevice.Viewport.Height / 2);
                 
-
-                prevMouseState = currentMouseState;
+               
 
                 base.Update(gameTime);
             }
