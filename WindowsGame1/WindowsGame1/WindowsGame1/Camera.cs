@@ -188,7 +188,7 @@ namespace WindowsGame1
                 float deltaX, deltaY;
 
 
-                if (game.ToString() != "Editor.Editor" || ks.IsKeyDown(Keys.Q))
+                if (game.ToString() != "Editor.Editor" || ks.IsKeyDown(Keys.Q) || currentMouseState.RightButton == ButtonState.Pressed)
                 if (currentMouseState != prevMouseState )
                 {
                     //cache mouse location
