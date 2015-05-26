@@ -12,6 +12,8 @@ namespace WindowsGame1
         public string path { get; set; }
         public Vector3 Position { get; set; }
         public Vector3 Rotation { get; set; }
+
+
         public SceneSaveData()
         {
 

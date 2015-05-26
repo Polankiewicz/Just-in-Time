@@ -22,7 +22,8 @@ namespace WindowsGame1
         Dictionary<string,Model> fbxList;
         public List<StaticModel> staticModelsList;
         public List<DynamicModel> dynamicModelsList;
-        
+
+        public List<DrawableBoundingBox> boundingBoxesList;
         ContentManager content {get; set; }
 
         GraphicsDevice graphicsDevice;
@@ -36,7 +37,9 @@ namespace WindowsGame1
             this.staticModelsList = new List<StaticModel>();
             this.dynamicModelsList = new List<DynamicModel>();
             this.fbxList = new Dictionary<string, Model>();
+            this.boundingBoxesList = new List<DrawableBoundingBox>();
         }
+        
         public Scene()
         {
             this.content = null;
@@ -45,6 +48,7 @@ namespace WindowsGame1
             this.staticModelsList = new List<StaticModel>();
             this.dynamicModelsList = new List<DynamicModel>();
             this.fbxList = new Dictionary<string, Model>();
+            this.boundingBoxesList = new List<DrawableBoundingBox>();
         }
 
         public List<DynamicModel> getDynamicModelsList()
@@ -64,7 +68,7 @@ namespace WindowsGame1
                 n.Update(gameTime);
             }
         }
-
+        
         public void AddStaticModel(string assetName, Vector3 Positon, Vector3 Rotation, float Scale, string objectName)
         {
             if (!fbxList.ContainsKey(assetName)) 
@@ -80,7 +84,10 @@ namespace WindowsGame1
 
             this.dynamicModelsList.Add(new DynamicModel(graphicsDevice, fbxList[assetName], Positon, Rotation, Scale, objectName));
         }
-
+        public void AddBoundingBox(Vector3 min, Vector3 max)
+        {
+            this.boundingBoxesList.Add(new DrawableBoundingBox(graphicsDevice,min, max));
+        }
         public void Draw()
         {
             foreach (DynamicModel n in dynamicModelsList)
@@ -90,9 +97,17 @@ namespace WindowsGame1
                 n.Draw(camera);
         }
 
+        public void LoadFromOldXML(string path)
+        {
+       
+            XmlConverter<List<SceneSaveData>> x = new XmlConverter<List<SceneSaveData>>();
 
+            List<SceneSaveData> dataList = x.Deserialize(path);
 
-        public List<StaticModel> StaticModelsList { get; set; }
+            foreach (SceneSaveData n in dataList)
+                this.AddStaticModel(n.path, n.Position, n.Rotation, n.Scale, n.Name);
+        }
+ 
     }
 
    

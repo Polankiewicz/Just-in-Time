@@ -18,8 +18,6 @@ namespace WindowsGame1
         List<BoundingBox> staticBoundingSpheresList = new List<BoundingBox>();
         List<BoundingSphere> dynamicBoundingSpheresList = new List<BoundingSphere>();
 
-        BoundingBox box;
-
         public CameraCollisions(Camera camera, List<DynamicModel> dynamicModelsList, List<StaticModel> staticModelsList)
         {
             this.camera = camera;

@@ -24,8 +24,9 @@ namespace Editor
         Scene actualScene;
         Camera camera;
         BasicEffect effect;
-        
+        RasterizerState wireFrameState;
 
+        List<GeometricPrimitive> primitives = new List<GeometricPrimitive>();
         public Editor(EditorForm edytor)
         {
             this.edytor = edytor;
@@ -66,7 +67,7 @@ namespace Editor
             Components.Add(camera);
             effect = new BasicEffect(GraphicsDevice);
             actualScene = new Scene(Content, GraphicsDevice, camera);
-            
+     
             base.Initialize();
         }
 
@@ -92,8 +93,13 @@ namespace Editor
             listNames.Add("Models\\metal_fence");
             listNames.Add("Models\\street_dumbster");
             listNames.Add("Models\\street_lantern");
-           
+            wireFrameState = new RasterizerState()
+            {
+                FillMode = FillMode.WireFrame,
+                CullMode = CullMode.None,
+            };
             edytor.SetComboBoxSource(listNames, actualScene);
+            
         }
 
         /// <summary>
@@ -132,17 +138,37 @@ namespace Editor
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+           
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.RasterizerState = wireFrameState;
 
+           // CreateDrawableBoxes();
+            foreach (var x in actualScene.boundingBoxesList)
+            {
+                x.Draw(camera);
+            }
             // fixing GraphicsDevice after spriteBatch.Begin() method
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             GraphicsDevice.BlendState = BlendState.Opaque;
             GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
             GraphicsDevice.RasterizerState = RasterizerState.CullNone;
-            
+           
+          
+
+          
             // TODO: Add your drawing code here
             actualScene.Draw();
+         
             base.Draw(gameTime);
         }
+        void CreateDrawableBoxes()
+        {
+            primitives = new List<GeometricPrimitive>();
+
+            foreach (var x in actualScene.boundingBoxesList)
+                primitives.Add(new WireBox(this.GraphicsDevice,x.min, x.max));
+            
+        }
+        
     }
 }
