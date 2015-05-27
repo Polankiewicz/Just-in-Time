@@ -27,6 +27,7 @@ namespace WindowsGame1
         
         PlayerInteractions playerInteractions;
 
+        
         //display texts
         SpriteFont spriteFont;
         HudTexts hudTexts = new HudTexts();
@@ -34,6 +35,13 @@ namespace WindowsGame1
         Scene actualScene;
         Matrix cameraWorldMartix;
         Matrix handWorldMatrix;
+
+        Hud hud = new Hud();
+        private Texture2D hudBullets; 
+        private Texture2D hudBloody;
+        private Texture2D hudGameOver;
+        private Texture2D hudMenuGame;
+        private Texture2D hudMenuMain;
         
         public Game1()
         {
@@ -73,6 +81,11 @@ namespace WindowsGame1
             
             // hud texts
             spriteFont = Content.Load<SpriteFont>("Sprites\\PressXtoInteract");
+            hudBullets = Content.Load<Texture2D>("Sprites\\6");
+            hudBloody = Content.Load<Texture2D>("Sprites\\Bloody");
+            hudGameOver = Content.Load<Texture2D>("Sprites\\GameOver");
+            hudMenuGame = Content.Load<Texture2D>("Sprites\\MenuGame");
+            hudMenuMain = Content.Load<Texture2D>("Sprites\\MenuMain");
 
             // set all objects to interact with player (Distance)
             playerInteractions = new PlayerInteractions(this, hudTexts, actualScene.getStaticModelsList(), actualScene.getDynamicModelsList());
@@ -138,8 +151,8 @@ namespace WindowsGame1
                                        (-cameraWorldMartix.Right *0.3f);
           
             hand.Model = handWorldMatrix;
-           
-            
+
+            hud.drawHud(spriteBatch, hudBullets, camera);
             hand.Draw(camera);
             handWorldMatrix = cameraWorldMartix;
             
