@@ -17,8 +17,14 @@ namespace WindowsGame1
     {
         private Vector3 _min;
         private Vector3 _max;
+        private String _name;
+
+        GraphicsDevice device;
+        GeometricPrimitive primitive;
+        BoundingBox _boundingBox;
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         public Vector3 min
         {
             get { return _min; }
@@ -28,6 +34,7 @@ namespace WindowsGame1
                 this.NotifyPropertyChanged("min");
             }
         }
+
         public Vector3 max
         {
             get { return _max; }
@@ -38,14 +45,16 @@ namespace WindowsGame1
             }
         }
 
-        GraphicsDevice device;
-        GeometricPrimitive primitive;
-        BoundingBox _boundingBox;
-
         public BoundingBox boundingBox
         {
             get { return _boundingBox; }
             set { _boundingBox = value; }
+        }
+
+        public String name
+        {
+            get { return _name; }
+            set { _name = value; }
         }
 
         public DrawableBoundingBox(GraphicsDevice device, Vector3 min, Vector3 max)

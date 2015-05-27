@@ -4700,14 +4700,14 @@
   <boundingBoxesList>
     <BoundingBoxSaveData>
       <min>
-        <X>-5</X>
+        <X>-4.5</X>
         <Y>0</Y>
-        <Z>-5</Z>
+        <Z>-14.5</Z>
       </min>
       <max>
         <X>5</X>
-        <Y>5</Y>
-        <Z>5</Z>
+        <Y>9.5</Y>
+        <Z>14.6</Z>
       </max>
     </BoundingBoxSaveData>
   </boundingBoxesList>

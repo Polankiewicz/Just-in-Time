@@ -14,48 +14,31 @@ namespace WindowsGame1
         
         List<StaticModel> staticModelsList;
         List<DynamicModel> dynamicModelsList;
-
         List<DrawableBoundingBox> boundingBoxesList;
         
+        // TEMP lists
         List<BoundingBox> staticBoundingSpheresList = new List<BoundingBox>();
         List<BoundingSphere> dynamicBoundingSpheresList = new List<BoundingSphere>();
 
-        public CameraCollisions(Camera camera, List<DynamicModel> dynamicModelsList, List<StaticModel> staticModelsList, List<DrawableBoundingBox> boundingBoxesList)
+        public CameraCollisions(Camera camera, Scene actualScene)
         {
             this.camera = camera;
-            this.staticModelsList = staticModelsList;
-            this.dynamicModelsList = dynamicModelsList;
-
-            this.boundingBoxesList = boundingBoxesList;
+            this.staticModelsList = actualScene.getStaticModelsList();
+            this.dynamicModelsList = actualScene.getDynamicModelsList();
+            this.boundingBoxesList = actualScene.getBoundingBoxesList();
 
             cameraBoundingSphere = new BoundingSphere(camera.Position, 0.50f);
             
-
-
+            // TEMP - collision for dynamic models
             for(int i=0; i<dynamicModelsList.Count; i++)
             {
                 if(dynamicModelsList[i].Name == "enemy")
                     dynamicBoundingSpheresList.Add(new BoundingSphere(dynamicModelsList[i].Position, 0.50f));
             }
 
-            /*
-            // collisions from boundingBoxesList
-            for (int i = 0; i < boundingBoxesList.Count; i++)
-            {
-                staticBoundingSpheresList.Add(new BoundingBox(boundingBoxesList[i].min, boundingBoxesList[i].max));
-            }
-            */
-
-            /*
-            for (int i = 0; i < staticModelsList.Count; i++)
-            {
-                if (staticModelsList[i].Name == "block")
-                    staticBoundingSpheresList.Add(new BoundingBox(staticModelsList[i].Position + new Vector3(-20f, 0, 0), 
-                        staticModelsList[i].Position + new Vector3(40f,40f,10f)));
-            }
-            */
         }
 
+        // TEMP - update enemy position
         public void updateBoundingSpherePosition()
         {
             for (int i = 0; i < dynamicModelsList.Count; i++)
@@ -66,11 +49,10 @@ namespace WindowsGame1
                     xxx.Center = dynamicModelsList[i].Position;
                     dynamicBoundingSpheresList[0] = xxx;
                     //dynamicBoundingSpheresList[0].Center = dynamicModelsList[i].Position; //???
-                }
-                    
+                }   
             }
         }
-
+        
         public bool cameraNextMoveCollisionDetect(Vector3 nextCameraMove)
         {
             cameraBoundingSphere.Center = nextCameraMove;

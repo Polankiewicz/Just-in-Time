@@ -78,9 +78,9 @@ namespace WindowsGame1
 
         }
 
-        public void setCameraCollision(List<DynamicModel> dynamicModelsList, List<StaticModel> staticModelsList, List<DrawableBoundingBox> boundingBoxesList)
+        public void setCameraCollision(Scene actualScene)
         {
-            cameraCollisions = new CameraCollisions(this, dynamicModelsList, staticModelsList, boundingBoxesList);
+            cameraCollisions = new CameraCollisions(this, actualScene);
             // maybe player interactions also should be here... :v
         }
 
