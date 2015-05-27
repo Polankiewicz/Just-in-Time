@@ -10,14 +10,41 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-
+using System.ComponentModel;
 namespace WindowsGame1
 {
-   public class DrawableBoundingBox
+    public class DrawableBoundingBox : INotifyPropertyChanged
     {
-        public Vector3 min {get;set;}
-        public Vector3 max { get; set; }
+        private Vector3 _min;
+        private Vector3 _max;
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        public Vector3 min
+        {
+            get
+            {
+                return _min;
+            }
+            set
+            {
+                _min = value;
+                this.NotifyPropertyChanged("min");
+
+            }
+        }
+        public Vector3 max
+        {
+            get
+            {
+                return _max;
+            }
+            set
+            {
+                _max = value;
+                this.NotifyPropertyChanged("max");
+
+            }
+        }
         GraphicsDevice device;
         GeometricPrimitive primitive;
         BoundingBox boundingBox;
@@ -28,15 +55,27 @@ namespace WindowsGame1
             this.min = min;
             this.max = max;
 
-            boundingBox = new BoundingBox(this.min, this.max);
-            primitive = new WireBox(this.device, this.min, this.max);
+            this.Calculate();
 
         }
 
-       public void Draw(Camera camera)
-       {
-           primitive.Draw(camera);
-       }
+        public void Calculate()
+        {
+            boundingBox = new BoundingBox(this.min, this.max);
+            primitive = new WireBox(this.device, this.min, this.max);
+        }
+        public void Draw(Camera camera)
+        {
+            primitive.Draw(camera);
+        }
 
+        private void NotifyPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+                this.Calculate();
+            }
+        }
     }
 }
