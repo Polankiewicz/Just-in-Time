@@ -89,9 +89,9 @@ namespace WindowsGame1
 
             this.dynamicModelsList.Add(new DynamicModel(graphicsDevice, fbxList[assetName], Positon, Rotation, Scale, objectName));
         }
-        public void AddBoundingBox(Vector3 min, Vector3 max)
+        public void AddBoundingBox(Vector3 min, Vector3 max, String name)
         {
-            this.boundingBoxesList.Add(new DrawableBoundingBox(graphicsDevice,min, max));
+            this.boundingBoxesList.Add(new DrawableBoundingBox(graphicsDevice,min, max, name));
         }
         public void Draw()
         {
@@ -124,7 +124,7 @@ namespace WindowsGame1
 
             foreach (var n in dataList.boundingBoxesList)
             {
-                this.AddBoundingBox(n.min, n.max);
+                this.AddBoundingBox(n.min, n.max, n.name);
             }
 
         }

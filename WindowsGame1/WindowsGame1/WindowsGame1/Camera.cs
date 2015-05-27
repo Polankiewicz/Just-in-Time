@@ -124,15 +124,10 @@ namespace WindowsGame1
         {
             if (game.IsActive || game.ToString() == "Editor.Editor")
             {
-                
-                
                 // update bounding sphares position for collision with player/camera
-                 if(game.ToString()!="Editor.Editor") cameraCollisions.updateBoundingSpherePosition();
+                if(game.ToString()!="Editor.Editor") 
+                    cameraCollisions.updateBoundingSpherePosition();
                  
-               
-
-                
-
                 float dt = (float)gameTime.ElapsedGameTime.TotalSeconds; // delta time
 
                 currentMouseState = Mouse.GetState();
@@ -165,7 +160,6 @@ namespace WindowsGame1
                     if (ks.IsKeyDown(Keys.Y))
                         moveVector.Y = -100;
                 }
-
 
          
                 if (moveVector != Vector3.Zero)
