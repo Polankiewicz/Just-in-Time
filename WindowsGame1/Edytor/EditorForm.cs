@@ -141,7 +141,7 @@ namespace Editor
             }
             foreach (DrawableBoundingBox n in scene.boundingBoxesList)
             {
-                dataToSave.AddBoundingBox(n.min, n.max);
+                dataToSave.AddBoundingBox(n.min, n.max, n.name);
             }
             x.Serialize(file, dataToSave);
         }
@@ -183,7 +183,7 @@ namespace Editor
                 scene.AddStaticModel(n.path, n.Position, n.Rotation, n.Scale, n.Name);
 
             foreach (BoundingBoxSaveData n in dataList.boundingBoxesList)
-                scene.AddBoundingBox(n.min,n.max);
+                scene.AddBoundingBox(n.min,n.max,n.name);
 
             this.SetDataSource(scene.staticModelsList);
             this.SetBoundingBoxDataSource(scene.boundingBoxesList);
@@ -219,7 +219,7 @@ namespace Editor
 
         private void AddBoudningBoxButton_Click(object sender, EventArgs e)
         {
-            scene.AddBoundingBox(new Vector3(0), new Vector3(10));
+            scene.AddBoundingBox(new Vector3(0), new Vector3(10), "");
             this.SetBoundingBoxDataSource(scene.boundingBoxesList);
         }
 

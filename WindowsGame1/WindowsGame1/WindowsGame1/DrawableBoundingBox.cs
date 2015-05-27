@@ -57,11 +57,12 @@ namespace WindowsGame1
             set { _name = value; }
         }
 
-        public DrawableBoundingBox(GraphicsDevice device, Vector3 min, Vector3 max)
+        public DrawableBoundingBox(GraphicsDevice device, Vector3 min, Vector3 max, String name)
         {
             this.device = device;
             this.min = min;
             this.max = max;
+            this.name = name;
 
             this.Calculate();
         }

@@ -20,9 +20,9 @@ namespace WindowsGame1
             modelsList.Add(new SceneSaveData(path, Name, scale, positon, rotation));
 
         }
-        public void AddBoundingBox(Vector3 min, Vector3 max)
+        public void AddBoundingBox(Vector3 min, Vector3 max, String name)
         {
-            boundingBoxesList.Add(new BoundingBoxSaveData(min, max));
+            boundingBoxesList.Add(new BoundingBoxSaveData(min, max, name));
         }
 
 
