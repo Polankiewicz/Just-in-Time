@@ -152,7 +152,7 @@ namespace WindowsGame1
           
             hand.Model = handWorldMatrix;
 
-            hud.drawHud(spriteBatch, hudBullets, camera);
+            hud.drawHud(spriteBatch, hudBullets);
             hand.Draw(camera);
             handWorldMatrix = cameraWorldMartix;
             

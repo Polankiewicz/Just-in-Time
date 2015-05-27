@@ -9,10 +9,10 @@ namespace WindowsGame1
 {
     class Hud
     {
-        public void drawHud(SpriteBatch spriteBatch, Texture2D t2, Camera c)
+        public void drawHud(SpriteBatch spriteBatch, Texture2D t2)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(t2, new Rectangle((int)c.Position.X, (int)c.Position.Y, 1366, 768), Color.White);
+            spriteBatch.Draw(t2, new Rectangle(0, 0, 1366, 768), Color.White);
             spriteBatch.End();
         }
     }
