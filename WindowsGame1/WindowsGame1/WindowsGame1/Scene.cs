@@ -61,6 +61,11 @@ namespace WindowsGame1
             return this.staticModelsList;
         }
 
+        public List<DrawableBoundingBox> getBoundingBoxesList()
+        {
+            return this.boundingBoxesList;
+        }
+
         public void Update(GameTime gameTime)
         {
             foreach (DynamicModel n in dynamicModelsList)

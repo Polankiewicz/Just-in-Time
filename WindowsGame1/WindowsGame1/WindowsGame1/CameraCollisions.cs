@@ -15,14 +15,18 @@ namespace WindowsGame1
         List<StaticModel> staticModelsList;
         List<DynamicModel> dynamicModelsList;
 
+        List<DrawableBoundingBox> boundingBoxesList;
+        
         List<BoundingBox> staticBoundingSpheresList = new List<BoundingBox>();
         List<BoundingSphere> dynamicBoundingSpheresList = new List<BoundingSphere>();
 
-        public CameraCollisions(Camera camera, List<DynamicModel> dynamicModelsList, List<StaticModel> staticModelsList)
+        public CameraCollisions(Camera camera, List<DynamicModel> dynamicModelsList, List<StaticModel> staticModelsList, List<DrawableBoundingBox> boundingBoxesList)
         {
             this.camera = camera;
             this.staticModelsList = staticModelsList;
             this.dynamicModelsList = dynamicModelsList;
+
+            this.boundingBoxesList = boundingBoxesList;
 
             cameraBoundingSphere = new BoundingSphere(camera.Position, 0.50f);
             
@@ -33,6 +37,15 @@ namespace WindowsGame1
                 if(dynamicModelsList[i].Name == "enemy")
                     dynamicBoundingSpheresList.Add(new BoundingSphere(dynamicModelsList[i].Position, 0.50f));
             }
+
+            /*
+            // collisions from boundingBoxesList
+            for (int i = 0; i < boundingBoxesList.Count; i++)
+            {
+                staticBoundingSpheresList.Add(new BoundingBox(boundingBoxesList[i].min, boundingBoxesList[i].max));
+            }
+            */
+
             /*
             for (int i = 0; i < staticModelsList.Count; i++)
             {
@@ -73,6 +86,13 @@ namespace WindowsGame1
             for (int i = 0; i < staticBoundingSpheresList.Count; i++)
             {
                 if (cameraBoundingSphere.Intersects(staticBoundingSpheresList[i]))
+                    return false;
+            }
+
+            // check for collision with boundingBoxes from DrawableBoundingBox
+            for (int i = 0; i < boundingBoxesList.Count; i++)
+            {
+                if (cameraBoundingSphere.Intersects(boundingBoxesList[i].boundingBox))
                     return false;
             }
 

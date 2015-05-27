@@ -78,7 +78,7 @@ namespace WindowsGame1
             playerInteractions = new PlayerInteractions(this, hudTexts, actualScene.getStaticModelsList(), actualScene.getDynamicModelsList());
 
             // camera/player collisions with everything
-            camera.setCameraCollision(actualScene.getDynamicModelsList(), actualScene.getStaticModelsList()); 
+            camera.setCameraCollision(actualScene.getDynamicModelsList(), actualScene.getStaticModelsList(), actualScene.getBoundingBoxesList()); 
 
         }
 
