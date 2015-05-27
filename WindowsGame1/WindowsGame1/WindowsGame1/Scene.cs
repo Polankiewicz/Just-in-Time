@@ -112,6 +112,22 @@ namespace WindowsGame1
             foreach (SceneSaveData n in dataList)
                 this.AddStaticModel(n.path, n.Position, n.Rotation, n.Scale, n.Name);
         }
+        public void LoadFromXML(string path)
+        {
+
+            XmlConverter<SceneSaveDataNew> x = new XmlConverter<SceneSaveDataNew>();
+
+            SceneSaveDataNew dataList = x.Deserialize(path);
+
+            foreach (SceneSaveData n in dataList.modelsList)
+                this.AddStaticModel(n.path, n.Position, n.Rotation, n.Scale, n.Name);
+
+            foreach (var n in dataList.boundingBoxesList)
+            {
+                this.AddBoundingBox(n.min, n.max);
+            }
+
+        }
  
     }
 

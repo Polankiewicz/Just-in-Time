@@ -62,7 +62,7 @@ namespace WindowsGame1
         protected override void LoadContent()
         {
 
-            actualScene.LoadFromOldXML("../../../../../scene.xml");
+            actualScene.LoadFromXML("../../../../scene.xml");
 
 
             actualScene.AddDynamicModel("Models\\przeciwnik", new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy");
