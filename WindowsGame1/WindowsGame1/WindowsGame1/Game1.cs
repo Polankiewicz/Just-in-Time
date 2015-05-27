@@ -42,6 +42,8 @@ namespace WindowsGame1
         private Texture2D hudGameOver;
         private Texture2D hudMenuGame;
         private Texture2D hudMenuMain;
+
+        Enemy enemyAI;
         
         public Game1()
         {
@@ -51,6 +53,7 @@ namespace WindowsGame1
             graphics.PreferredBackBufferHeight = 720;
             graphics.PreferredBackBufferWidth = 1280;
             Content.RootDirectory = "Content";
+            
         }
 
         protected override void Initialize()
@@ -73,7 +76,7 @@ namespace WindowsGame1
             actualScene.LoadFromXML("../../../../scene.xml");
 
 
-            actualScene.AddDynamicModel("Models\\przeciwnik", new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy");
+            actualScene.AddDynamicModel("Models\\przeciwnik", new Vector3(10, 0.2f, 10), new Vector3(0, 90, 0), 0.005f, "enemy");
 
             Model temp = Content.Load<Model>("Models\\hand");
             hand = new DynamicModel(GraphicsDevice, temp, new Vector3(1, 1.2f, 1), new Vector3(-45, 90, 90), 0.02f, "hand");
@@ -89,6 +92,7 @@ namespace WindowsGame1
 
             // set all objects to interact with player (Distance)
             playerInteractions = new PlayerInteractions(this, hudTexts, actualScene.getStaticModelsList(), actualScene.getDynamicModelsList());
+            enemyAI = new Enemy(this, actualScene.getDynamicModelsList());
 
             // camera/player collisions with everything
             camera.setCameraCollision(actualScene); 
@@ -119,6 +123,7 @@ namespace WindowsGame1
 
 
             playerInteractions.catchInteraction(camera);
+            enemyAI.EnemyAI(camera);
     
             actualScene.Update(gameTime);
             hand.Update(gameTime);
