@@ -44,8 +44,16 @@ namespace WindowsGame1
 
                 // next interaction
                 // ...
+            } 
+            for (int i = 0; i < dynamicModelsList.Count; i++)
+            {
+                if (dynamicModelsList[i].Name == "enemy")
+                {
+                    Enemy a = (Enemy)dynamicModelsList[i];
+                    a.EnemyAI(camera);
+                }
             }
-               
+
         }
 
     }

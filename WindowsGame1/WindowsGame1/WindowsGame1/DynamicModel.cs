@@ -10,11 +10,11 @@ namespace WindowsGame1
 {
     public class DynamicModel
     {
-        private GraphicsDevice device;
+        protected GraphicsDevice device;
         private Color[] floorColors = new Color[2] { Color.White, Color.Black };
-        Model model;
-        Matrix position;
-        Matrix rotation;
+        private Model model;
+        private Matrix position;
+        private Matrix rotation;
         private Vector3 offset;
 
         float scale = 0.005f;

@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,19 +8,17 @@ using System.Text;
 
 namespace WindowsGame1
 {
-    public class Enemy
+    public class Enemy : DynamicModel
     {
-        Game game;
         private int hp = 5;
         private float moveSpeed = 0.2f;
-        List<DynamicModel> dynamicModelsList;
+
         
 
 
-        public Enemy(Game game, List<DynamicModel> dynamicModelsList)
+        public Enemy(GraphicsDevice device, Model model, Vector3 position, Vector3 rotationDegrees, float scale, String objectName, Camera c) : base(device, model, position, rotationDegrees, scale, objectName)
         {
-            this.dynamicModelsList = dynamicModelsList;
-            this.game = game;
+
         }
 
         public int Hp 
@@ -29,52 +29,40 @@ namespace WindowsGame1
 
 
         public void EnemyAI(Camera c)
-        {
-            // if (trigger.id.collision && trigger.id == enemy.id)    
-            
-            for (int i = 0; i < dynamicModelsList.Count; i++)
-            {
-                // destroy scaner
-                if (dynamicModelsList[i].Name == "enemy")
-                { 
-                    DynamicModel d = dynamicModelsList[i];
-                    // while (hp > 0)
-                    float distance = GetDistance(d, c);
-                    MoveToPlayer(d, c);
-                    if(distance < 1.5f)
-                    {
-                        AttackPlayer(d, c);
-                    }
+         {
+             // if (trigger.id.collision && trigger.id == enemy.id)    
+             if (GetDistance(c) < 3f)
+             { 
+                MoveToPlayer(c);
+                if (GetDistance(c) < 1.5f)
+                {
+                    AttackPlayer(c);
                 }
-            }
-            
-        }
+                
+                 //this.destroy();
+             }
+             
+         }
 
-        public void AttackPlayer(DynamicModel d, Camera c)
+        public void AttackPlayer(Camera c)
         {
-
             Console.WriteLine("Atakuj!");
         }
  
 
-        public void MoveToPlayer(DynamicModel d, Camera c)
+        public void MoveToPlayer(Camera c)
         {
-            
-            Console.WriteLine(d.Position);
+            Console.WriteLine("move");
+           
         }
 
-        public float GetDistance(DynamicModel d, Camera c)
+        public float GetDistance(Camera c)
         {
-            float distance = Vector3.Distance(d.Position, c.Position);
+            float distance = Vector3.Distance(this.Position, c.Position);
             Console.WriteLine(distance);
-            Console.WriteLine(c.Position);
             return distance;
         }
 
-        void AttackPlayer()
-        {
-            
-        }
 
     }
 

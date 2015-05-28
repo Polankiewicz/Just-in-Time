@@ -82,6 +82,14 @@ namespace WindowsGame1
             this.staticModelsList.Add(new StaticModel(graphicsDevice, fbxList[assetName], Positon, Rotation, Scale, objectName,assetName));
         }
 
+        public void AddEnemy(string assetName, Vector3 Positon, Vector3 Rotation, float Scale, String objectName, Camera c)
+        {
+            if (!fbxList.ContainsKey(assetName))
+                fbxList.Add(assetName, content.Load<Model>(assetName));
+
+            this.dynamicModelsList.Add(new Enemy(graphicsDevice, fbxList[assetName], Positon, Rotation, Scale, objectName, c));
+        }
+
         public void AddDynamicModel(string assetName, Vector3 Positon, Vector3 Rotation, float Scale, String objectName)
         {
             if (!fbxList.ContainsKey(assetName))
