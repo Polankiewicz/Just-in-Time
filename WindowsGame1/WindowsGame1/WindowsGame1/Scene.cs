@@ -82,20 +82,29 @@ namespace WindowsGame1
             this.staticModelsList.Add(new StaticModel(graphicsDevice, fbxList[assetName], Positon, Rotation, Scale, objectName,assetName));
         }
 
-        public void AddEnemy(string assetName, Vector3 Positon, Vector3 Rotation, float Scale, String objectName, Camera c)
+        public void AddEnemy(List<string> assetNames, Vector3 Positon, Vector3 Rotation, float Scale, String objectName, Camera c)
         {
-            if (!fbxList.ContainsKey(assetName))
-                fbxList.Add(assetName, content.Load<Model>(assetName));
-
-            this.dynamicModelsList.Add(new Enemy(graphicsDevice, fbxList[assetName], Positon, Rotation, Scale, objectName, c));
+            var temp = new List<Model>();
+            foreach (string s in assetNames)
+            {
+                if (!fbxList.ContainsKey(s))
+                    fbxList.Add(s, content.Load<Model>(s));
+                temp.Add(fbxList[s]);
+            }
+            this.dynamicModelsList.Add(new Enemy(graphicsDevice, temp, Positon, Rotation, Scale, objectName, c));
+            
         }
 
-        public void AddDynamicModel(string assetName, Vector3 Positon, Vector3 Rotation, float Scale, String objectName)
+        public void AddDynamicModel(List<string> assetNames, Vector3 Positon, Vector3 Rotation, float Scale, String objectName)
         {
-            if (!fbxList.ContainsKey(assetName))
-                fbxList.Add(assetName, content.Load<Model>(assetName));
-
-            this.dynamicModelsList.Add(new DynamicModel(graphicsDevice, fbxList[assetName], Positon, Rotation, Scale, objectName));
+            var temp = new List<Model>();
+            foreach (string s in assetNames)
+            {
+                if (!fbxList.ContainsKey(s))
+                    fbxList.Add(s, content.Load<Model>(s));
+                temp.Add(fbxList[s]);
+            }
+            this.dynamicModelsList.Add(new DynamicModel(graphicsDevice, temp, Positon, Rotation, Scale, objectName));
         }
         public void AddBoundingBox(Vector3 min, Vector3 max, String name)
         {

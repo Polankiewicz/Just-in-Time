@@ -12,13 +12,14 @@ namespace WindowsGame1
     {
         private int hp = 5;
         private float moveSpeed = 0.2f;
-
         
 
 
-        public Enemy(GraphicsDevice device, Model model, Vector3 position, Vector3 rotationDegrees, float scale, String objectName, Camera c) : base(device, model, position, rotationDegrees, scale, objectName)
-        {
 
+        public Enemy(GraphicsDevice device, List<Model> modelList, Vector3 position, Vector3 rotationDegrees, float scale, String objectName, Camera c)
+            : base(device, modelList, position, rotationDegrees, scale, objectName)
+        {
+           
         }
 
         public int Hp 
@@ -47,6 +48,8 @@ namespace WindowsGame1
         public void AttackPlayer(Camera c)
         {
             Console.WriteLine("Atakuj!");
+            //a tutaj zamiast atakuj mozna zrobic cos takiego np by zmienic animacje:
+            //this.model = modelList[1];
         }
  
 

@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-    
+
 namespace WindowsGame1
 {
     /// <summary>
@@ -24,10 +24,10 @@ namespace WindowsGame1
         Floor floor;
         BasicEffect effect;
         DynamicModel hand;
-        
+
         PlayerInteractions playerInteractions;
 
-        
+
         //display texts
         SpriteFont spriteFont;
         HudTexts hudTexts = new HudTexts();
@@ -37,12 +37,12 @@ namespace WindowsGame1
         Matrix handWorldMatrix;
 
         Hud hud = new Hud();
-        private Texture2D hudBullets; 
+        private Texture2D hudBullets;
         private Texture2D hudBloody;
         private Texture2D hudGameOver;
         private Texture2D hudMenuGame;
         private Texture2D hudMenuMain;
-        
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -51,20 +51,20 @@ namespace WindowsGame1
             graphics.PreferredBackBufferHeight = 720;
             graphics.PreferredBackBufferWidth = 1280;
             Content.RootDirectory = "Content";
-            
+
         }
 
         protected override void Initialize()
         {
             camera = new Camera(this, new Vector3(10f, 1f, 5f), Vector3.Zero, 5f);
             Components.Add(camera);
-          //  graphics.ToggleFullScreen();
+            //  graphics.ToggleFullScreen();
             floor = new Floor(GraphicsDevice, 20, 20);
             effect = new BasicEffect(GraphicsDevice);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             actualScene = new Scene(Content, GraphicsDevice, camera);
-           
-           
+
+
             base.Initialize();
         }
 
@@ -73,14 +73,18 @@ namespace WindowsGame1
 
             actualScene.LoadFromXML("../../../../scene.xml");
 
+            //jako parametr do konstruktora przekazuje sie liste nazw modeli, domyslnie odpalana jest pierwsza;
+            var tmp = new List<string>();
+            tmp.Add("Models\\przeciwnik");
+            tmp.Add("Models\\przeciwnik");
+            actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 90, 0), 0.005f, "enemy", camera);
 
-            actualScene.AddEnemy("Models\\przeciwnik", new Vector3(10, 0.2f, 10), new Vector3(0, 90, 0), 0.005f, "enemy", camera);
-
-            Model temp = Content.Load<Model>("Models\\hand");
+            var temp = new List<Model>();
+            temp.Add(Content.Load<Model>("Models\\hand"));
             hand = new DynamicModel(GraphicsDevice, temp, new Vector3(1, 1.2f, 1), new Vector3(-45, 90, 90), 0.02f, "hand");
-           
 
-            
+
+
             // hud texts
             spriteFont = Content.Load<SpriteFont>("Sprites\\PressXtoInteract");
             hudBullets = Content.Load<Texture2D>("Sprites\\6");
@@ -93,7 +97,7 @@ namespace WindowsGame1
             playerInteractions = new PlayerInteractions(this, hudTexts, actualScene.getStaticModelsList(), actualScene.getDynamicModelsList());
 
             // camera/player collisions with everything
-            camera.setCameraCollision(actualScene); 
+            camera.setCameraCollision(actualScene);
 
         }
 
@@ -121,7 +125,7 @@ namespace WindowsGame1
 
 
             playerInteractions.catchInteraction(camera);
-            
+
             actualScene.Update(gameTime);
             hand.Update(gameTime);
 
@@ -142,32 +146,32 @@ namespace WindowsGame1
             GraphicsDevice.BlendState = BlendState.Opaque;
             GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
             GraphicsDevice.RasterizerState = RasterizerState.CullNone;
-           
+
             actualScene.Draw();
-           
+
             cameraWorldMartix = Matrix.Invert(camera.View);
             handWorldMatrix = cameraWorldMartix;
-            
-            handWorldMatrix.Translation += (cameraWorldMartix.Forward *1.4f) +
+
+            handWorldMatrix.Translation += (cameraWorldMartix.Forward * 1.4f) +
                                        (-cameraWorldMartix.Down * 0.1f) +
-                                       (-cameraWorldMartix.Right *0.3f);
-          
+                                       (-cameraWorldMartix.Right * 0.3f);
+
             hand.Model = handWorldMatrix;
 
             hud.drawHud(spriteBatch, hudBullets);
             hand.Draw(camera);
             handWorldMatrix = cameraWorldMartix;
-            
+
             handWorldMatrix.Translation += (cameraWorldMartix.Forward * 1.4f) +
                                         (-cameraWorldMartix.Down * 0.1f) +
                                        (cameraWorldMartix.Right * 0.9f);
-           
+
             hand.Model = handWorldMatrix;
-           
+
 
             hand.Draw(camera);
 
-            
+
             base.Draw(gameTime);
         }
 

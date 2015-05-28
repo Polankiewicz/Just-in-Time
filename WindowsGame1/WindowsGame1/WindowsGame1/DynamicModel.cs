@@ -12,11 +12,11 @@ namespace WindowsGame1
     {
         protected GraphicsDevice device;
         private Color[] floorColors = new Color[2] { Color.White, Color.Black };
-        private Model model;
+        public List<Model> modelList { get; set; }
         private Matrix position;
         private Matrix rotation;
         private Vector3 offset;
-
+        protected Model model;
         float scale = 0.005f;
         String objectName;
 
@@ -41,11 +41,12 @@ namespace WindowsGame1
             set { position = value; }
         }
 
-        public DynamicModel(GraphicsDevice device, Model model, Vector3 position, Vector3 rotationDegrees, float scale, String objectName)
+        public DynamicModel(GraphicsDevice device, List<Model> modelList, Vector3 position, Vector3 rotationDegrees, float scale, String objectName)
         {
             this.position = Matrix.Identity;
             this.device = device;
-            this.model = model;
+            this.modelList = modelList;
+            this.model = modelList[0];
             this.scale = scale;
             this.objectName = objectName;
 
