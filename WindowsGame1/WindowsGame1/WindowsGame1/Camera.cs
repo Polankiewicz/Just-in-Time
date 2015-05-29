@@ -61,20 +61,21 @@ namespace WindowsGame1
         }
 
 
-        public Camera(Game game, Vector3 position, Vector3 rotation, float speed) : base(game)
+        public Camera(Game game, Vector3 position, Vector3 rotation, float speed)
+            : base(game)
         {
             cameraSpeed = speed;
 
             //setup projection matrix
             Projection = Matrix.CreatePerspectiveFieldOfView(
-                MathHelper.PiOver4, 
-                Game.GraphicsDevice.Viewport.AspectRatio, 
-                0.05f, 
+                MathHelper.PiOver4,
+                Game.GraphicsDevice.Viewport.AspectRatio,
+                0.05f,
                 1000.0f);
 
             MoveTo(position, rotation);
             this.game = game;
-            
+
             prevMouseState = Mouse.GetState();
             fallingspeed = 0;
         }
@@ -126,9 +127,9 @@ namespace WindowsGame1
             if (game.IsActive || game.ToString() == "Editor.Editor")
             {
                 // update bounding sphares position for collision with player/camera
-                if(game.ToString()!="Editor.Editor") 
+                if (game.ToString() != "Editor.Editor")
                     cameraCollisions.updateBoundingSpherePosition();
-                 
+
                 float dt = (float)gameTime.ElapsedGameTime.TotalSeconds; // delta time
 
                 currentMouseState = Mouse.GetState();
@@ -169,14 +170,18 @@ namespace WindowsGame1
 
                 // gravity
                 //fallingspeed -= 1;
-                moveVector.Y = -1;
-                if (!cameraCollisions.cameraNextMoveCollisionDetectWithFloor(PreviewMove(moveVector)))
+
+                if (game.ToString() != "Editor.Editor")
                 {
-                    moveVector.Y = 0;
-                    //fallingspeed = 0;
+                    moveVector.Y = -1;
+
+                    if (!cameraCollisions.cameraNextMoveCollisionDetectWithFloor(PreviewMove(moveVector)))
+                    {
+                        moveVector.Y = 0;
+                        //fallingspeed = 0;
+                    }
+
                 }
-
-
                 if (moveVector != Vector3.Zero)
                 {
                     //normalize the vector
@@ -198,35 +203,35 @@ namespace WindowsGame1
 
 
                 if (game.ToString() != "Editor.Editor" || ks.IsKeyDown(Keys.Q) || currentMouseState.RightButton == ButtonState.Pressed)
-                if (currentMouseState != prevMouseState )
-                {
-                    //cache mouse location
-                    deltaX = currentMouseState.X - (Game.GraphicsDevice.Viewport.Width / 2);
-                    deltaY = currentMouseState.Y - (Game.GraphicsDevice.Viewport.Height / 2);
+                    if (currentMouseState != prevMouseState)
+                    {
+                        //cache mouse location
+                        deltaX = currentMouseState.X - (Game.GraphicsDevice.Viewport.Width / 2);
+                        deltaY = currentMouseState.Y - (Game.GraphicsDevice.Viewport.Height / 2);
 
-                    mouseRotationBuffer.X -= 0.03f * deltaX * dt;
-                    mouseRotationBuffer.Y -= 0.03f * deltaY * dt;
+                        mouseRotationBuffer.X -= 0.03f * deltaX * dt;
+                        mouseRotationBuffer.Y -= 0.03f * deltaY * dt;
 
-                    if (mouseRotationBuffer.Y < MathHelper.ToRadians(-55.0f))
-                        mouseRotationBuffer.Y = mouseRotationBuffer.Y - (mouseRotationBuffer.Y - MathHelper.ToRadians(-55.0f));
-                    if (mouseRotationBuffer.Y > MathHelper.ToRadians(75.0f))
-                        mouseRotationBuffer.Y = mouseRotationBuffer.Y - (mouseRotationBuffer.Y - MathHelper.ToRadians(75.0f));
+                        if (mouseRotationBuffer.Y < MathHelper.ToRadians(-55.0f))
+                            mouseRotationBuffer.Y = mouseRotationBuffer.Y - (mouseRotationBuffer.Y - MathHelper.ToRadians(-55.0f));
+                        if (mouseRotationBuffer.Y > MathHelper.ToRadians(75.0f))
+                            mouseRotationBuffer.Y = mouseRotationBuffer.Y - (mouseRotationBuffer.Y - MathHelper.ToRadians(75.0f));
 
-                    //Rotation = new Vector3(-MathHelper.Clamp(mouseRotationBuffer.Y, MathHelper.ToRadians(-75.0f), MathHelper.ToRadians(75.0f)),
-                    //    MathHelper.WrapAngle(mouseRotationBuffer.X), 0);
-                    holderForMouseRotation.X = -MathHelper.Clamp(mouseRotationBuffer.Y, MathHelper.ToRadians(-75.0f), MathHelper.ToRadians(75.0f));
-                    holderForMouseRotation.Y = MathHelper.WrapAngle(mouseRotationBuffer.X);
-                    holderForMouseRotation.Z =0;
-                    Rotation = holderForMouseRotation;
+                        //Rotation = new Vector3(-MathHelper.Clamp(mouseRotationBuffer.Y, MathHelper.ToRadians(-75.0f), MathHelper.ToRadians(75.0f)),
+                        //    MathHelper.WrapAngle(mouseRotationBuffer.X), 0);
+                        holderForMouseRotation.X = -MathHelper.Clamp(mouseRotationBuffer.Y, MathHelper.ToRadians(-75.0f), MathHelper.ToRadians(75.0f));
+                        holderForMouseRotation.Y = MathHelper.WrapAngle(mouseRotationBuffer.X);
+                        holderForMouseRotation.Z = 0;
+                        Rotation = holderForMouseRotation;
 
-                    deltaX = 0;
-                    deltaY = 0;
-                    Mouse.SetPosition(Game.GraphicsDevice.Viewport.Width / 2, Game.GraphicsDevice.Viewport.Height / 2);
+                        deltaX = 0;
+                        deltaY = 0;
+                        Mouse.SetPosition(Game.GraphicsDevice.Viewport.Width / 2, Game.GraphicsDevice.Viewport.Height / 2);
 
 
-                    prevMouseState = currentMouseState;
+                        prevMouseState = currentMouseState;
 
-                }
+                    }
                 if (gamePad.ThumbSticks.Right != Vector2.Zero)
                 {
                     //Rotation = new Vector3(MathHelper.Clamp(-gamePad.ThumbSticks.Right.Y, MathHelper.ToRadians(-75.0f), MathHelper.ToRadians(75.0f)),
@@ -242,10 +247,10 @@ namespace WindowsGame1
                     holderForMouseRotation.Z = 0;
                     Rotation = holderForMouseRotation;
 
-                    
+
                 }
-                
-               
+
+
 
                 base.Update(gameTime);
             }

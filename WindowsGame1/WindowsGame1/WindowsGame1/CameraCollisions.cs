@@ -7,15 +7,17 @@ using System.Text;
 
 namespace WindowsGame1
 {
-   public class CameraCollisions
+    public class CameraCollisions
     {
         Camera camera;
         BoundingSphere cameraBoundingSphere;
-        
+
         List<StaticModel> staticModelsList;
         List<DynamicModel> dynamicModelsList;
         List<DrawableBoundingBox> boundingBoxesList;
-        
+
+        Scene actualScene;
+
         // TEMP lists
         List<BoundingBox> staticBoundingSpheresList = new List<BoundingBox>();
         List<BoundingSphere> dynamicBoundingSpheresList = new List<BoundingSphere>();
@@ -26,13 +28,14 @@ namespace WindowsGame1
             this.staticModelsList = actualScene.getStaticModelsList();
             this.dynamicModelsList = actualScene.getDynamicModelsList();
             this.boundingBoxesList = actualScene.getBoundingBoxesList();
+            this.actualScene = actualScene;
 
             cameraBoundingSphere = new BoundingSphere(camera.Position, 0.50f);
-            
+
             // TEMP - collision for dynamic models
-            for(int i=0; i<dynamicModelsList.Count; i++)
+            for (int i = 0; i < dynamicModelsList.Count; i++)
             {
-                if(dynamicModelsList[i].Name == "enemy")
+                if (dynamicModelsList[i].Name == "enemy")
                     dynamicBoundingSpheresList.Add(new BoundingSphere(dynamicModelsList[i].Position, 0.50f));
             }
 
@@ -49,10 +52,10 @@ namespace WindowsGame1
                     xxx.Center = dynamicModelsList[i].Position;
                     dynamicBoundingSpheresList[0] = xxx;
                     //dynamicBoundingSpheresList[0].Center = dynamicModelsList[i].Position; //???
-                }   
+                }
             }
         }
-        
+
         public bool cameraNextMoveCollisionDetect(Vector3 nextCameraMove)
         {
             cameraBoundingSphere.Center = nextCameraMove;
@@ -72,13 +75,14 @@ namespace WindowsGame1
             }
 
             // check for collision with boundingBoxes from DrawableBoundingBox
-            for (int i = 0; i < boundingBoxesList.Count; i++)
+
+            foreach (var box in actualScene.boundingBoxesList)
             {
                 // skip collision with floor
-                if (boundingBoxesList[i].name.Equals("floor")) //throw new Exception();
+                if (box.name.Equals("floor")) //throw new Exception();
                     continue;
-                
-                if (cameraBoundingSphere.Intersects(boundingBoxesList[i].boundingBox))
+
+                if (cameraBoundingSphere.Intersects(box.boundingBox))
                     return false;
             }
 
@@ -88,14 +92,14 @@ namespace WindowsGame1
         public bool cameraNextMoveCollisionDetectWithFloor(Vector3 nextCameraMove)
         {
             cameraBoundingSphere.Center = nextCameraMove;
-            
-            for (int i = 0; i < boundingBoxesList.Count; i++)
+
+            foreach (var box in actualScene.boundingBoxesList)
             {
                 // skip collision if not floor object
-                if (!boundingBoxesList[i].name.Equals("floor"))
+                if (!box.name.Equals("floor"))
                     continue;
 
-                if (cameraBoundingSphere.Intersects(boundingBoxesList[i].boundingBox)) //throw new Exception();
+                if (cameraBoundingSphere.Intersects(box.boundingBox)) //throw new Exception();
                     return false;
             }
 

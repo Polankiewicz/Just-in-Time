@@ -141,6 +141,12 @@ namespace WindowsGame1
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             hudTexts.drawText(spriteBatch, spriteFont);
+         //   GraphicsDevice.RasterizerState = wireFrameState;
+
+            // CreateDrawableBoxes();
+            foreach (var x in actualScene.boundingBoxesList)
+                x.Draw(camera);
+            
             // fixing GraphicsDevice after spriteBatch.Begin() method
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             GraphicsDevice.BlendState = BlendState.Opaque;
