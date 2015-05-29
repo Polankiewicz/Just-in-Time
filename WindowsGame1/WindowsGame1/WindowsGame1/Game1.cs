@@ -58,7 +58,7 @@ namespace WindowsGame1
 
         protected override void Initialize()
         {
-            camera = new Camera(this, new Vector3(0f, 20f, 5f), Vector3.Zero, 5f);
+            camera = new Camera(this, new Vector3(10f, 1f, 5f), Vector3.Zero, 5f);
             Components.Add(camera);
             //  graphics.ToggleFullScreen();
             floor = new Floor(GraphicsDevice, 20, 20);
@@ -72,7 +72,6 @@ namespace WindowsGame1
 
         protected override void LoadContent()
         {
-
             actualScene.LoadFromXML("../../../../scene.xml");
 
             //jako parametr do konstruktora przekazuje sie liste nazw modeli, domyslnie odpalana jest pierwsza;
@@ -85,8 +84,6 @@ namespace WindowsGame1
             temp.Add(Content.Load<Model>("Models\\hand"));
             hand = new DynamicModel(GraphicsDevice, temp, new Vector3(1, 1.2f, 1), new Vector3(-45, 90, 90), 0.02f, "hand");
 
-
-
             // hud texts
             spriteFont = Content.Load<SpriteFont>("Sprites\\PressXtoInteract");
             hudBullets = Content.Load<Texture2D>("Sprites\\6");
@@ -97,14 +94,15 @@ namespace WindowsGame1
 
             // set all objects to interact with player (Distance)
             playerInteractions = new PlayerInteractions(this, hudTexts, actualScene.getStaticModelsList(), actualScene.getDynamicModelsList());
+
             wireFrameState = new RasterizerState()
             {
                 FillMode = FillMode.WireFrame,
                 CullMode = CullMode.None,
             };
+
             // camera/player collisions with everything
             camera.setCameraCollision(actualScene);
-
         }
 
         /// <summary>

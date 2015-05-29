@@ -4709,18 +4709,18 @@
         <Y>9.5</Y>
         <Z>14.6</Z>
       </max>
-      <name>floor</name>
+      <name>block</name>
     </BoundingBoxSaveData>
     <BoundingBoxSaveData>
       <min>
-        <X>5.2</X>
-        <Y>-2</Y>
-        <Z>-10</Z>
+        <X>-40</X>
+        <Y>0</Y>
+        <Z>-25</Z>
       </min>
       <max>
-        <X>20</X>
-        <Y>0.2</Y>
-        <Z>15</Z>
+        <X>40</X>
+        <Y>0.1</Y>
+        <Z>40</Z>
       </max>
       <name>floor</name>
     </BoundingBoxSaveData>

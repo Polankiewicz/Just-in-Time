@@ -169,10 +169,9 @@ namespace WindowsGame1
                     moveVector.Y = -100;
 
                 // gravity
-                //fallingspeed -= 1;
-
                 if (game.ToString() != "Editor.Editor")
                 {
+                    //fallingspeed -= 1;
                     moveVector.Y = -1;
 
                     if (!cameraCollisions.cameraNextMoveCollisionDetectWithFloor(PreviewMove(moveVector)))
@@ -180,8 +179,8 @@ namespace WindowsGame1
                         moveVector.Y = 0;
                         //fallingspeed = 0;
                     }
-
                 }
+
                 if (moveVector != Vector3.Zero)
                 {
                     //normalize the vector
@@ -194,8 +193,6 @@ namespace WindowsGame1
                     {
                         Move(moveVector);
                     }
-
-
                 }
 
                 //////////////////////////// handle rotation ////////////////////////////////////////
