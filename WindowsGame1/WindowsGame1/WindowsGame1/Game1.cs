@@ -43,6 +43,8 @@ namespace WindowsGame1
         private Texture2D hudMenuGame;
         private Texture2D hudMenuMain;
 
+        RasterizerState wireFrameState;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -95,7 +97,11 @@ namespace WindowsGame1
 
             // set all objects to interact with player (Distance)
             playerInteractions = new PlayerInteractions(this, hudTexts, actualScene.getStaticModelsList(), actualScene.getDynamicModelsList());
-
+            wireFrameState = new RasterizerState()
+            {
+                FillMode = FillMode.WireFrame,
+                CullMode = CullMode.None,
+            };
             // camera/player collisions with everything
             camera.setCameraCollision(actualScene);
 
@@ -141,7 +147,7 @@ namespace WindowsGame1
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             hudTexts.drawText(spriteBatch, spriteFont);
-         //   GraphicsDevice.RasterizerState = wireFrameState;
+           GraphicsDevice.RasterizerState = wireFrameState;
 
             // CreateDrawableBoxes();
             foreach (var x in actualScene.boundingBoxesList)
