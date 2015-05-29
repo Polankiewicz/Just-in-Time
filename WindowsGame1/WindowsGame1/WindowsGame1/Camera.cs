@@ -24,7 +24,8 @@ namespace WindowsGame1
         private GamePadState gamePad;
         // collisions
         CameraCollisions cameraCollisions;
-
+        // gravity
+        private float fallingspeed;
 
         //Properties
 
@@ -75,7 +76,7 @@ namespace WindowsGame1
             this.game = game;
             
             prevMouseState = Mouse.GetState();
-
+            fallingspeed = 0;
         }
 
         public void setCameraCollision(Scene actualScene)
@@ -161,7 +162,21 @@ namespace WindowsGame1
                         moveVector.Y = -100;
                 }
 
-         
+                if (ks.IsKeyDown(Keys.T))
+                    moveVector.Y = 100;
+                if (ks.IsKeyDown(Keys.Y))
+                    moveVector.Y = -100;
+
+                // gravity
+                //fallingspeed -= 1;
+                moveVector.Y = -1;
+                if (!cameraCollisions.cameraNextMoveCollisionDetectWithFloor(PreviewMove(moveVector)))
+                {
+                    moveVector.Y = 0;
+                    //fallingspeed = 0;
+                }
+
+
                 if (moveVector != Vector3.Zero)
                 {
                     //normalize the vector

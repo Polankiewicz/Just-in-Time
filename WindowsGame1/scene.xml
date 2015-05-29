@@ -4709,7 +4709,33 @@
         <Y>9.5</Y>
         <Z>14.6</Z>
       </max>
+      <name>floor</name>
+    </BoundingBoxSaveData>
+    <BoundingBoxSaveData>
+      <min>
+        <X>-4.5</X>
+        <Y>0</Y>
+        <Z>-14.5</Z>
+      </min>
+      <max>
+        <X>5</X>
+        <Y>9.5</Y>
+        <Z>14.6</Z>
+      </max>
       <name>block</name>
+    </BoundingBoxSaveData>
+    <BoundingBoxSaveData>
+      <min>
+        <X>3.7</X>
+        <Y>0.2</Y>
+        <Z>30</Z>
+      </min>
+      <max>
+        <X>-5</X>
+        <Y>3</Y>
+        <Z>20.5</Z>
+      </max>
+      <name>shop</name>
     </BoundingBoxSaveData>
     <BoundingBoxSaveData>
       <min>

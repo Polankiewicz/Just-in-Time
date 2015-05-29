@@ -74,7 +74,28 @@ namespace WindowsGame1
             // check for collision with boundingBoxes from DrawableBoundingBox
             for (int i = 0; i < boundingBoxesList.Count; i++)
             {
+                // skip collision with floor
+                if (boundingBoxesList[i].name.Equals("floor")) //throw new Exception();
+                    continue;
+                
                 if (cameraBoundingSphere.Intersects(boundingBoxesList[i].boundingBox))
+                    return false;
+            }
+
+            return true;
+        }
+
+        public bool cameraNextMoveCollisionDetectWithFloor(Vector3 nextCameraMove)
+        {
+            cameraBoundingSphere.Center = nextCameraMove;
+            
+            for (int i = 0; i < boundingBoxesList.Count; i++)
+            {
+                // skip collision if not floor object
+                if (!boundingBoxesList[i].name.Equals("floor"))
+                    continue;
+
+                if (cameraBoundingSphere.Intersects(boundingBoxesList[i].boundingBox)) //throw new Exception();
                     return false;
             }
 

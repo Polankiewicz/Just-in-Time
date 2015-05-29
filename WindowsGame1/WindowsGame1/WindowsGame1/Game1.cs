@@ -56,7 +56,7 @@ namespace WindowsGame1
 
         protected override void Initialize()
         {
-            camera = new Camera(this, new Vector3(10f, 1f, 5f), Vector3.Zero, 5f);
+            camera = new Camera(this, new Vector3(0f, 20f, 5f), Vector3.Zero, 5f);
             Components.Add(camera);
             //  graphics.ToggleFullScreen();
             floor = new Floor(GraphicsDevice, 20, 20);
