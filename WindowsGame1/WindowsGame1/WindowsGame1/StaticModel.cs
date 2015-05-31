@@ -100,11 +100,14 @@ namespace WindowsGame1
                 foreach (ModelMeshPart meshPart in mesh.MeshParts)
                 {
                     Effect effect = meshPart.Effect;
-                    if (effect is BasicEffect)
-                    {
-                        this.rotation = Matrix.CreateRotationX(MathHelper.ToRadians(rotationVector.X))
+
+                    this.rotation = Matrix.CreateRotationX(MathHelper.ToRadians(rotationVector.X))
                         * Matrix.CreateRotationY(MathHelper.ToRadians(rotationVector.Y))
                         * Matrix.CreateRotationZ(MathHelper.ToRadians(rotationVector.Z));
+
+                    if (effect is BasicEffect)
+                    {
+                        
                         ((BasicEffect)effect).World = transforms[mesh.ParentBone.Index] * this.rotation * Matrix.CreateScale(Scale) * Matrix.CreateTranslation(offset);
 
                         ((BasicEffect)effect).View = camera.View;
