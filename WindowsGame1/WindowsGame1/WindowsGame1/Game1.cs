@@ -73,6 +73,12 @@ namespace WindowsGame1
         protected override void LoadContent()
         {
             actualScene.LoadFromXML("../../../../scene.xml");
+            //Effect simpleEffect = Content.Load<Effect>("Effects\\MyEffect");
+           
+            //foreach (StaticModel m in actualScene.staticModelsList)
+            //{
+            //    m.SetCustomEffect(simpleEffect);
+            //}
 
             //jako parametr do konstruktora przekazuje sie liste nazw modeli, domyslnie odpalana jest pierwsza;
             var tmp = new List<string>();
@@ -145,12 +151,12 @@ namespace WindowsGame1
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             hudTexts.drawText(spriteBatch, spriteFont);
-           GraphicsDevice.RasterizerState = wireFrameState;
+            GraphicsDevice.RasterizerState = wireFrameState;
 
             // CreateDrawableBoxes();
             foreach (var x in actualScene.boundingBoxesList)
                 x.Draw(camera);
-            
+
             // fixing GraphicsDevice after spriteBatch.Begin() method
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             GraphicsDevice.BlendState = BlendState.Opaque;

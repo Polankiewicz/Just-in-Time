@@ -9,18 +9,18 @@ namespace WindowsGame1
 {
     public class StaticModel
     {
-        
-        
+
+
         private GraphicsDevice device;
         private Color[] floorColors = new Color[2] { Color.White, Color.Black };
         Model model;
         Matrix position = Matrix.Identity;
         Matrix rotation;
         private Vector3 offset;
-        
+
         String objectName;
         Vector3 rotationVector;
-      
+
         public String Name
         {
             get { return objectName; }
@@ -37,9 +37,21 @@ namespace WindowsGame1
             get { return rotationVector; }
             set { rotationVector = value; }
         }
+        private void GenerateTags()
+        {
+            foreach (ModelMesh mesh in model.Meshes)
+                foreach (ModelMeshPart part in mesh.MeshParts)
+                    if (part.Effect is BasicEffect)
+                    {
+                        BasicEffect effect = (BasicEffect)part.Effect;
+                        MeshTag tag = new MeshTag(effect.DiffuseColor, effect.Texture,
+                        effect.SpecularPower);
+                        part.Tag = tag;
+                    }
+        }
         public float Scale { get; set; }
         public string path { get; set; }
-        public StaticModel(GraphicsDevice device, Model model, Vector3 position, Vector3 rotationDegrees, float scale, string objectName,string path)
+        public StaticModel(GraphicsDevice device, Model model, Vector3 position, Vector3 rotationDegrees, float scale, string objectName, string path)
         {
             this.device = device;
             this.model = model;
@@ -48,55 +60,76 @@ namespace WindowsGame1
             this.path = path;
             this.offset = position;
             this.rotationVector = rotationDegrees;
+            GenerateTags();
         }
-        public StaticModel()
+        public void SetCustomEffect(Effect effect)
         {
-            this.device = null;
-            this.model = null;
-            this.Scale = 0;
-            this.objectName = null;
+            foreach (ModelMesh mesh in model.Meshes)
+                foreach (ModelMeshPart part in mesh.MeshParts)
+                {
+                    Effect toSet = effect;
 
-            this.offset = new Vector3();
-            this.rotationVector = new Vector3();
+                    MeshTag tag = ((MeshTag)part.Tag);
+
+                    if (tag.Texture != null)
+                    {
+                        toSet.SetEffectParameter("BasicTexture", tag.Texture);
+                        toSet.SetEffectParameter("TextureEnabled", true);
+                       
+                    }
+                    else
+                        toSet.SetEffectParameter("TextureEnabled", true);
+
+                    toSet.SetEffectParameter("DiffuseColor",tag.Color);
+                    toSet.SetEffectParameter("SpecularPower",tag.SpecularPower);
+
+                    part.Effect = toSet;
+                }
         }
+        
+
         //build our vertex buffer
         public void Draw(Camera camera)
         {
             // Copy any parent transforms.
             Matrix[] transforms = new Matrix[model.Bones.Count];
             model.CopyAbsoluteBoneTransformsTo(transforms);
-           
+
             foreach (ModelMesh mesh in model.Meshes)
             {
-
-                foreach (BasicEffect effect in mesh.Effects)
+                foreach (ModelMeshPart meshPart in mesh.MeshParts)
                 {
-                    // effect.EnableDefaultLighting();
-                    this.rotation = Matrix.CreateRotationX(MathHelper.ToRadians(rotationVector.X))
-                          * Matrix.CreateRotationY(MathHelper.ToRadians(rotationVector.Y))
-                          * Matrix.CreateRotationZ(MathHelper.ToRadians(rotationVector.Z));
-                    effect.World = transforms[mesh.ParentBone.Index] * this.rotation * Matrix.CreateScale(Scale) * Matrix.CreateTranslation(offset);
+                    Effect effect = meshPart.Effect;
+                    if (effect is BasicEffect)
+                    {
+                        this.rotation = Matrix.CreateRotationX(MathHelper.ToRadians(rotationVector.X))
+                        * Matrix.CreateRotationY(MathHelper.ToRadians(rotationVector.Y))
+                        * Matrix.CreateRotationZ(MathHelper.ToRadians(rotationVector.Z));
+                        ((BasicEffect)effect).World = transforms[mesh.ParentBone.Index] * this.rotation * Matrix.CreateScale(Scale) * Matrix.CreateTranslation(offset);
 
-                    effect.View = camera.View;
+                        ((BasicEffect)effect).View = camera.View;
 
-                    effect.LightingEnabled = true; // turn on the lighting subsystem.
-                    effect.DirectionalLight0.DiffuseColor = new Vector3(0.4f, 0.4f, 0.49f); // a red light
-                    effect.DirectionalLight0.Direction = new Vector3(-1, -1, 0.75f);  // coming along the x-axis
-                    effect.DirectionalLight0.SpecularColor = new Vector3(1, 1, 1);
-                    effect.AmbientLightColor = new Vector3(0.05f, 0.05f, 0.05f);
-                    effect.Projection = camera.Projection;
+                        ((BasicEffect)effect).LightingEnabled = true; // turn on the lighting subsystem.
+                        ((BasicEffect)effect).DirectionalLight0.DiffuseColor = new Vector3(0.4f, 0.4f, 0.49f); // a red light
+                        ((BasicEffect)effect).DirectionalLight0.Direction = new Vector3(-1, -1, 0.75f);  // coming along the x-axis
+                        ((BasicEffect)effect).DirectionalLight0.SpecularColor = new Vector3(1, 1, 1);
+                        ((BasicEffect)effect).AmbientLightColor = new Vector3(0.05f, 0.05f, 0.05f);
+                        ((BasicEffect)effect).Projection = camera.Projection;
+                    }
+                    else
+                    {
+                        effect.SetEffectParameter("World",
+                                transforms[mesh.ParentBone.Index] * this.rotation * Matrix.CreateScale(Scale) * Matrix.CreateTranslation(offset)
+                            );
+                        effect.SetEffectParameter("View",camera.View);
+                        effect.SetEffectParameter("Projection",camera.Projection);
+                        effect.SetEffectParameter("CameraPosition", camera.Position);
 
+                    }
                 }
+
                 mesh.Draw();
-                // hehe test
             }
-
         }
-
-       
-
-
-
     }
-    
 }
