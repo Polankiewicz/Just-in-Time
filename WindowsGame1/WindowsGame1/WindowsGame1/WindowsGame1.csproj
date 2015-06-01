@@ -72,6 +72,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bullet.cs" />
     <Compile Include="MeshTag.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="Extensions.cs" />
