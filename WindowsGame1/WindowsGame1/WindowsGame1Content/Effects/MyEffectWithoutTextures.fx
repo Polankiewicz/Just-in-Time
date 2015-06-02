@@ -21,13 +21,13 @@ float3 SpecularColor = float3(1, 1, 1);
 struct VertexShaderInput
 {
 	float4 Position : POSITION0;
-	float2 UV : TEXCOORD0;
+	
 	float3 Normal : NORMAL0;
 };
 struct VertexShaderOutput
 {
 	float4 Position : POSITION0;
-	float2 UV : TEXCOORD0;
+	
 	float3 Normal : TEXCOORD1;
 	float3 ViewDirection : TEXCOORD2;
 };
@@ -38,7 +38,7 @@ VertexShaderOutput VertexShaderFunction(VertexShaderInput input)
 	float4 worldPosition = mul(input.Position, World);
 		float4x4 viewProjection = mul(View, Projection);
 		output.Position = mul(worldPosition, viewProjection);
-	output.UV = input.UV;
+	
 	output.Normal = mul(input.Normal, World);
 	output.ViewDirection = worldPosition - CameraPosition;
 	return output;
@@ -48,8 +48,7 @@ float4 PixelShaderFunction(VertexShaderOutput input) : COLOR0
 	// Start with diffuse color
 	float3 color = DiffuseColor;
 	// Texture if necessary
-	if (TextureEnabled)
-		color *= tex2D(BasicTextureSampler, input.UV);
+	
 	// Start with ambient lighting
 	float3 lighting = AmbientColor;
 		float3 lightDir = normalize(LightDirection);

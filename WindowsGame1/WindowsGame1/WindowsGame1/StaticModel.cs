@@ -17,7 +17,7 @@ namespace WindowsGame1
         Matrix position = Matrix.Identity;
         Matrix rotation;
         private Vector3 offset;
-
+        public Material Material { get; set; }
         String objectName;
         Vector3 rotationVector;
 
@@ -60,6 +60,7 @@ namespace WindowsGame1
             this.path = path;
             this.offset = position;
             this.rotationVector = rotationDegrees;
+            this.Material = new Material();
             GenerateTags();
         }
         public void SetCustomEffect(Effect effect)
@@ -67,23 +68,24 @@ namespace WindowsGame1
             foreach (ModelMesh mesh in model.Meshes)
                 foreach (ModelMeshPart part in mesh.MeshParts)
                 {
-                    Effect toSet = effect;
+                    Effect toSet = (Effect)effect.Clone();
 
                     MeshTag tag = ((MeshTag)part.Tag);
-
+                    Material.SetEffectParameters(effect);
                     if (tag.Texture != null)
                     {
                         toSet.SetEffectParameter("BasicTexture", tag.Texture);
-                        toSet.SetEffectParameter("TextureEnabled", true);
                        
+                        toSet.SetEffectParameter("TextureEnabled", true);
+
+                        toSet.SetEffectParameter("DiffuseColor", tag.Color);
+                        toSet.SetEffectParameter("SpecularPower", tag.SpecularPower);
+
+                        part.Effect = toSet;
                     }
                     else
-                        toSet.SetEffectParameter("TextureEnabled", true);
+                        toSet.SetEffectParameter("TextureEnabled", false);
 
-                    toSet.SetEffectParameter("DiffuseColor",tag.Color);
-                    toSet.SetEffectParameter("SpecularPower",tag.SpecularPower);
-
-                    part.Effect = toSet;
                 }
         }
         

@@ -73,12 +73,12 @@ namespace WindowsGame1
         protected override void LoadContent()
         {
             actualScene.LoadFromXML("../../../../scene.xml");
-            //Effect simpleEffect = Content.Load<Effect>("Effects\\MyEffect");
-           
-            //foreach (StaticModel m in actualScene.staticModelsList)
-            //{
-            //    m.SetCustomEffect(simpleEffect);
-            //}
+            Effect simpleEffect = Content.Load<Effect>("Effects\\MyEffect");
+
+            foreach (StaticModel m in actualScene.staticModelsList)
+            {
+                m.SetCustomEffect(simpleEffect);
+            }
 
             //jako parametr do konstruktora przekazuje sie liste nazw modeli, domyslnie odpalana jest pierwsza;
             var tmp = new List<string>();
