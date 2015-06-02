@@ -37,7 +37,8 @@ namespace WindowsGame1
         Matrix handWorldMatrix;
 
         Hud hud = new Hud();
-        private Texture2D hudBullets;
+        private int tmpHud = 5;
+        private Texture2D[] hudTab = new Texture2D[7];
         private Texture2D hudBloody;
         private Texture2D hudGameOver;
         private Texture2D hudMenuGame;
@@ -92,7 +93,13 @@ namespace WindowsGame1
 
             // hud texts
             spriteFont = Content.Load<SpriteFont>("Sprites\\PressXtoInteract");
-            hudBullets = Content.Load<Texture2D>("Sprites\\6");
+            hudTab[6] = Content.Load<Texture2D>("Sprites\\6");
+            hudTab[5] = Content.Load<Texture2D>("Sprites\\5");
+            hudTab[4] = Content.Load<Texture2D>("Sprites\\4");
+            hudTab[3] = Content.Load<Texture2D>("Sprites\\3");
+            hudTab[2] = Content.Load<Texture2D>("Sprites\\2");
+            hudTab[1] = Content.Load<Texture2D>("Sprites\\1");
+            hudTab[0] = Content.Load<Texture2D>("Sprites\\0");
             hudBloody = Content.Load<Texture2D>("Sprites\\Bloody");
             hudGameOver = Content.Load<Texture2D>("Sprites\\GameOver");
             hudMenuGame = Content.Load<Texture2D>("Sprites\\MenuGame");
@@ -174,7 +181,7 @@ namespace WindowsGame1
 
             hand.Model = handWorldMatrix;
 
-            hud.drawHud(spriteBatch, hudBullets);
+            hud.drawHud(spriteBatch, hudTab[tmpHud]);
             hand.Draw(camera);
             handWorldMatrix = cameraWorldMartix;
 

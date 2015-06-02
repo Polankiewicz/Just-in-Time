@@ -13,8 +13,8 @@ namespace WindowsGame1
         protected GraphicsDevice device;
         private Color[] floorColors = new Color[2] { Color.White, Color.Black };
         public List<Model> modelList { get; set; }
-        private Matrix position;
-        private Matrix rotation;
+        public Matrix position;
+        public Matrix rotation;
         private Vector3 offset;
         protected Model model;
         float scale = 0.005f;

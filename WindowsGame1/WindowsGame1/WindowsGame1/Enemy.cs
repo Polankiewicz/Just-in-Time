@@ -32,10 +32,10 @@ namespace WindowsGame1
         public void EnemyAI(Camera c)
          {
              // if (trigger.id.collision && trigger.id == enemy.id)    
-             if (GetDistance(c) < 3f)
+             if (GetDistance(c) < 5f)
              { 
                 MoveToPlayer(c);
-                if (GetDistance(c) < 1.5f)
+                if (GetDistance(c) < 2f)
                 {
                     AttackPlayer(c);
                 }
@@ -55,7 +55,16 @@ namespace WindowsGame1
 
         public void MoveToPlayer(Camera c)
         {
-            Console.WriteLine("move");
+            //this.Position = new Vector3(c.Position.X, c.Position.Y, c.Position.Z);
+            //this.Position = Matrix.Invert(c.View).Translation;
+            //Matrix.CreateLookAt(this.Position, c.Position, Vector3.Up);
+
+            while (GetDistance(c) > 1.8f)
+            {
+                Console.WriteLine("move");
+                this.Position = Vector3.Lerp(this.Position, c.Position, moveSpeed);
+                this.Model = Matrix.CreateTranslation(this.Position.X, 0, this.Position.Z);
+            }
            
         }
 
