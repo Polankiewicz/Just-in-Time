@@ -12,14 +12,14 @@ namespace WindowsGame1
     {
         private int hp = 5;
         private float moveSpeed = 0.2f;
-        
+        private int id;
+        private bool condition = false;
 
 
-
-        public Enemy(GraphicsDevice device, List<Model> modelList, Vector3 position, Vector3 rotationDegrees, float scale, String objectName, Camera c)
+        public Enemy(GraphicsDevice device, List<Model> modelList, Vector3 position, Vector3 rotationDegrees, float scale, String objectName, Camera c, int i)
             : base(device, modelList, position, rotationDegrees, scale, objectName)
         {
-           
+            this.id = i;
         }
 
         public int Hp 
@@ -28,20 +28,31 @@ namespace WindowsGame1
             set { hp = value; } 
         }
 
+        public bool Condition
+        {
+            get { return condition; }
+            set { condition = value; }
+        }
+
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
 
         public void EnemyAI(Camera c)
          {
-             // if (trigger.id.collision && trigger.id == enemy.id)    
-             if (GetDistance(c) < 5f)
-             { 
-                MoveToPlayer(c);
-                if (GetDistance(c) < 2f)
-                {
-                    AttackPlayer(c);
-                }
+             // if (trigger.id.collision && trigger.id == enemy.id)
+             if (condition)
+             {
+                 MoveToPlayer(c);
+                 if (GetDistance(c) < 2f)
+                 {
+                     AttackPlayer(c);
+                 }
+             }
                 
                  //this.destroy();
-             }
              
          }
 

@@ -51,6 +51,13 @@ namespace WindowsGame1
                 {
                     Enemy a = (Enemy)dynamicModelsList[i];
                     a.EnemyAI(camera);
+                    for (int j = 0; j < staticModelsList.Count; j++)
+                    {                       
+                        if (staticModelsList[j].Name == "trigger1" && Vector3.Distance(staticModelsList[j].Position, camera.Position) < 1.5f && a.Id == 1)
+                        {
+                            a.Condition = true;
+                        }
+                    }
                 }
             }
 

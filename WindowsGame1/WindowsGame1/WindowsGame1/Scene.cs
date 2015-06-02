@@ -91,7 +91,7 @@ namespace WindowsGame1
                     fbxList.Add(s, content.Load<Model>(s));
                 temp.Add(fbxList[s]);
             }
-            this.dynamicModelsList.Add(new Enemy(graphicsDevice, temp, Positon, Rotation, Scale, objectName, c));
+            this.dynamicModelsList.Add(new Enemy(graphicsDevice, temp, Positon, Rotation, Scale, objectName, c, 1));
             
         }
 

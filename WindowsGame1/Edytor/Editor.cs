@@ -93,6 +93,7 @@ namespace Editor
             listNames.Add("Models\\metal_fence");
             listNames.Add("Models\\street_dumbster");
             listNames.Add("Models\\street_lantern");
+            listNames.Add("Models\\trigger1");
             wireFrameState = new RasterizerState()
             {
                 FillMode = FillMode.WireFrame,

@@ -4696,6 +4696,21 @@
         <Z>0</Z>
       </Rotation>
     </SceneSaveData>
+    <SceneSaveData>
+      <Scale>1</Scale>
+      <Name>trigger1</Name>
+      <path>Models\trigger1</path>
+      <Position>
+        <X>15</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </Position>
+      <Rotation>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </Rotation>
+    </SceneSaveData>
   </modelsList>
   <boundingBoxesList>
     <BoundingBoxSaveData>
