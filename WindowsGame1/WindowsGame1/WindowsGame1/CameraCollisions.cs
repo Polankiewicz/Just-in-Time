@@ -18,17 +18,20 @@ namespace WindowsGame1
 
         Scene actualScene;
 
+        List<Bullet> listOfBullets;
+
         // TEMP lists
         List<BoundingBox> staticBoundingSpheresList = new List<BoundingBox>();
         List<BoundingSphere> dynamicBoundingSpheresList = new List<BoundingSphere>();
 
-        public CameraCollisions(Camera camera, Scene actualScene)
+        public CameraCollisions(Camera camera, Scene actualScene, List<Bullet> listOfBullets)
         {
             this.camera = camera;
             this.staticModelsList = actualScene.getStaticModelsList();
             this.dynamicModelsList = actualScene.getDynamicModelsList();
             this.boundingBoxesList = actualScene.getBoundingBoxesList();
             this.actualScene = actualScene;
+            this.listOfBullets = listOfBullets;
 
             cameraBoundingSphere = new BoundingSphere(camera.Position, 0.50f);
 
@@ -36,7 +39,7 @@ namespace WindowsGame1
             for (int i = 0; i < dynamicModelsList.Count; i++)
             {
                 if (dynamicModelsList[i].Name == "enemy")
-                    dynamicBoundingSpheresList.Add(new BoundingSphere(dynamicModelsList[i].Position, 0.50f));
+                    dynamicBoundingSpheresList.Add(new BoundingSphere(dynamicModelsList[i].Position, 1.0f));
             }
 
         }
@@ -50,7 +53,7 @@ namespace WindowsGame1
                 {
                     BoundingSphere xxx = dynamicBoundingSpheresList[i];
                     xxx.Center = dynamicModelsList[i].Position;
-                    dynamicBoundingSpheresList[0] = xxx;
+                    dynamicBoundingSpheresList[i] = xxx;
                     //dynamicBoundingSpheresList[0].Center = dynamicModelsList[i].Position; //???
                 }
             }
@@ -75,14 +78,13 @@ namespace WindowsGame1
             }
 
             // check for collision with boundingBoxes from DrawableBoundingBox
-
-            foreach (var box in actualScene.boundingBoxesList)
+            for (int i = 0; i < boundingBoxesList.Count; i++)
             {
                 // skip collision with floor
-                if (box.name.Equals("floor")) //throw new Exception();
+                if (boundingBoxesList[i].name.Equals("floor")) //throw new Exception();
                     continue;
 
-                if (cameraBoundingSphere.Intersects(box.boundingBox))
+                if (cameraBoundingSphere.Intersects(boundingBoxesList[i].boundingBox))
                     return false;
             }
 
@@ -93,18 +95,44 @@ namespace WindowsGame1
         {
             cameraBoundingSphere.Center = nextCameraMove;
 
-            foreach (var box in actualScene.boundingBoxesList)
+            for (int i = 0; i < boundingBoxesList.Count; i++)
             {
                 // skip collision if not floor object
-                if (!box.name.Equals("floor"))
+                if (!boundingBoxesList[i].name.Equals("floor"))
                     continue;
 
-                if (cameraBoundingSphere.Intersects(box.boundingBox)) //throw new Exception();
+                if (cameraBoundingSphere.Intersects(boundingBoxesList[i].boundingBox)) //throw new Exception();
                     return false;
             }
 
             return true;
         }
+
+        public void bulletCollisionWithEnemy()
+        {
+            for (int i = 0; i < listOfBullets.Count; i++)
+            {
+                // collision with dynamic models (enemy)
+                for (int j = 0; j < dynamicBoundingSpheresList.Count; j++)
+                {
+                    if (dynamicBoundingSpheresList[j].Intersects(listOfBullets[i].boundingSphere))
+                    {
+                        // remove model
+                        dynamicModelsList.RemoveAt(0);
+                        // remove bounding box for this model
+                        dynamicBoundingSpheresList.RemoveAt(j);
+
+                        //throw new Exception("wykryto kolizje pocisku z przeciwnikiem, liczba pociskow: " + listOfBullets.Count);
+                    }
+                }
+                
+                // temp
+                if (boundingBoxesList[0].boundingBox.Intersects(listOfBullets[i].boundingSphere))
+                    throw new Exception("wykryto kolizje pocisku z blokiem, liczba pociskow: " + listOfBullets.Count);
+            }
+        }
+
+
 
 
     }

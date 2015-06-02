@@ -26,6 +26,8 @@ namespace WindowsGame1
         CameraCollisions cameraCollisions;
         // gravity
         private float fallingspeed;
+        // list of bullets
+        List<Bullet> listOfBullets;
 
         //Properties
 
@@ -78,11 +80,12 @@ namespace WindowsGame1
 
             prevMouseState = Mouse.GetState();
             fallingspeed = 0;
+            listOfBullets = new List<Bullet>();
         }
 
         public void setCameraCollision(Scene actualScene)
         {
-            cameraCollisions = new CameraCollisions(this, actualScene);
+            cameraCollisions = new CameraCollisions(this, actualScene, listOfBullets);
             // maybe player interactions also should be here... :v
         }
 
@@ -134,7 +137,6 @@ namespace WindowsGame1
 
                 currentMouseState = Mouse.GetState();
 
-
                 //////////////////////////// handle movement ////////////////////////////////////////
                 KeyboardState ks = Keyboard.GetState();
                 gamePad = GamePad.GetState(PlayerIndex.One);
@@ -163,6 +165,7 @@ namespace WindowsGame1
                         moveVector.Y = -100;
                 }
 
+                // TEMP
                 if (ks.IsKeyDown(Keys.T))
                     moveVector.Y = 100;
                 if (ks.IsKeyDown(Keys.Y))
@@ -200,6 +203,7 @@ namespace WindowsGame1
 
 
                 if (game.ToString() != "Editor.Editor" || ks.IsKeyDown(Keys.Q) || currentMouseState.RightButton == ButtonState.Pressed)
+                {
                     if (currentMouseState != prevMouseState)
                     {
                         //cache mouse location
@@ -225,10 +229,9 @@ namespace WindowsGame1
                         deltaY = 0;
                         Mouse.SetPosition(Game.GraphicsDevice.Viewport.Width / 2, Game.GraphicsDevice.Viewport.Height / 2);
 
-
                         prevMouseState = currentMouseState;
-
                     }
+                }
                 if (gamePad.ThumbSticks.Right != Vector2.Zero)
                 {
                     //Rotation = new Vector3(MathHelper.Clamp(-gamePad.ThumbSticks.Right.Y, MathHelper.ToRadians(-75.0f), MathHelper.ToRadians(75.0f)),
@@ -243,10 +246,39 @@ namespace WindowsGame1
                     holderForMouseRotation.Y += MathHelper.WrapAngle(-gamePad.ThumbSticks.Right.X) * 0.05f;
                     holderForMouseRotation.Z = 0;
                     Rotation = holderForMouseRotation;
-
-
                 }
 
+
+                //////////////////////////// handle shooting ////////////////////////////////////////
+                if (game.ToString() != "Editor.Editor")
+                {
+                    // new bullet
+                    if (gamePad.Triggers.Right == 1f || currentMouseState.LeftButton == ButtonState.Pressed)
+                    {
+                        // TODO: ograniczyc jakos dodawanie pociskow zeby nie miotalo nimi jak szatan podczas trzymania triggera
+                        listOfBullets.Add(new Bullet(Position));
+                    }
+
+                    // update bullet position
+                    for (int i = 0; i < listOfBullets.Count; i++)
+                    {
+                        // TODO: przeniesc to do klasy Bullet pod jakas metode i przerobic na konkretne strzelanie tam gdzie sie paczy gracz
+                        // i sie zamieni ciagle tworzenie wektora na jakiegos tam stalego bo pamiec :P
+                        BoundingSphere xxx = listOfBullets[i].boundingSphere;
+                        xxx.Center += new Vector3(0f, 0f, 5.0f);
+                        listOfBullets[i].boundingSphere = xxx;
+                    }
+
+                    // check for bullet collision
+                    cameraCollisions.bulletCollisionWithEnemy();
+
+                    // delete bullet if is too dar away
+                    for (int i = 0; i < listOfBullets.Count; i++)
+                    {
+                        if (listOfBullets[i].checkIfBulletIsTooFarAway(Position))
+                            listOfBullets.RemoveAt(i);
+                    }
+                }
 
 
                 base.Update(gameTime);
