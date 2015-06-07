@@ -44,7 +44,9 @@ namespace WindowsGame1
         private Texture2D hudMenuGame;
         private Texture2D hudMenuMain;
 
+
         RasterizerState wireFrameState;
+        private Texture2D hudPointer;
 
         public Game1()
         {
@@ -104,6 +106,7 @@ namespace WindowsGame1
             hudGameOver = Content.Load<Texture2D>("Sprites\\GameOver");
             hudMenuGame = Content.Load<Texture2D>("Sprites\\MenuGame");
             hudMenuMain = Content.Load<Texture2D>("Sprites\\MenuMain");
+            hudPointer = Content.Load<Texture2D>("Sprites\\Pointer");
 
             // set all objects to interact with player (Distance)
             playerInteractions = new PlayerInteractions(this, hudTexts, actualScene.getStaticModelsList(), actualScene.getDynamicModelsList());
@@ -181,7 +184,9 @@ namespace WindowsGame1
 
             hand.Model = handWorldMatrix;
 
-            hud.drawHud(spriteBatch, hudTab[tmpHud]);
+            hud.drawHud(spriteBatch, hudTab[tmpHud], this);
+            hud.drawPointer(spriteBatch, hudPointer, this);
+
             hand.Draw(camera);
             handWorldMatrix = cameraWorldMartix;
 

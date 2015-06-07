@@ -11,7 +11,7 @@ namespace WindowsGame1
     public class Enemy : DynamicModel
     {
         private int hp = 5;
-        private float moveSpeed = 0.002f;
+        private float moveSpeed = 0.01f;
         private int id;
         private bool condition = false;
         private float height = 0.2f;
