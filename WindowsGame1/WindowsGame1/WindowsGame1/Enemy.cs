@@ -11,9 +11,10 @@ namespace WindowsGame1
     public class Enemy : DynamicModel
     {
         private int hp = 5;
-        private float moveSpeed = 0.2f;
+        private float moveSpeed = 0.002f;
         private int id;
         private bool condition = false;
+        private float height = 0.2f;
 
 
         public Enemy(GraphicsDevice device, List<Model> modelList, Vector3 position, Vector3 rotationDegrees, float scale, String objectName, Camera c, int i)
@@ -45,7 +46,10 @@ namespace WindowsGame1
              // if (trigger.id.collision && trigger.id == enemy.id)
              if (condition)
              {
-                 MoveToPlayer(c);
+                 if (GetDistance(c) > 1.9f)
+                 {
+                     MoveToPlayer(c);
+                 }
                  if (GetDistance(c) < 2f)
                  {
                      AttackPlayer(c);
@@ -62,21 +66,13 @@ namespace WindowsGame1
             //a tutaj zamiast atakuj mozna zrobic cos takiego np by zmienic animacje:
             //this.model = modelList[1];
         }
- 
+
 
         public void MoveToPlayer(Camera c)
         {
-            //this.Position = new Vector3(c.Position.X, c.Position.Y, c.Position.Z);
-            //this.Position = Matrix.Invert(c.View).Translation;
-            //Matrix.CreateLookAt(this.Position, c.Position, Vector3.Up);
-
-            while (GetDistance(c) > 1.8f)
-            {
-                Console.WriteLine("move");
-                this.Position = Vector3.Lerp(this.Position, c.Position, moveSpeed);
-                this.Model = Matrix.CreateTranslation(this.Position.X, 0, this.Position.Z);
-            }
-           
+            Console.WriteLine("move");
+            this.Position = Vector3.Lerp(this.Position, c.Position, moveSpeed);
+            this.Model = Matrix.CreateTranslation(this.Position.X, height, this.Position.Z);
         }
 
         public float GetDistance(Camera c)
@@ -86,8 +82,10 @@ namespace WindowsGame1
             return distance;
         }
 
-
+        
     }
+
+
 
     
 }
