@@ -185,11 +185,19 @@ namespace WindowsGame1
                     //fallingspeed -= 1;
                     moveVector.Y = -1;
 
+                    // floor
                     if (!cameraCollisions.cameraNextMoveCollisionDetectWithFloor(PreviewMove(moveVector)))
                     {
                         moveVector.Y = 0;
                         //fallingspeed = 0;
                     }
+
+                    // stairs
+                    if (!cameraCollisions.cameraNextMoveCollisionDetectWithStairs(PreviewMove(moveVector)))
+                    {
+                        moveVector.Y = 1;
+                    }
+
                 }
 
                 if (moveVector != Vector3.Zero)

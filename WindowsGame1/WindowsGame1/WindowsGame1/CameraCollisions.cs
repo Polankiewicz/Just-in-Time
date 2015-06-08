@@ -80,8 +80,8 @@ namespace WindowsGame1
             // check for collision with boundingBoxes from DrawableBoundingBox
             for (int i = 0; i < boundingBoxesList.Count; i++)
             {
-                // skip collision with floor
-                if (boundingBoxesList[i].name.Equals("floor")) //throw new Exception();
+                // skip collision with floor & stairs
+                if (boundingBoxesList[i].name.Equals("floor") || boundingBoxesList[i].name.Equals("stairs")) //throw new Exception();
                     continue;
 
                 // load new scene
@@ -111,6 +111,23 @@ namespace WindowsGame1
             {
                 // skip collision if not floor object
                 if (!boundingBoxesList[i].name.Equals("floor"))
+                    continue;
+
+                if (cameraBoundingSphere.Intersects(boundingBoxesList[i].boundingBox)) //throw new Exception();
+                    return false;
+            }
+
+            return true;
+        }
+
+        public bool cameraNextMoveCollisionDetectWithStairs(Vector3 nextCameraMove)
+        {
+            cameraBoundingSphere.Center = nextCameraMove;
+
+            for (int i = 0; i < boundingBoxesList.Count; i++)
+            {
+                // skip collision if not stairs object
+                if (!boundingBoxesList[i].name.Equals("stairs"))
                     continue;
 
                 if (cameraBoundingSphere.Intersects(boundingBoxesList[i].boundingBox)) //throw new Exception();
