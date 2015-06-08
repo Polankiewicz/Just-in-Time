@@ -28,7 +28,7 @@ namespace WindowsGame1
         private float fallingspeed;
         // list of bullets
         List<Bullet> listOfBullets;
-
+        private int bulletsAmount;
         //Properties
 
         public Vector3 Position
@@ -57,6 +57,12 @@ namespace WindowsGame1
             protected set;
         }
 
+        public int BulletsAmount
+        {
+            get { return bulletsAmount; }
+            set { bulletsAmount = value; }
+        }
+
         public Matrix View
         {
             get { return Matrix.CreateLookAt(cameraPosition, cameraLookAt, Vector3.Up); }
@@ -81,6 +87,7 @@ namespace WindowsGame1
             prevMouseState = Mouse.GetState();
             fallingspeed = 0;
             listOfBullets = new List<Bullet>();
+            bulletsAmount = 5;
         }
 
         public void setCameraCollision(Scene actualScene)
@@ -255,8 +262,14 @@ namespace WindowsGame1
                     // new bullet
                     if (gamePad.Triggers.Right == 1f || currentMouseState.LeftButton == ButtonState.Pressed)
                     {
-                        // TODO: ograniczyc jakos dodawanie pociskow zeby nie miotalo nimi jak szatan podczas trzymania triggera
-                        listOfBullets.Add(new Bullet(Position));
+                        if (bulletsAmount > 0)
+                        {
+                            if(listOfBullets.Count == 0) // shooting only when previous bullet was destroyed
+                            {
+                                listOfBullets.Add(new Bullet(Position));
+                                bulletsAmount--;
+                            }
+                        }
                     }
 
                     // update bullet position
@@ -277,6 +290,7 @@ namespace WindowsGame1
                     {
                         if (listOfBullets[i].checkIfBulletIsTooFarAway(Position))
                             listOfBullets.RemoveAt(i);
+                        //throw new Exception("Tak szybko niszczy szczala");
                     }
                 }
 

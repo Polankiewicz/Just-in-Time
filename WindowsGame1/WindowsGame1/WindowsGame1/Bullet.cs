@@ -24,7 +24,7 @@ namespace WindowsGame1
         {
             radius = 0.1f;
             speed = 5f;
-            distance = 50f;
+            distance = 35f; 
 
             _boundingSphere = new BoundingSphere(center, radius);
         }
