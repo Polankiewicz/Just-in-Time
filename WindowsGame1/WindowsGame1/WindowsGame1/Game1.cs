@@ -37,7 +37,6 @@ namespace WindowsGame1
         Matrix handWorldMatrix;
 
         Hud hud = new Hud();
-        private int tmpHud = 5;
         private Texture2D[] hudTab = new Texture2D[7];
         private Texture2D hudBloody;
         private Texture2D hudGameOver;
@@ -87,7 +86,7 @@ namespace WindowsGame1
             var tmp = new List<string>();
             tmp.Add("Models\\przeciwnik");
             tmp.Add("Models\\przeciwnik");
-            actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 90, 0), 0.005f, "enemy", camera);
+            actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
 
             var temp = new List<Model>();
             temp.Add(Content.Load<Model>("Models\\hand"));
@@ -184,7 +183,7 @@ namespace WindowsGame1
 
             hand.Model = handWorldMatrix;
 
-            hud.drawHud(spriteBatch, hudTab[tmpHud], this);
+            hud.drawHud(spriteBatch, hudTab[camera.BulletsAmount], this);
             hud.drawPointer(spriteBatch, hudPointer, this);
 
             hand.Draw(camera);

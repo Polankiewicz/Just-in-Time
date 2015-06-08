@@ -88,7 +88,7 @@ namespace WindowsGame1
             prevMouseState = Mouse.GetState();
             fallingspeed = 0;
             listOfBullets = new List<Bullet>();
-            bulletsAmount = 5;
+            bulletsAmount = 6;
         }
 
         public void setCameraCollision(Scene actualScene)

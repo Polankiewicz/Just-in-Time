@@ -35,6 +35,12 @@ namespace WindowsGame1
             set { offset = value; }
         }
 
+        public Vector3 Rotation
+        {
+            get { return offset; }
+            set { offset = value; }
+        }
+
         public Matrix Model
         {
             get { return position; }
