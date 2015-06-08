@@ -51,6 +51,15 @@ namespace WindowsGame1
             this.boundingBoxesList = new List<DrawableBoundingBox>();
         }
 
+        public void unloadContent()
+        {
+            this.staticModelsList.Clear();
+            this.dynamicModelsList.Clear();
+            this.boundingBoxesList.Clear();
+        }
+
+
+
         public List<DynamicModel> getDynamicModelsList()
         {
             return this.dynamicModelsList;

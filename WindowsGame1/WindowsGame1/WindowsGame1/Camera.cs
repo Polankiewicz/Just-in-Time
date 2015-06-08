@@ -9,6 +9,7 @@ namespace WindowsGame1
 {
     public class Camera : GameComponent
     {
+        // camera
         private Vector3 cameraPosition;
         private Vector3 cameraRotation;
         private float cameraSpeed;
@@ -293,7 +294,6 @@ namespace WindowsGame1
                         //throw new Exception("Tak szybko niszczy szczala");
                     }
                 }
-
 
                 base.Update(gameTime);
             }

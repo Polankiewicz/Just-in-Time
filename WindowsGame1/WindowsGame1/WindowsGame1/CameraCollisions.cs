@@ -84,6 +84,18 @@ namespace WindowsGame1
                 if (boundingBoxesList[i].name.Equals("floor")) //throw new Exception();
                     continue;
 
+                // load new scene
+                if(boundingBoxesList[i].name.Equals("scene2"))
+                {
+                    if(cameraBoundingSphere.Intersects(boundingBoxesList[i].boundingBox))
+                    {
+                        actualScene.unloadContent();
+                        actualScene.LoadFromXML("../../../../scene2.xml");
+                        return true;
+                    }
+                }
+                
+                // other boundingBoxes
                 if (cameraBoundingSphere.Intersects(boundingBoxesList[i].boundingBox))
                     return false;
             }
