@@ -249,13 +249,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Effects\shadows.fx">
-      <Name>shadows</Name>
-      <Importer>EffectImporter</Importer>
-      <Processor>EffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Models\test.FBX">
       <Name>test</Name>
       <Importer>FbxImporter</Importer>
