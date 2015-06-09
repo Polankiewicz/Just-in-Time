@@ -97,6 +97,7 @@ namespace Editor
             listNames.Add("Models\\test");
             listNames.Add("Models\\blok-wnetrze");
             listNames.Add("Models\\klucz");
+            listNames.Add("Models\\dwie_strony");
             wireFrameState = new RasterizerState()
             {
                 FillMode = FillMode.WireFrame,
