@@ -81,6 +81,10 @@ namespace WindowsGame1
             {
                 n.Update(gameTime);
             }
+            foreach (StaticModel n in staticModelsList)
+            {
+                n.UpdateLightData();
+            }
         }
         
         public void AddStaticModel(string assetName, Vector3 Positon, Vector3 Rotation, float Scale, string objectName)
