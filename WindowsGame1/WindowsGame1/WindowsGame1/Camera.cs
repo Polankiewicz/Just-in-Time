@@ -131,6 +131,13 @@ namespace WindowsGame1
             MoveTo(PreviewMove(scale), Rotation);
         }
 
+        public void clearCameraLookAt()
+        {
+            mouseRotationBuffer = Vector3.Zero;
+            cameraLookAt = Vector3.Zero;
+            Rotation = Vector3.Zero;
+            holderForMouseRotation = Vector3.Zero;
+        }
 
         //update method
         public override void Update(GameTime gameTime)
@@ -157,13 +164,13 @@ namespace WindowsGame1
 
                 // keyboard and DPad control
                 if (ks.IsKeyDown(Keys.W) || gamePad.DPad.Up == ButtonState.Pressed)
-                    moveVector.Z = 1;
+                    moveVector.Z = 0.5f;
                 if (ks.IsKeyDown(Keys.S) || gamePad.DPad.Down == ButtonState.Pressed)
-                    moveVector.Z = -1;
+                    moveVector.Z = -0.5f;
                 if (ks.IsKeyDown(Keys.A) || gamePad.DPad.Left == ButtonState.Pressed)
-                    moveVector.X = 1;
+                    moveVector.X = 0.5f;
                 if (ks.IsKeyDown(Keys.D) || gamePad.DPad.Right == ButtonState.Pressed)
-                    moveVector.X = -1;
+                    moveVector.X = -0.5f;
 
                 if (game.ToString() == "Editor.Editor") //editor only controls
                 {

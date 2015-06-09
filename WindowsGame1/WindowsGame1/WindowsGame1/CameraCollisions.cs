@@ -91,6 +91,11 @@ namespace WindowsGame1
                     {
                         actualScene.unloadContent();
                         actualScene.LoadFromXML("../../../../scene2.xml");
+
+                        camera.Position = new Vector3(9.3f, 1.5f, -3f);
+
+                        camera.clearCameraLookAt();
+
                         return true;
                     }
                 }
