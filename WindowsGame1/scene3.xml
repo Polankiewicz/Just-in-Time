@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SceneSaveDataNew xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <modelsList>
+    <SceneSaveData>
+      <Scale>0.2</Scale>
+      <Name>Models\korytarz_fixed</Name>
+      <path>Models\korytarz_fixed</path>
+      <Position>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </Position>
+      <Rotation>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </Rotation>
+    </SceneSaveData>
+  </modelsList>
+  <boundingBoxesList />
+</SceneSaveDataNew>
