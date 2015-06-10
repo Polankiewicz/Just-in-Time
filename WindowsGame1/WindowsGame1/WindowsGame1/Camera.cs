@@ -190,10 +190,11 @@ namespace WindowsGame1
                 if (game.ToString() != "Editor.Editor")
                 {
                     //fallingspeed -= 1;
-                    moveVector.Y = -1;
+                    moveVector.Y = -0.5f;
 
                     // floor
-                    if (!cameraCollisions.cameraNextMoveCollisionDetectWithFloor(PreviewMove(moveVector)))
+                    if (!cameraCollisions.cameraNextMoveCollisionDetectWithFloor(PreviewMove(moveVector))
+                            || !cameraCollisions.cameraNextMoveCollisionDetectWithStairs(PreviewMove(moveVector)))
                     {
                         moveVector.Y = 0;
                         //fallingspeed = 0;
@@ -202,7 +203,7 @@ namespace WindowsGame1
                     // stairs
                     if (!cameraCollisions.cameraNextMoveCollisionDetectWithStairs(PreviewMove(moveVector)))
                     {
-                        moveVector.Y = 1;
+                        moveVector.Y = 0.5f;
                     }
 
                 }
