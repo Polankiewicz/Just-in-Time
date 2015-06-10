@@ -133,6 +133,7 @@ namespace WindowsGame1
                 x.shadowMap = shadowMap;
                 
             }
+            DrawShadowMaps();
         }
 
         /// <summary>
@@ -179,26 +180,7 @@ namespace WindowsGame1
             GraphicsDevice.SetRenderTarget(null);
             shadowMap = (Texture2D)renderTarget;
             GraphicsDevice.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, Color.DarkSlateBlue, 1.0f, 0);
-            foreach (var x in actualScene.staticModelsList)
-            {
-                foreach (ModelMesh mesh in x.fbxModel.Meshes)
-                {
-
-                    foreach (ModelMeshPart meshPart in mesh.MeshParts)
-                    {
-                        if(!(meshPart.Effect is BasicEffect))
-                            meshPart.Effect.Parameters["xShadowMap"].SetValue(shadowMap);
-                        else
-                        {
-                            x.Draw(camera, "Simplest");
-                            break;
-                            
-                        }
-                    }
-                    
-                }
-                x.Draw(camera, "ShadowedScene");
-            }
+         
            
           //  GraphicsDevice.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, Color.DarkSlateBlue, 1.0f, 0);
             //using (SpriteBatch sprite = new SpriteBatch(GraphicsDevice))
@@ -207,7 +189,7 @@ namespace WindowsGame1
             //    sprite.Draw(shadowMap, new Vector2(0, 0), null, Color.White, 0, new Vector2(0, 0), 0.4f, SpriteEffects.None, 1);
             //    sprite.End();
             //}
-            shadowMap = null;
+          //  shadowMap = null;
         }
         /// <summary>
         /// This is called when the game should draw itself.
@@ -229,9 +211,28 @@ namespace WindowsGame1
             GraphicsDevice.BlendState = BlendState.Opaque;
             GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
             GraphicsDevice.RasterizerState = RasterizerState.CullNone;
-            DrawShadowMaps();
-         //   actualScene.Draw();
            
+         //   actualScene.Draw();
+            foreach (var x in actualScene.staticModelsList)
+            {
+                foreach (ModelMesh mesh in x.fbxModel.Meshes)
+                {
+
+                    foreach (ModelMeshPart meshPart in mesh.MeshParts)
+                    {
+                        if (!(meshPart.Effect is BasicEffect))
+                            meshPart.Effect.Parameters["xShadowMap"].SetValue(shadowMap);
+                        else
+                        {
+                            x.Draw(camera, "Simplest");
+                            break;
+
+                        }
+                    }
+
+                }
+                x.Draw(camera, "ShadowedScene");
+            }
            
        //     cameraWorldMartix = Matrix.Invert(camera.View);
        //     handWorldMatrix = cameraWorldMartix;
