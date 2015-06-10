@@ -4607,21 +4607,6 @@
       </Rotation>
     </SceneSaveData>
     <SceneSaveData>
-      <Scale>0.2</Scale>
-      <Name>Models\metal_fence</Name>
-      <path>Models\metal_fence</path>
-      <Position>
-        <X>-4</X>
-        <Y>0</Y>
-        <Z>-15</Z>
-      </Position>
-      <Rotation>
-        <X>0</X>
-        <Y>180</Y>
-        <Z>0</Z>
-      </Rotation>
-    </SceneSaveData>
-    <SceneSaveData>
       <Scale>0.02</Scale>
       <Name>Models\shop</Name>
       <path>Models\shop</path>
@@ -4629,51 +4614,6 @@
         <X>-20</X>
         <Y>0</Y>
         <Z>-25</Z>
-      </Position>
-      <Rotation>
-        <X>0</X>
-        <Y>0</Y>
-        <Z>0</Z>
-      </Rotation>
-    </SceneSaveData>
-    <SceneSaveData>
-      <Scale>0.2</Scale>
-      <Name>Models\metal_fence</Name>
-      <path>Models\metal_fence</path>
-      <Position>
-        <X>-35</X>
-        <Y>0</Y>
-        <Z>16</Z>
-      </Position>
-      <Rotation>
-        <X>0</X>
-        <Y>90</Y>
-        <Z>0</Z>
-      </Rotation>
-    </SceneSaveData>
-    <SceneSaveData>
-      <Scale>0.2</Scale>
-      <Name>Models\metal_fence</Name>
-      <path>Models\metal_fence</path>
-      <Position>
-        <X>47</X>
-        <Y>0</Y>
-        <Z>22</Z>
-      </Position>
-      <Rotation>
-        <X>0</X>
-        <Y>90</Y>
-        <Z>0</Z>
-      </Rotation>
-    </SceneSaveData>
-    <SceneSaveData>
-      <Scale>0.2</Scale>
-      <Name>Models\metal_fence</Name>
-      <path>Models\metal_fence</path>
-      <Position>
-        <X>30</X>
-        <Y>0</Y>
-        <Z>15</Z>
       </Position>
       <Rotation>
         <X>0</X>
@@ -4801,6 +4741,111 @@
         <Z>0</Z>
       </Rotation>
     </SceneSaveData>
+    <SceneSaveData>
+      <Scale>0.005</Scale>
+      <Name>Models\metal_fence_v3</Name>
+      <path>Models\metal_fence_v3</path>
+      <Position>
+        <X>-13</X>
+        <Y>0</Y>
+        <Z>-14.5</Z>
+      </Position>
+      <Rotation>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </Rotation>
+    </SceneSaveData>
+    <SceneSaveData>
+      <Scale>0.005</Scale>
+      <Name>Models\metal_fence_v3</Name>
+      <path>Models\metal_fence_v3</path>
+      <Position>
+        <X>-27</X>
+        <Y>0</Y>
+        <Z>-14.5</Z>
+      </Position>
+      <Rotation>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </Rotation>
+    </SceneSaveData>
+    <SceneSaveData>
+      <Scale>0.005</Scale>
+      <Name>Models\metal_fence_v3</Name>
+      <path>Models\metal_fence_v3</path>
+      <Position>
+        <X>-34</X>
+        <Y>0</Y>
+        <Z>6</Z>
+      </Position>
+      <Rotation>
+        <X>0</X>
+        <Y>90</Y>
+        <Z>0</Z>
+      </Rotation>
+    </SceneSaveData>
+    <SceneSaveData>
+      <Scale>0.005</Scale>
+      <Name>Models\metal_fence_v3</Name>
+      <path>Models\metal_fence_v3</path>
+      <Position>
+        <X>-34</X>
+        <Y>0</Y>
+        <Z>-7.5</Z>
+      </Position>
+      <Rotation>
+        <X>0</X>
+        <Y>90</Y>
+        <Z>0</Z>
+      </Rotation>
+    </SceneSaveData>
+    <SceneSaveData>
+      <Scale>0.005</Scale>
+      <Name>Models\metal_fence_v3</Name>
+      <path>Models\metal_fence_v3</path>
+      <Position>
+        <X>40</X>
+        <Y>0</Y>
+        <Z>16.5</Z>
+      </Position>
+      <Rotation>
+        <X>0</X>
+        <Y>180</Y>
+        <Z>0</Z>
+      </Rotation>
+    </SceneSaveData>
+    <SceneSaveData>
+      <Scale>0.005</Scale>
+      <Name>Models\metal_fence_v3</Name>
+      <path>Models\metal_fence_v3</path>
+      <Position>
+        <X>47</X>
+        <Y>0</Y>
+        <Z>10</Z>
+      </Position>
+      <Rotation>
+        <X>0</X>
+        <Y>-90</Y>
+        <Z>0</Z>
+      </Rotation>
+    </SceneSaveData>
+    <SceneSaveData>
+      <Scale>0.005</Scale>
+      <Name>Models\metal_fence_v3</Name>
+      <path>Models\metal_fence_v3</path>
+      <Position>
+        <X>47</X>
+        <Y>0</Y>
+        <Z>-4</Z>
+      </Position>
+      <Rotation>
+        <X>0</X>
+        <Y>-90</Y>
+        <Z>0</Z>
+      </Rotation>
+    </SceneSaveData>
   </modelsList>
   <boundingBoxesList>
     <BoundingBoxSaveData>
@@ -4823,7 +4868,7 @@
         <Z>-25</Z>
       </min>
       <max>
-        <X>40</X>
+        <X>50</X>
         <Y>0.1</Y>
         <Z>40</Z>
       </max>

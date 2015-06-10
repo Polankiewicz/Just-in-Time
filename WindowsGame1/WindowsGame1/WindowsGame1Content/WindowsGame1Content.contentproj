@@ -291,10 +291,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\prawa_wyciaganie.FBX">
-      <Name>prawa_wyciaganie</Name>
+    <Compile Include="Models\poison_box.FBX">
+      <Name>poison_box</Name>
       <Importer>FbxImporter</Importer>
-      <Processor>SkinnedModelProcessor</Processor>
+      <Processor>ModelProcessor</Processor>
+      <ProcessorParameters_ResizeTexturesToPowerOfTwo>True</ProcessorParameters_ResizeTexturesToPowerOfTwo>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\metal_fence_v3.FBX">
+      <Name>metal_fence_v3</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
