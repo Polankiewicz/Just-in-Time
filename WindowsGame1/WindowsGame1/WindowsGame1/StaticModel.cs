@@ -86,6 +86,10 @@ namespace WindowsGame1
            
             GenerateTags();
         }
+        public void CreateShadowMaps()
+        {
+            this.shadowMap = new Texture2D(device, 2048, 2048);
+        }
         public void SetCustomEffect(Effect effect, bool force=false)
         {
             UpdateLightData();

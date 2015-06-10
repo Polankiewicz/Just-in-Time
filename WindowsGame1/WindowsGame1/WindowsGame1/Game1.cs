@@ -78,6 +78,8 @@ namespace WindowsGame1
             foreach (StaticModel m in actualScene.staticModelsList)
             {
                 m.SetCustomEffect(simpleEffect);
+                if (path.Contains("scene2"))
+                    m.CreateShadowMaps();
             }
             DrawShadowMaps();
             actualScene.shadowMap = shadowMap;
