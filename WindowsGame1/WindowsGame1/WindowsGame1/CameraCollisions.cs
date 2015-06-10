@@ -94,6 +94,7 @@ namespace WindowsGame1
                     {
                         actualScene.unloadContent();
                         game.LoadSceneFromXml("../../../../scene2.xml");
+                        tmp.Add("Models\\przeciwnik");
                         actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
                       //  actualScene.LoadFromXML("../../../../scene2.xml");
 

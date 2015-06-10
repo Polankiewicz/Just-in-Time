@@ -50,9 +50,10 @@ namespace WindowsGame1
         Effect simpleEffect;
         RasterizerState wireFrameState;
         private Texture2D hudPointer;
+        /*
         private KeyboardState currentKeyboardState;
         private KeyboardState lastKeyboardState;
-        private bool drawMenu;
+        private bool drawMenu;*/
 
         public Game1()
         {
@@ -166,31 +167,8 @@ namespace WindowsGame1
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
-
-            // TODO: Add your update logic here
-
-            lastKeyboardState = currentKeyboardState;
-            currentKeyboardState = Keyboard.GetState();
-
-            if (currentKeyboardState.IsKeyDown(Keys.Escape) && (lastKeyboardState.IsKeyUp(Keys.Escape)))
-            {
-                Console.WriteLine("esc");
-                if (drawMenu == false)
-                {
-                    drawMenu = true;
-                }
-                else
-                {
-                    drawMenu = false;
-                }
-            }
-
-            if (currentKeyboardState.IsKeyDown(Keys.M) && (lastKeyboardState.IsKeyUp(Keys.M)) && drawMenu == true)
-            {
-                this.Exit();
-            }
-
-            playerInteractions.catchInteraction(camera);
+            
+            playerInteractions.catchInteraction(camera, this);
 
             actualScene.Update(gameTime);
             hand.Update(gameTime);
@@ -248,7 +226,7 @@ namespace WindowsGame1
 
             hud.drawHud(spriteBatch, hudTab[camera.BulletsAmount], this);
             hud.drawPointer(spriteBatch, hudPointer, this);
-            if(drawMenu == true)
+            if(playerInteractions.drawMenu == true)
             {
                 hud.drawHud(spriteBatch, hudMenuGame, this);
             }

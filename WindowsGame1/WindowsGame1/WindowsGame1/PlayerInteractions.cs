@@ -15,6 +15,11 @@ namespace WindowsGame1
         List<DynamicModel> dynamicModelsList;
         Game game;
         HudTexts hudTexts;
+        private KeyboardState currentKeyboardState;
+        private KeyboardState lastKeyboardState;
+        public bool drawMenu;
+
+       
 
         public PlayerInteractions(Game game, HudTexts hudTexts, List<StaticModel> staticModelsList, List<DynamicModel> dynamicModelsList)
         {
@@ -24,27 +29,77 @@ namespace WindowsGame1
             this.hudTexts = hudTexts;
         }
 
-        public void catchInteraction(Camera camera)
+        public void catchInteraction(Camera camera, Game1 g)
         {
+            lastKeyboardState = currentKeyboardState;
+            currentKeyboardState = Keyboard.GetState();
+
+            if (currentKeyboardState.IsKeyDown(Keys.Escape) && (lastKeyboardState.IsKeyUp(Keys.Escape)))
+            {
+                Console.WriteLine("esc");
+                if (drawMenu == false)
+                {
+                    drawMenu = true;
+                }
+                else
+                {
+                    drawMenu = false;
+                }
+            }
+
+            if (currentKeyboardState.IsKeyDown(Keys.M) && (lastKeyboardState.IsKeyUp(Keys.M)) && drawMenu == true)
+            {
+                g.Exit();
+            }
 
             for (int i = 0; i < staticModelsList.Count; i++)
             {
-                // destroy scaner
+                /* destroy scaner
                 if (staticModelsList[i].Name == "scaner" && Vector3.Distance(staticModelsList[i].Position, camera.Position) < 3.0f)
                 {
-                    hudTexts.DisplayText = "Press X to destroy scaner!";
+                    hudTexts.DisplayText = "Press X/E to destroy scaner!";
 
-                    if (GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed)
+                    if ((GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed) || (currentKeyboardState.IsKeyDown(Keys.Escape) && (lastKeyboardState.IsKeyUp(Keys.Escape))))
                         staticModelsList.RemoveAt(i);
+                }
+                else
+                {
+                    hudTexts.DisplayText = "";
+                }*/
+
+                if (staticModelsList[i].Name == "klucz" && Vector3.Distance(staticModelsList[i].Position, camera.Position) < 2.0f)
+                {
+                    hudTexts.DisplayText = "Press E to take key";
+
+                    if ((GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed) || (currentKeyboardState.IsKeyDown(Keys.E) && (lastKeyboardState.IsKeyUp(Keys.E))))
+                    {
+                        // add to equipment
+                        staticModelsList.RemoveAt(i);
+                    }
+                        
                 }
                 else
                 {
                     hudTexts.DisplayText = "";
                 }
 
-                // next interaction
-                // ...
+                if (staticModelsList[i].Name == "poison_box" && Vector3.Distance(staticModelsList[i].Position, camera.Position) < 2.0f)
+                {
+                    hudTexts.DisplayText = "Press E to take poison";
+
+                    if ((GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed) || (currentKeyboardState.IsKeyDown(Keys.E) && (lastKeyboardState.IsKeyUp(Keys.E))))
+                    {
+                        // add to equipment
+                        staticModelsList.RemoveAt(i);
+                    }
+
+                }
+                else
+                {
+                    hudTexts.DisplayText = "";
+                }
             } 
+
             for (int i = 0; i < dynamicModelsList.Count; i++)
             {
                 if (dynamicModelsList[i].Name == "enemy")
