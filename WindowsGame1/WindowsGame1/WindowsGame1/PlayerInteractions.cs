@@ -18,6 +18,7 @@ namespace WindowsGame1
         private KeyboardState currentKeyboardState;
         private KeyboardState lastKeyboardState;
         public bool drawMenu;
+        public bool drawText;
        
 
         public PlayerInteractions(Game game, HudTexts hudTexts, List<StaticModel> staticModelsList, List<DynamicModel> dynamicModelsList)
@@ -68,12 +69,13 @@ namespace WindowsGame1
 
                 if (staticModelsList[i].Name == "poison_box" && Vector3.Distance(staticModelsList[i].Position, camera.Position) < 1.5f)
                 {
-                    hudTexts.DisplayText = "Press E to take poison";
+                    drawText = true;
 
                     if ((GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed) || (currentKeyboardState.IsKeyDown(Keys.E) && (lastKeyboardState.IsKeyUp(Keys.E))))
                     {
                         camera.equipment.Add(staticModelsList[i]);
                         staticModelsList.RemoveAt(i);
+                        drawText = false;
                     }
 
                 }
@@ -84,11 +86,12 @@ namespace WindowsGame1
                     {
                         if(camera.equipment[j].Name == "poison_box")
                         {
-                            hudTexts.DisplayText = "Press E to poison food";
+                            drawText = true;
                             if ((GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed) || (currentKeyboardState.IsKeyDown(Keys.E) && (lastKeyboardState.IsKeyUp(Keys.E))))
                             {
                                 camera.equipment.Add(staticModelsList[i]);
                                 camera.equipment.RemoveAt(j);
+                                drawText = false;
                             }
                         }
                     }
@@ -98,19 +101,16 @@ namespace WindowsGame1
                 if (staticModelsList[i].Name == "klucz" && Vector3.Distance(staticModelsList[i].Position, camera.Position) < 1.0f)
                 {
                     hudTexts.DisplayText = "Press E to take key";
-
+                    drawText = true;
                     if ((GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed) || (currentKeyboardState.IsKeyDown(Keys.E) && (lastKeyboardState.IsKeyUp(Keys.E))))
                     {
                         camera.equipment.Add(staticModelsList[i]);
                         staticModelsList.RemoveAt(i);
+                        drawText = false;
                     }
 
                 }
 
-                else
-                {
-                    hudTexts.DisplayText = "";
-                }
             } 
 
             for (int i = 0; i < dynamicModelsList.Count; i++)

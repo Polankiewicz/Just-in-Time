@@ -47,11 +47,11 @@ namespace WindowsGame1
         private Texture2D hudPointer;
         private Texture2D hudPoison;
         private Texture2D hudKey;
-
+        private Texture2D hudText;
 
         Effect simpleEffect;
         RasterizerState wireFrameState;
-        
+
 
         public Game1()
         {
@@ -132,6 +132,7 @@ namespace WindowsGame1
             hudPointer = Content.Load<Texture2D>("Sprites\\Pointer");
             hudPoison = Content.Load<Texture2D>("Sprites\\hudPoison");
             hudKey = Content.Load<Texture2D>("Sprites\\hudKey");
+            hudText = Content.Load<Texture2D>("Sprites\\hText");
 
             // set all objects to interact with player (Distance)
             playerInteractions = new PlayerInteractions(this, hudTexts, actualScene.getStaticModelsList(), actualScene.getDynamicModelsList());
@@ -230,6 +231,11 @@ namespace WindowsGame1
             {
                 hud.drawHud(spriteBatch, hudMenuGame, this);
             }
+            if (playerInteractions.drawText == true)
+            {
+                hud.drawHud(spriteBatch, hudText, this);
+            }
+
 
             for (int i = 0; i < camera.equipment.Count; i++)
             {
