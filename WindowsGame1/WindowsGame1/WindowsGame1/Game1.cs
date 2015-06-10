@@ -44,16 +44,14 @@ namespace WindowsGame1
         private Texture2D hudGameOver;
         private Texture2D hudMenuGame;
         private Texture2D hudMenuMain;
-
+        private Texture2D hudPointer;
+        private Texture2D hudPoison;
+        private Texture2D hudKey;
 
 
         Effect simpleEffect;
         RasterizerState wireFrameState;
-        private Texture2D hudPointer;
-        /*
-        private KeyboardState currentKeyboardState;
-        private KeyboardState lastKeyboardState;
-        private bool drawMenu;*/
+        
 
         public Game1()
         {
@@ -132,6 +130,8 @@ namespace WindowsGame1
             hudMenuGame = Content.Load<Texture2D>("Sprites\\MenuGame");
             hudMenuMain = Content.Load<Texture2D>("Sprites\\MenuMain");
             hudPointer = Content.Load<Texture2D>("Sprites\\Pointer");
+            hudPoison = Content.Load<Texture2D>("Sprites\\hudPoison");
+            hudKey = Content.Load<Texture2D>("Sprites\\hudKey");
 
             // set all objects to interact with player (Distance)
             playerInteractions = new PlayerInteractions(this, hudTexts, actualScene.getStaticModelsList(), actualScene.getDynamicModelsList());
@@ -229,6 +229,18 @@ namespace WindowsGame1
             if(playerInteractions.drawMenu == true)
             {
                 hud.drawHud(spriteBatch, hudMenuGame, this);
+            }
+
+            for (int i = 0; i < camera.equipment.Count; i++)
+            {
+                if (camera.equipment[i].Name == "klucz")
+                {
+                    hud.drawHud(spriteBatch, hudKey, this);
+                }
+                if (camera.equipment[i].Name == "poison_box")
+                {
+                    hud.drawHud(spriteBatch, hudPoison, this);
+                }
             }
             //     hand.Draw(camera);
             //     handWorldMatrix = cameraWorldMartix;

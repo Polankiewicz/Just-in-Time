@@ -30,6 +30,7 @@ namespace WindowsGame1
         // list of bullets
         List<Bullet> listOfBullets;
         private int bulletsAmount;
+        public List<StaticModel> equipment = new List<StaticModel>();
         //Properties
 
         public Vector3 Position
