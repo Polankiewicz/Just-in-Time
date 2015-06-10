@@ -24,7 +24,8 @@ namespace WindowsGame1
         Floor floor;
         BasicEffect effect;
         DynamicModel hand;
-
+        RenderTarget2D renderTarget;
+        Texture2D shadowMap;
         PlayerInteractions playerInteractions;
 
 
@@ -32,9 +33,10 @@ namespace WindowsGame1
         SpriteFont spriteFont;
         HudTexts hudTexts = new HudTexts();
 
-        Scene actualScene;
+        public Scene actualScene { get; set; }
         Matrix cameraWorldMartix;
         Matrix handWorldMatrix;
+
 
         Hud hud = new Hud();
         private Texture2D[] hudTab = new Texture2D[7];
@@ -42,8 +44,7 @@ namespace WindowsGame1
         private Texture2D hudGameOver;
         private Texture2D hudMenuGame;
         private Texture2D hudMenuMain;
-
-
+        Effect simpleEffect;
         RasterizerState wireFrameState;
         private Texture2D hudPointer;
 
@@ -71,16 +72,32 @@ namespace WindowsGame1
 
             base.Initialize();
         }
-
-        protected override void LoadContent()
+        public void LoadSceneFromXml(string path)
         {
-            actualScene.LoadFromXML("../../../../scene.xml");
-            Effect simpleEffect = Content.Load<Effect>("Effects\\MyEffect");
-
+            actualScene.LoadFromXML(path);
             foreach (StaticModel m in actualScene.staticModelsList)
             {
                 m.SetCustomEffect(simpleEffect);
             }
+            DrawShadowMaps();
+            actualScene.shadowMap = shadowMap;
+            foreach (var x in actualScene.staticModelsList)
+                x.shadowMap = shadowMap;
+        }
+
+        protected override void LoadContent()
+        {
+            PresentationParameters pp = GraphicsDevice.PresentationParameters;
+            renderTarget = new RenderTarget2D(GraphicsDevice, 2048, 2048, true, GraphicsDevice.DisplayMode.Format, DepthFormat.Depth24);
+
+            //  actualScene.AddStaticModel("Models\\test", new Vector3(0), new Vector3(0), 1, "test");
+            simpleEffect = Content.Load<Effect>("Effects\\shadows");
+
+            // simpleEffect.CurrentTechnique = simpleEffect.Techniques["Simplest"];
+
+            LoadSceneFromXml("../../../../scene.xml");
+
+
 
             //jako parametr do konstruktora przekazuje sie liste nazw modeli, domyslnie odpalana jest pierwsza;
             var tmp = new List<string>();
@@ -92,6 +109,7 @@ namespace WindowsGame1
             temp.Add(Content.Load<Model>("Models\\hand"));
             hand = new DynamicModel(GraphicsDevice, temp, new Vector3(1, 1.2f, 1), new Vector3(-45, 90, 90), 0.02f, "hand");
 
+            // renderTarget = new RenderTarget2D(GraphicsDevice, 1024, 1024, true, GraphicsDevice.DisplayMode.Format, DepthFormat.Depth24);
             // hud texts
             spriteFont = Content.Load<SpriteFont>("Sprites\\PressXtoInteract");
             hudTab[6] = Content.Load<Texture2D>("Sprites\\6");
@@ -118,6 +136,8 @@ namespace WindowsGame1
 
             // camera/player collisions with everything
             camera.setCameraCollision(actualScene);
+
+
         }
 
         /// <summary>
@@ -150,7 +170,22 @@ namespace WindowsGame1
 
             base.Update(gameTime);
         }
+        void DrawShadowMaps()
+        {
+            GraphicsDevice.SetRenderTarget(renderTarget);
+            GraphicsDevice.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, Color.Black, 1.0f, 0);
+            foreach (var x in actualScene.staticModelsList)
+            {
+                x.SetCustomEffect(simpleEffect, false);
+                x.Draw(camera, "ShadowMap");
+            }
 
+
+            GraphicsDevice.SetRenderTarget(null);
+            shadowMap = (Texture2D)renderTarget;
+
+
+        }
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -174,31 +209,31 @@ namespace WindowsGame1
 
             actualScene.Draw();
 
-            cameraWorldMartix = Matrix.Invert(camera.View);
-            handWorldMatrix = cameraWorldMartix;
 
-            handWorldMatrix.Translation += (cameraWorldMartix.Forward * 1.4f) +
-                                       (-cameraWorldMartix.Down * 0.1f) +
-                                       (-cameraWorldMartix.Right * 0.3f);
+            //     cameraWorldMartix = Matrix.Invert(camera.View);
+            //     handWorldMatrix = cameraWorldMartix;
 
-            hand.Model = handWorldMatrix;
+            //     handWorldMatrix.Translation += (cameraWorldMartix.Forward * 1.4f) +
+            //                                (-cameraWorldMartix.Down * 0.1f) +
+            //                                (-cameraWorldMartix.Right * 0.3f);
+
+            //     hand.Model = handWorldMatrix;
 
             hud.drawHud(spriteBatch, hudTab[camera.BulletsAmount], this);
             hud.drawPointer(spriteBatch, hudPointer, this);
+            //     hand.Draw(camera);
+            //     handWorldMatrix = cameraWorldMartix;
 
-            hand.Draw(camera);
-            handWorldMatrix = cameraWorldMartix;
+            //     handWorldMatrix.Translation += (cameraWorldMartix.Forward * 1.4f) +
+            //                                 (-cameraWorldMartix.Down * 0.1f) +
+            //                                (cameraWorldMartix.Right * 0.9f);
 
-            handWorldMatrix.Translation += (cameraWorldMartix.Forward * 1.4f) +
-                                        (-cameraWorldMartix.Down * 0.1f) +
-                                       (cameraWorldMartix.Right * 0.9f);
-
-            hand.Model = handWorldMatrix;
-
-
-            hand.Draw(camera);
+            //     hand.Model = handWorldMatrix;
 
 
+            //     hand.Draw(camera);
+
+            // DrawShadowMaps();
             base.Draw(gameTime);
         }
 

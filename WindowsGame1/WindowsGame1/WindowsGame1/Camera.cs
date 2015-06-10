@@ -93,7 +93,7 @@ namespace WindowsGame1
 
         public void setCameraCollision(Scene actualScene)
         {
-            cameraCollisions = new CameraCollisions(this, actualScene, listOfBullets);
+            cameraCollisions = new CameraCollisions(this, (Game1)game, listOfBullets);
             // maybe player interactions also should be here... :v
         }
 

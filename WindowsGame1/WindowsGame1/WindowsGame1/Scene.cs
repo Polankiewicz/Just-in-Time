@@ -22,8 +22,9 @@ namespace WindowsGame1
         Dictionary<string,Model> fbxList;
         public List<StaticModel> staticModelsList;
         public List<DynamicModel> dynamicModelsList;
-
         public List<DrawableBoundingBox> boundingBoxesList;
+
+        public Texture2D shadowMap { get; set; }
         ContentManager content {get; set; }
 
         GraphicsDevice graphicsDevice;
@@ -38,6 +39,7 @@ namespace WindowsGame1
             this.dynamicModelsList = new List<DynamicModel>();
             this.fbxList = new Dictionary<string, Model>();
             this.boundingBoxesList = new List<DrawableBoundingBox>();
+            this.shadowMap = new Texture2D(graphicsDevice,2048,2048);
         }
         
         public Scene()
@@ -81,6 +83,7 @@ namespace WindowsGame1
             {
                 n.Update(gameTime);
             }
+        
         }
         
         public void AddStaticModel(string assetName, Vector3 Positon, Vector3 Rotation, float Scale, string objectName)
@@ -119,12 +122,16 @@ namespace WindowsGame1
         {
             this.boundingBoxesList.Add(new DrawableBoundingBox(graphicsDevice,min, max, name));
         }
+      
         public void Draw()
         {
-            foreach (DynamicModel n in dynamicModelsList)
-                n.Draw(camera);
+            foreach (var x in staticModelsList)
+            {
+         
+                x.Draw(camera, "ShadowedScene");
+            }
 
-            foreach (StaticModel n in staticModelsList)
+            foreach (DynamicModel n in dynamicModelsList)
                 n.Draw(camera);
         }
 

@@ -17,20 +17,22 @@ namespace WindowsGame1
         List<DrawableBoundingBox> boundingBoxesList;
 
         Scene actualScene;
-
+        Game1 game;
         List<Bullet> listOfBullets;
 
         // TEMP lists
         List<BoundingBox> staticBoundingSpheresList = new List<BoundingBox>();
         List<BoundingSphere> dynamicBoundingSpheresList = new List<BoundingSphere>();
 
-        public CameraCollisions(Camera camera, Scene actualScene, List<Bullet> listOfBullets)
+        public CameraCollisions(Camera camera, Game1 game, List<Bullet> listOfBullets)
         {
             this.camera = camera;
-            this.staticModelsList = actualScene.getStaticModelsList();
-            this.dynamicModelsList = actualScene.getDynamicModelsList();
-            this.boundingBoxesList = actualScene.getBoundingBoxesList();
-            this.actualScene = actualScene;
+            this.actualScene = game.actualScene;
+            this.staticModelsList = this.actualScene.getStaticModelsList();
+            this.dynamicModelsList = this.actualScene.getDynamicModelsList();
+            this.boundingBoxesList = this.actualScene.getBoundingBoxesList();
+            this.game = game;
+            
             this.listOfBullets = listOfBullets;
 
             cameraBoundingSphere = new BoundingSphere(camera.Position, 0.50f);
@@ -90,7 +92,8 @@ namespace WindowsGame1
                     if(cameraBoundingSphere.Intersects(boundingBoxesList[i].boundingBox))
                     {
                         actualScene.unloadContent();
-                        actualScene.LoadFromXML("../../../../scene2.xml");
+                        game.LoadSceneFromXml("../../../../scene2.xml");
+                      //  actualScene.LoadFromXML("../../../../scene2.xml");
 
                         camera.Position = new Vector3(9.3f, 1.5f, -3f);
 
