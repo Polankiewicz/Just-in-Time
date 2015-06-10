@@ -277,6 +277,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\korytarz_fixed.FBX">
+      <Name>korytarz_fixed</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Effects\shadows.fx">
       <Name>shadows</Name>
       <Importer>EffectImporter</Importer>
