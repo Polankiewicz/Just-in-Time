@@ -110,7 +110,6 @@ namespace WindowsGame1
             //jako parametr do konstruktora przekazuje sie liste nazw modeli, domyslnie odpalana jest pierwsza;
             var tmp = new List<string>();
             tmp.Add("Models\\przeciwnik");
-            tmp.Add("Models\\przeciwnik");
             actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
 
             var temp = new List<Model>();
@@ -184,6 +183,11 @@ namespace WindowsGame1
                 {
                     drawMenu = false;
                 }
+            }
+
+            if (currentKeyboardState.IsKeyDown(Keys.M) && (lastKeyboardState.IsKeyUp(Keys.M)) && drawMenu == true)
+            {
+                this.Exit();
             }
 
             playerInteractions.catchInteraction(camera);

@@ -19,6 +19,7 @@ namespace WindowsGame1
         Scene actualScene;
         Game1 game;
         List<Bullet> listOfBullets;
+        public List<string> tmp = new List<string>();
 
         // TEMP lists
         List<BoundingBox> staticBoundingSpheresList = new List<BoundingBox>();
@@ -93,6 +94,7 @@ namespace WindowsGame1
                     {
                         actualScene.unloadContent();
                         game.LoadSceneFromXml("../../../../scene2.xml");
+                        actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
                       //  actualScene.LoadFromXML("../../../../scene2.xml");
 
                         camera.Position = new Vector3(9.3f, 1.5f, -3f);
