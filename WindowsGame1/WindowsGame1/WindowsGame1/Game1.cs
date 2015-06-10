@@ -44,9 +44,15 @@ namespace WindowsGame1
         private Texture2D hudGameOver;
         private Texture2D hudMenuGame;
         private Texture2D hudMenuMain;
+
+
+
         Effect simpleEffect;
         RasterizerState wireFrameState;
         private Texture2D hudPointer;
+        private KeyboardState currentKeyboardState;
+        private KeyboardState lastKeyboardState;
+        private bool drawMenu;
 
         public Game1()
         {
@@ -162,6 +168,21 @@ namespace WindowsGame1
 
             // TODO: Add your update logic here
 
+            lastKeyboardState = currentKeyboardState;
+            currentKeyboardState = Keyboard.GetState();
+
+            if (currentKeyboardState.IsKeyDown(Keys.Escape) && (lastKeyboardState.IsKeyUp(Keys.Escape)))
+            {
+                Console.WriteLine("esc");
+                if (drawMenu == false)
+                {
+                    drawMenu = true;
+                }
+                else
+                {
+                    drawMenu = false;
+                }
+            }
 
             playerInteractions.catchInteraction(camera);
 
@@ -221,6 +242,10 @@ namespace WindowsGame1
 
             hud.drawHud(spriteBatch, hudTab[camera.BulletsAmount], this);
             hud.drawPointer(spriteBatch, hudPointer, this);
+            if(drawMenu == true)
+            {
+                hud.drawHud(spriteBatch, hudMenuGame, this);
+            }
             //     hand.Draw(camera);
             //     handWorldMatrix = cameraWorldMartix;
 
