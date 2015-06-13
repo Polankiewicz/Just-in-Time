@@ -225,14 +225,14 @@
       <min>
         <X>13.3</X>
         <Y>0</Y>
-        <Z>0</Z>
+        <Z>-4</Z>
       </min>
       <max>
         <X>14</X>
         <Y>10</Y>
-        <Z>3</Z>
+        <Z>2</Z>
       </max>
-      <name>wall-L1</name>
+      <name>wall-L2</name>
     </BoundingBoxSaveData>
     <BoundingBoxSaveData>
       <min>
@@ -483,9 +483,9 @@
     </BoundingBoxSaveData>
     <BoundingBoxSaveData>
       <min>
-        <X>0</X>
+        <X>-1.8</X>
         <Y>3.3</Y>
-        <Z>-3</Z>
+        <Z>-4</Z>
       </min>
       <max>
         <X>10</X>
@@ -600,9 +600,9 @@
     </BoundingBoxSaveData>
     <BoundingBoxSaveData>
       <min>
-        <X>0</X>
+        <X>-1.8</X>
         <Y>5.3</Y>
-        <Z>-3</Z>
+        <Z>-4</Z>
       </min>
       <max>
         <X>10</X>
@@ -717,9 +717,9 @@
     </BoundingBoxSaveData>
     <BoundingBoxSaveData>
       <min>
-        <X>0</X>
+        <X>-1.8</X>
         <Y>7.7</Y>
-        <Z>-3</Z>
+        <Z>-4</Z>
       </min>
       <max>
         <X>10</X>
@@ -836,7 +836,7 @@
       <min>
         <X>-16</X>
         <Y>3.3</Y>
-        <Z>-3</Z>
+        <Z>-4</Z>
       </min>
       <max>
         <X>-5.3</X>
@@ -900,7 +900,7 @@
     <BoundingBoxSaveData>
       <min>
         <X>-3.5</X>
-        <Y>4.1</Y>
+        <Y>4.19</Y>
         <Z>1.5</Z>
       </min>
       <max>
@@ -913,7 +913,7 @@
     <BoundingBoxSaveData>
       <min>
         <X>-3.7</X>
-        <Y>4.6</Y>
+        <Y>4.69</Y>
         <Z>1.5</Z>
       </min>
       <max>
@@ -926,7 +926,7 @@
     <BoundingBoxSaveData>
       <min>
         <X>-4.2</X>
-        <Y>5.1</Y>
+        <Y>5.19</Y>
         <Z>1.5</Z>
       </min>
       <max>
@@ -939,11 +939,11 @@
     <BoundingBoxSaveData>
       <min>
         <X>-6</X>
-        <Y>5.8</Y>
+        <Y>5.89</Y>
         <Z>1.5</Z>
       </min>
       <max>
-        <X>-4.8</X>
+        <X>-5</X>
         <Y>5.9</Y>
         <Z>2.4</Z>
       </max>
@@ -953,7 +953,7 @@
       <min>
         <X>-16</X>
         <Y>5.3</Y>
-        <Z>-3</Z>
+        <Z>-4</Z>
       </min>
       <max>
         <X>-5.3</X>
@@ -1017,7 +1017,7 @@
     <BoundingBoxSaveData>
       <min>
         <X>-4</X>
-        <Y>6.4</Y>
+        <Y>6.49</Y>
         <Z>1.5</Z>
       </min>
       <max>
@@ -1030,7 +1030,7 @@
     <BoundingBoxSaveData>
       <min>
         <X>-3.8</X>
-        <Y>7</Y>
+        <Y>7.09</Y>
         <Z>1.5</Z>
       </min>
       <max>
@@ -1043,7 +1043,7 @@
     <BoundingBoxSaveData>
       <min>
         <X>-4</X>
-        <Y>7.6</Y>
+        <Y>7.69</Y>
         <Z>1.5</Z>
       </min>
       <max>
@@ -1056,7 +1056,7 @@
     <BoundingBoxSaveData>
       <min>
         <X>-6</X>
-        <Y>8</Y>
+        <Y>8.09</Y>
         <Z>1.5</Z>
       </min>
       <max>
@@ -1070,7 +1070,7 @@
       <min>
         <X>-16</X>
         <Y>7.7</Y>
-        <Z>-3</Z>
+        <Z>-4</Z>
       </min>
       <max>
         <X>-5.3</X>
@@ -1104,6 +1104,123 @@
         <Z>1.31</Z>
       </max>
       <name>wall-R1</name>
+    </BoundingBoxSaveData>
+    <BoundingBoxSaveData>
+      <min>
+        <X>-6</X>
+        <Y>3.3</Y>
+        <Z>-4</Z>
+      </min>
+      <max>
+        <X>14</X>
+        <Y>3.3</Y>
+        <Z>-0.2</Z>
+      </max>
+      <name>floor</name>
+    </BoundingBoxSaveData>
+    <BoundingBoxSaveData>
+      <min>
+        <X>-6</X>
+        <Y>5.3</Y>
+        <Z>-4</Z>
+      </min>
+      <max>
+        <X>14</X>
+        <Y>5.4</Y>
+        <Z>-0.2</Z>
+      </max>
+      <name>floor</name>
+    </BoundingBoxSaveData>
+    <BoundingBoxSaveData>
+      <min>
+        <X>-6</X>
+        <Y>7.7</Y>
+        <Z>-4</Z>
+      </min>
+      <max>
+        <X>14</X>
+        <Y>7.8</Y>
+        <Z>-0.2</Z>
+      </max>
+      <name>floor</name>
+    </BoundingBoxSaveData>
+    <BoundingBoxSaveData>
+      <min>
+        <X>-1.8</X>
+        <Y>3.3</Y>
+        <Z>2.9</Z>
+      </min>
+      <max>
+        <X>15</X>
+        <Y>3.3</Y>
+        <Z>8.7</Z>
+      </max>
+      <name>floor</name>
+    </BoundingBoxSaveData>
+    <BoundingBoxSaveData>
+      <min>
+        <X>-14</X>
+        <Y>0</Y>
+        <Z>-3.3</Z>
+      </min>
+      <max>
+        <X>14</X>
+        <Y>10</Y>
+        <Z>-4</Z>
+      </max>
+      <name>wall-2</name>
+    </BoundingBoxSaveData>
+    <BoundingBoxSaveData>
+      <min>
+        <X>13.9</X>
+        <Y>3.3</Y>
+        <Z>2</Z>
+      </min>
+      <max>
+        <X>14</X>
+        <Y>5</Y>
+        <Z>9</Z>
+      </max>
+      <name>wall-L-2</name>
+    </BoundingBoxSaveData>
+    <BoundingBoxSaveData>
+      <min>
+        <X>-14</X>
+        <Y>3.3</Y>
+        <Z>8.6</Z>
+      </min>
+      <max>
+        <X>14</X>
+        <Y>10</Y>
+        <Z>9</Z>
+      </max>
+      <name>wall-2</name>
+    </BoundingBoxSaveData>
+    <BoundingBoxSaveData>
+      <min>
+        <X>-16</X>
+        <Y>5</Y>
+        <Z>2</Z>
+      </min>
+      <max>
+        <X>-14.2</X>
+        <Y>10</Y>
+        <Z>9</Z>
+      </max>
+      <name>wall-R-2</name>
+    </BoundingBoxSaveData>
+    <BoundingBoxSaveData>
+      <min>
+        <X>-16</X>
+        <Y>3.3</Y>
+        <Z>-4</Z>
+      </min>
+      <max>
+        <X>-13</X>
+        <Y>10</Y>
+        <Z>2.9</Z>
+      </max>
+      <name>wall-2</name>
     </BoundingBoxSaveData>
   </boundingBoxesList>
 </SceneSaveDataNew>

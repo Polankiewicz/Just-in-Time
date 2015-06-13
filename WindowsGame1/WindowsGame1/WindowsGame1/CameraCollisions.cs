@@ -106,7 +106,7 @@ namespace WindowsGame1
                         dynamicBoundingSpheresList.Clear();
                         initDynamicModelsBoundingSpherePosition(); 
 
-                        camera.Position = new Vector3(9.3f, 1.5f, -3f);
+                        camera.Position = new Vector3(9.3f, 1.5f, -2f);
                         camera.clearCameraLookAt();
 
                         return true;
