@@ -38,13 +38,17 @@ namespace WindowsGame1
 
             cameraBoundingSphere = new BoundingSphere(camera.Position, 0.50f);
 
-            // TEMP - collision for dynamic models
+            initDynamicModelsBoundingSpherePosition();
+        }
+
+        // init enemys position after loading new scene
+        public void initDynamicModelsBoundingSpherePosition()
+        {
             for (int i = 0; i < dynamicModelsList.Count; i++)
             {
                 if (dynamicModelsList[i].Name == "enemy")
                     dynamicBoundingSpheresList.Add(new BoundingSphere(dynamicModelsList[i].Position, 1.0f));
             }
-
         }
 
         // TEMP - update enemy position
@@ -94,12 +98,15 @@ namespace WindowsGame1
                     {
                         actualScene.unloadContent();
                         game.LoadSceneFromXml("../../../../scene2.xml");
+                        
                         tmp.Add("Models\\przeciwnik");
                         actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
-                      //  actualScene.LoadFromXML("../../../../scene2.xml");
+
+                        // bounding sphere for enemy
+                        dynamicBoundingSpheresList.Clear();
+                        initDynamicModelsBoundingSpherePosition(); 
 
                         camera.Position = new Vector3(9.3f, 1.5f, -3f);
-
                         camera.clearCameraLookAt();
 
                         return true;

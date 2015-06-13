@@ -386,7 +386,7 @@
       <max>
         <X>13</X>
         <Y>0.5</Y>
-        <Z>1.2</Z>
+        <Z>1.1</Z>
       </max>
       <name>stairs</name>
     </BoundingBoxSaveData>
@@ -399,7 +399,7 @@
       <max>
         <X>13</X>
         <Y>1</Y>
-        <Z>1.2</Z>
+        <Z>1.1</Z>
       </max>
       <name>stairs</name>
     </BoundingBoxSaveData>
@@ -412,7 +412,7 @@
       <max>
         <X>13</X>
         <Y>1.5</Y>
-        <Z>1.2</Z>
+        <Z>1.1</Z>
       </max>
       <name>stairs</name>
     </BoundingBoxSaveData>
@@ -425,7 +425,7 @@
       <max>
         <X>13</X>
         <Y>2.3</Y>
-        <Z>1.2</Z>
+        <Z>1.1</Z>
       </max>
       <name>stairs</name>
     </BoundingBoxSaveData>
@@ -433,7 +433,7 @@
       <min>
         <X>10</X>
         <Y>2</Y>
-        <Z>1.2</Z>
+        <Z>1.5</Z>
       </min>
       <max>
         <X>13.5</X>
@@ -446,7 +446,7 @@
       <min>
         <X>10</X>
         <Y>2.4</Y>
-        <Z>1.2</Z>
+        <Z>1.5</Z>
       </min>
       <max>
         <X>11.7</X>
@@ -459,7 +459,7 @@
       <min>
         <X>10</X>
         <Y>3</Y>
-        <Z>1.2</Z>
+        <Z>1.5</Z>
       </min>
       <max>
         <X>11</X>
@@ -472,7 +472,7 @@
       <min>
         <X>9</X>
         <Y>3.4</Y>
-        <Z>1.2</Z>
+        <Z>1.5</Z>
       </min>
       <max>
         <X>10.5</X>
@@ -503,7 +503,7 @@
       <max>
         <X>11</X>
         <Y>3.2</Y>
-        <Z>1.2</Z>
+        <Z>1.1</Z>
       </max>
       <name>stairs</name>
     </BoundingBoxSaveData>
@@ -516,7 +516,7 @@
       <max>
         <X>11.5</X>
         <Y>3.5</Y>
-        <Z>1.2</Z>
+        <Z>1.1</Z>
       </max>
       <name>stairs</name>
     </BoundingBoxSaveData>
@@ -529,7 +529,7 @@
       <max>
         <X>12</X>
         <Y>3.9</Y>
-        <Z>1.2</Z>
+        <Z>1.1</Z>
       </max>
       <name>stairs</name>
     </BoundingBoxSaveData>
@@ -542,7 +542,7 @@
       <max>
         <X>13</X>
         <Y>4.5</Y>
-        <Z>1.2</Z>
+        <Z>1.1</Z>
       </max>
       <name>stairs</name>
     </BoundingBoxSaveData>
@@ -550,7 +550,7 @@
       <min>
         <X>12</X>
         <Y>4.1</Y>
-        <Z>1.2</Z>
+        <Z>1.5</Z>
       </min>
       <max>
         <X>13.5</X>
@@ -563,7 +563,7 @@
       <min>
         <X>11</X>
         <Y>4.5</Y>
-        <Z>1.2</Z>
+        <Z>1.5</Z>
       </min>
       <max>
         <X>11.7</X>
@@ -576,7 +576,7 @@
       <min>
         <X>10</X>
         <Y>5</Y>
-        <Z>1.2</Z>
+        <Z>1.5</Z>
       </min>
       <max>
         <X>11</X>
@@ -589,7 +589,7 @@
       <min>
         <X>9</X>
         <Y>5.8</Y>
-        <Z>1.2</Z>
+        <Z>1.5</Z>
       </min>
       <max>
         <X>10.5</X>
@@ -620,7 +620,7 @@
       <max>
         <X>11</X>
         <Y>5.3</Y>
-        <Z>1.2</Z>
+        <Z>1.1</Z>
       </max>
       <name>stairs</name>
     </BoundingBoxSaveData>
@@ -633,7 +633,7 @@
       <max>
         <X>11.5</X>
         <Y>5.7</Y>
-        <Z>1.2</Z>
+        <Z>1.1</Z>
       </max>
       <name>stairs</name>
     </BoundingBoxSaveData>
@@ -646,7 +646,7 @@
       <max>
         <X>12</X>
         <Y>6.2</Y>
-        <Z>1.2</Z>
+        <Z>1.1</Z>
       </max>
       <name>stairs</name>
     </BoundingBoxSaveData>
@@ -659,7 +659,7 @@
       <max>
         <X>13</X>
         <Y>6.8</Y>
-        <Z>1.2</Z>
+        <Z>1.1</Z>
       </max>
       <name>stairs</name>
     </BoundingBoxSaveData>
@@ -667,7 +667,7 @@
       <min>
         <X>12</X>
         <Y>6.4</Y>
-        <Z>1.2</Z>
+        <Z>1.5</Z>
       </min>
       <max>
         <X>13.5</X>
@@ -680,7 +680,7 @@
       <min>
         <X>11</X>
         <Y>6.9</Y>
-        <Z>1.2</Z>
+        <Z>1.5</Z>
       </min>
       <max>
         <X>11.7</X>
@@ -693,7 +693,7 @@
       <min>
         <X>10</X>
         <Y>7.5</Y>
-        <Z>1.2</Z>
+        <Z>1.5</Z>
       </min>
       <max>
         <X>11</X>
@@ -706,7 +706,7 @@
       <min>
         <X>9</X>
         <Y>8</Y>
-        <Z>1.2</Z>
+        <Z>1.5</Z>
       </min>
       <max>
         <X>10.5</X>
@@ -737,7 +737,7 @@
       <max>
         <X>-2</X>
         <Y>0.5</Y>
-        <Z>1.2</Z>
+        <Z>1.1</Z>
       </max>
       <name>stairs</name>
     </BoundingBoxSaveData>
@@ -750,7 +750,7 @@
       <max>
         <X>-2</X>
         <Y>1</Y>
-        <Z>1.2</Z>
+        <Z>1.1</Z>
       </max>
       <name>stairs</name>
     </BoundingBoxSaveData>
@@ -763,7 +763,7 @@
       <max>
         <X>-2</X>
         <Y>1.5</Y>
-        <Z>1.2</Z>
+        <Z>1.1</Z>
       </max>
       <name>stairs</name>
     </BoundingBoxSaveData>
@@ -776,7 +776,7 @@
       <max>
         <X>-2</X>
         <Y>2.3</Y>
-        <Z>1.2</Z>
+        <Z>1.1</Z>
       </max>
       <name>stairs</name>
     </BoundingBoxSaveData>
@@ -784,7 +784,7 @@
       <min>
         <X>-3.7</X>
         <Y>2</Y>
-        <Z>1.2</Z>
+        <Z>1.5</Z>
       </min>
       <max>
         <X>-2</X>
@@ -797,7 +797,7 @@
       <min>
         <X>-5</X>
         <Y>2.4</Y>
-        <Z>1.2</Z>
+        <Z>1.5</Z>
       </min>
       <max>
         <X>-3.8</X>
@@ -810,7 +810,7 @@
       <min>
         <X>-4.5</X>
         <Y>3</Y>
-        <Z>1.2</Z>
+        <Z>1.5</Z>
       </min>
       <max>
         <X>-4</X>
@@ -823,7 +823,7 @@
       <min>
         <X>-4.5</X>
         <Y>3.4</Y>
-        <Z>1.2</Z>
+        <Z>1.5</Z>
       </min>
       <max>
         <X>-6</X>
@@ -854,7 +854,7 @@
       <max>
         <X>-5</X>
         <Y>3.2</Y>
-        <Z>1.2</Z>
+        <Z>1.1</Z>
       </max>
       <name>stairs</name>
     </BoundingBoxSaveData>
@@ -867,7 +867,7 @@
       <max>
         <X>-4.5</X>
         <Y>3.5</Y>
-        <Z>1.2</Z>
+        <Z>1.1</Z>
       </max>
       <name>stairs</name>
     </BoundingBoxSaveData>
@@ -880,7 +880,7 @@
       <max>
         <X>-4</X>
         <Y>3.9</Y>
-        <Z>1.2</Z>
+        <Z>1.1</Z>
       </max>
       <name>stairs</name>
     </BoundingBoxSaveData>
@@ -893,7 +893,7 @@
       <max>
         <X>-2</X>
         <Y>4.5</Y>
-        <Z>1.2</Z>
+        <Z>1.1</Z>
       </max>
       <name>stairs</name>
     </BoundingBoxSaveData>
@@ -901,7 +901,7 @@
       <min>
         <X>-3.5</X>
         <Y>4.1</Y>
-        <Z>1.2</Z>
+        <Z>1.5</Z>
       </min>
       <max>
         <X>-2</X>
@@ -914,7 +914,7 @@
       <min>
         <X>-3.7</X>
         <Y>4.6</Y>
-        <Z>1.2</Z>
+        <Z>1.5</Z>
       </min>
       <max>
         <X>-3.3</X>
@@ -927,7 +927,7 @@
       <min>
         <X>-4.2</X>
         <Y>5.1</Y>
-        <Z>1.2</Z>
+        <Z>1.5</Z>
       </min>
       <max>
         <X>-3.8</X>
@@ -940,7 +940,7 @@
       <min>
         <X>-6</X>
         <Y>5.8</Y>
-        <Z>1.2</Z>
+        <Z>1.5</Z>
       </min>
       <max>
         <X>-4.8</X>
@@ -971,7 +971,7 @@
       <max>
         <X>-5</X>
         <Y>5.3</Y>
-        <Z>1.2</Z>
+        <Z>1.1</Z>
       </max>
       <name>stairs</name>
     </BoundingBoxSaveData>
@@ -984,7 +984,7 @@
       <max>
         <X>-4.5</X>
         <Y>5.7</Y>
-        <Z>1.2</Z>
+        <Z>1.1</Z>
       </max>
       <name>stairs</name>
     </BoundingBoxSaveData>
@@ -997,7 +997,7 @@
       <max>
         <X>-4</X>
         <Y>6.2</Y>
-        <Z>1.2</Z>
+        <Z>1.1</Z>
       </max>
       <name>stairs</name>
     </BoundingBoxSaveData>
@@ -1010,7 +1010,7 @@
       <max>
         <X>-2</X>
         <Y>6.8</Y>
-        <Z>1.2</Z>
+        <Z>1.1</Z>
       </max>
       <name>stairs</name>
     </BoundingBoxSaveData>
@@ -1018,7 +1018,7 @@
       <min>
         <X>-4</X>
         <Y>6.4</Y>
-        <Z>1.2</Z>
+        <Z>1.5</Z>
       </min>
       <max>
         <X>-2</X>
@@ -1031,7 +1031,7 @@
       <min>
         <X>-3.8</X>
         <Y>7</Y>
-        <Z>1.2</Z>
+        <Z>1.5</Z>
       </min>
       <max>
         <X>-3.5</X>
@@ -1044,7 +1044,7 @@
       <min>
         <X>-4</X>
         <Y>7.6</Y>
-        <Z>1.2</Z>
+        <Z>1.5</Z>
       </min>
       <max>
         <X>-3.7</X>
@@ -1057,7 +1057,7 @@
       <min>
         <X>-6</X>
         <Y>8</Y>
-        <Z>1.2</Z>
+        <Z>1.5</Z>
       </min>
       <max>
         <X>-4.8</X>
@@ -1078,6 +1078,32 @@
         <Z>8.7</Z>
       </max>
       <name>floor</name>
+    </BoundingBoxSaveData>
+    <BoundingBoxSaveData>
+      <min>
+        <X>10.3</X>
+        <Y>0</Y>
+        <Z>1.3</Z>
+      </min>
+      <max>
+        <X>11.8</X>
+        <Y>10</Y>
+        <Z>1.31</Z>
+      </max>
+      <name>wall-L1</name>
+    </BoundingBoxSaveData>
+    <BoundingBoxSaveData>
+      <min>
+        <X>-5</X>
+        <Y>0</Y>
+        <Z>1.3</Z>
+      </min>
+      <max>
+        <X>-3.4</X>
+        <Y>10</Y>
+        <Z>1.31</Z>
+      </max>
+      <name>wall-R1</name>
     </BoundingBoxSaveData>
   </boundingBoxesList>
 </SceneSaveDataNew>
