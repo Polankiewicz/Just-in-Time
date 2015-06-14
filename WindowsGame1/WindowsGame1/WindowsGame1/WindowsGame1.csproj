@@ -78,6 +78,11 @@
     <Compile Include="Enemy.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Hud.cs" />
+    <Compile Include="Prticle\PEmitter.cs" />
+    <Compile Include="Prticle\PSettings.cs" />
+    <Compile Include="Prticle\PSystem.cs" />
+    <Compile Include="Prticle\PVertex.cs" />
+    <Compile Include="Prticle\Projectile.cs" />
     <Compile Include="Serialization\BoundingBoxSaveData.cs" />
     <Compile Include="CameraCollisions.cs" />
     <Compile Include="DrawableBoundingBox.cs" />
