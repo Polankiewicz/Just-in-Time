@@ -1161,5 +1161,31 @@
       </max>
       <name>scene2c</name>
     </BoundingBoxSaveData>
+    <BoundingBoxSaveData>
+      <min>
+        <X>28.2</X>
+        <Y>0</Y>
+        <Z>7.6</Z>
+      </min>
+      <max>
+        <X>30</X>
+        <Y>1</Y>
+        <Z>8.7</Z>
+      </max>
+      <name>scene3a</name>
+    </BoundingBoxSaveData>
+    <BoundingBoxSaveData>
+      <min>
+        <X>40</X>
+        <Y>0</Y>
+        <Z>7.6</Z>
+      </min>
+      <max>
+        <X>41.5</X>
+        <Y>1</Y>
+        <Z>8.7</Z>
+      </max>
+      <name>scene3b</name>
+    </BoundingBoxSaveData>
   </boundingBoxesList>
 </SceneSaveDataNew>

@@ -237,6 +237,36 @@ namespace WindowsGame1
                 actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
             }
 
+            else if (boxName.Equals("scene3a"))
+            {
+                game.LoadSceneFromXml("../../../../scene3.xml");
+                camera.Position = new Vector3(-0.6f, 1.5f, -8f);
+                tmp.Add("Models\\przeciwnik");
+                actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
+            }
+            else if (boxName.Equals("scene3b"))
+            {
+                game.LoadSceneFromXml("../../../../scene3.xml");
+                camera.Position = new Vector3(-0.6f, 1.5f, 4f);
+                tmp.Add("Models\\przeciwnik");
+                actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
+            }
+
+            else if (boxName.Equals("scene1e"))
+            {
+                game.LoadSceneFromXml("../../../../scene.xml");
+                camera.Position = new Vector3(27, 1.5f, 7.6f);
+                tmp.Add("Models\\przeciwnik");
+                actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
+            }
+            else if (boxName.Equals("scene1f"))
+            {
+                game.LoadSceneFromXml("../../../../scene.xml");
+                camera.Position = new Vector3(43f, 1.5f, 7.6f);
+                tmp.Add("Models\\przeciwnik");
+                actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
+            }
+
         }
 
 
