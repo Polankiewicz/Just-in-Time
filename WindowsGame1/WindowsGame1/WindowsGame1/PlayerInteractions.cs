@@ -100,7 +100,6 @@ namespace WindowsGame1
 
                 if (staticModelsList[i].Name == "klucz" && Vector3.Distance(staticModelsList[i].Position, camera.Position) < 1.0f)
                 {
-                    hudTexts.DisplayText = "Press E to take key";
                     drawText = true;
                     if ((GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed) || (currentKeyboardState.IsKeyDown(Keys.E) && (lastKeyboardState.IsKeyUp(Keys.E))))
                     {
@@ -111,6 +110,17 @@ namespace WindowsGame1
 
                 }
 
+                if (staticModelsList[i].Name == "sadzonka2" && Vector3.Distance(staticModelsList[i].Position, camera.Position) < 3.0f)
+                {
+                    drawText = true;
+                    if ((GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed) || (currentKeyboardState.IsKeyDown(Keys.E) && (lastKeyboardState.IsKeyUp(Keys.E))))
+                    {
+                        camera.equipment.Add(staticModelsList[i]);
+                        staticModelsList.RemoveAt(i);
+                        drawText = false;
+                    }
+
+                }
             } 
 
             for (int i = 0; i < dynamicModelsList.Count; i++)
