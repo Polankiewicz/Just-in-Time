@@ -104,6 +104,9 @@ namespace Editor
             listNames.Add("Models\\powierzchnia");
             listNames.Add("Models\\sadzonka2");
             listNames.Add("Models\\drzewo_v2");
+            listNames.Add("Models\\ziemia");
+            listNames.Add("Models\\parking");
+            listNames.Add("Models\\chodnik");
             wireFrameState = new RasterizerState()
             {
                 FillMode = FillMode.WireFrame,
