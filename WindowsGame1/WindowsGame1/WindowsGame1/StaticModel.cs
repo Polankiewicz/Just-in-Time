@@ -55,15 +55,12 @@ namespace WindowsGame1
                         part.Tag = tag;
                     }
         }
-        float ambientPower, lightPower;
+        public float ambientPower { get; set; }
+        public float lightPower{ get; set; }
         Matrix lightsViewProjectionMatrix;
-        Vector3 lightPos;
+        public Vector3 lightPos { get; set; }
         public void UpdateLightData()
         {
-            ambientPower = 0.2f;
-            lightPos = new Vector3(-20, 20, -20);
-            lightPower = 1.2f;
-
             Matrix lightsView = Matrix.CreateLookAt(lightPos, new Vector3(0, 3, 0), new Vector3(0, 1, 0));
             Matrix lightsProjection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver2, 1f, 5f, 100f);
 
@@ -81,16 +78,18 @@ namespace WindowsGame1
             this.offset = position;
             this.rotationVector = rotationDegrees;
             this.Material = new Material();
-          //  this.shadowMap = shadowMap;
+            //  this.shadowMap = shadowMap;
             lightPower = 2f;
-           
+            ambientPower = 0.2f;
+            lightPos = new Vector3(-20, 20, -20);
+            lightPower = 1.2f;
             GenerateTags();
         }
         public void CreateShadowMaps()
         {
             this.shadowMap = new Texture2D(device, 2048, 2048);
         }
-        public void SetCustomEffect(Effect effect, bool force=false)
+        public void SetCustomEffect(Effect effect, bool force = false)
         {
             UpdateLightData();
             foreach (ModelMesh mesh in model.Meshes)
@@ -103,7 +102,7 @@ namespace WindowsGame1
                     if (tag.Texture != null || force)
                     {
                         toSet.SetEffectParameter("xTexture", tag.Texture);
-                       
+
                         toSet.SetEffectParameter("TextureEnabled", true);
 
                         toSet.SetEffectParameter("DiffuseColor", tag.Color);
@@ -113,22 +112,22 @@ namespace WindowsGame1
                         toSet.Parameters["xLightPower"].SetValue(lightPower);
                         toSet.Parameters["xAmbient"].SetValue(ambientPower);
                         toSet.Parameters["xLightsWorldViewProjection"].SetValue(Matrix.Identity * lightsViewProjectionMatrix);
-                    
-                      
+
+
                         part.Effect = toSet;
                     }
                     else
                         toSet.SetEffectParameter("TextureEnabled", false);
-                  
+
 
                 }
         }
-        
+
 
         //build our vertex buffer
-        public void Draw(Camera camera,string tech="Simplest")
+        public void Draw(Camera camera, string tech = "Simplest")
         {
-            
+
             // Copy any parent transforms.
             Matrix[] transforms = new Matrix[model.Bones.Count];
             model.CopyAbsoluteBoneTransformsTo(transforms);
@@ -138,14 +137,14 @@ namespace WindowsGame1
                 foreach (ModelMeshPart meshPart in mesh.MeshParts)
                 {
                     Effect effect = meshPart.Effect;
-                    
+
                     this.rotation = Matrix.CreateRotationX(MathHelper.ToRadians(rotationVector.X))
                         * Matrix.CreateRotationY(MathHelper.ToRadians(rotationVector.Y))
                         * Matrix.CreateRotationZ(MathHelper.ToRadians(rotationVector.Z));
 
                     if (effect is BasicEffect)
                     {
-                      
+
                         ((BasicEffect)effect).World = transforms[mesh.ParentBone.Index] * this.rotation * Matrix.CreateScale(Scale) * Matrix.CreateTranslation(offset);
 
                         ((BasicEffect)effect).View = camera.View;
@@ -161,11 +160,11 @@ namespace WindowsGame1
                     {
                         effect.CurrentTechnique = effect.Techniques[tech];
                         Matrix worldMatrix = transforms[mesh.ParentBone.Index] * this.rotation * Matrix.CreateScale(Scale) * Matrix.CreateTranslation(offset);
-                        
-                        effect.SetEffectParameter("xWorld",worldMatrix );
+
+                        effect.SetEffectParameter("xWorld", worldMatrix);
                         effect.SetEffectParameter("xWorldViewProjection", transforms[mesh.ParentBone.Index] * this.rotation * Matrix.CreateScale(Scale) * Matrix.CreateTranslation(offset) * camera.View * camera.Projection);
 
-                       
+
                         effect.Parameters["xLightPos"].SetValue(lightPos);
                         effect.Parameters["xLightPower"].SetValue(lightPower);
                         effect.Parameters["xAmbient"].SetValue(ambientPower);
@@ -177,8 +176,8 @@ namespace WindowsGame1
 
                 mesh.Draw();
             }
-        
-        
+
+
         }
     }
 }
