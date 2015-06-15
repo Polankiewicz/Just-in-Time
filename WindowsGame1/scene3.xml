@@ -2,7 +2,7 @@
 <SceneSaveDataNew xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <modelsList>
     <SceneSaveData>
-      <Scale>0.2</Scale>
+      <Scale>0.02</Scale>
       <Name>Models\korytarz_fixed</Name>
       <path>Models\korytarz_fixed</path>
       <Position>
@@ -17,5 +17,45 @@
       </Rotation>
     </SceneSaveData>
   </modelsList>
-  <boundingBoxesList />
+  <boundingBoxesList>
+    <BoundingBoxSaveData>
+      <min>
+        <X>-40</X>
+        <Y>-0.1</Y>
+        <Z>-25</Z>
+      </min>
+      <max>
+        <X>40</X>
+        <Y>0.5</Y>
+        <Z>40</Z>
+      </max>
+      <name>floor</name>
+    </BoundingBoxSaveData>
+    <BoundingBoxSaveData>
+      <min>
+        <X>-1.5</X>
+        <Y>0</Y>
+        <Z>-10</Z>
+      </min>
+      <max>
+        <X>0</X>
+        <Y>1</Y>
+        <Z>-8.5</Z>
+      </max>
+      <name>scene1e</name>
+    </BoundingBoxSaveData>
+    <BoundingBoxSaveData>
+      <min>
+        <X>-1.5</X>
+        <Y>0</Y>
+        <Z>5.5</Z>
+      </min>
+      <max>
+        <X>0</X>
+        <Y>1</Y>
+        <Z>7</Z>
+      </max>
+      <name>scene1f</name>
+    </BoundingBoxSaveData>
+  </boundingBoxesList>
 </SceneSaveDataNew>
