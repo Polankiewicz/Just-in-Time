@@ -308,7 +308,7 @@
       <Position>
         <X>46</X>
         <Y>0</Y>
-        <Z>10</Z>
+        <Z>0</Z>
       </Position>
       <Rotation>
         <X>0</X>
@@ -743,7 +743,7 @@
       <Position>
         <X>0</X>
         <Y>-7.7</Y>
-        <Z>2.5</Z>
+        <Z>-20</Z>
       </Position>
       <Rotation>
         <X>0</X>
@@ -1033,6 +1033,21 @@
       <Rotation>
         <X>0</X>
         <Y>-90</Y>
+        <Z>0</Z>
+      </Rotation>
+    </SceneSaveData>
+    <SceneSaveData>
+      <Scale>5</Scale>
+      <Name>Models\ziemia</Name>
+      <path>Models\ziemia</path>
+      <Position>
+        <X>0</X>
+        <Y>-7.7</Y>
+        <Z>18</Z>
+      </Position>
+      <Rotation>
+        <X>0</X>
+        <Y>0</Y>
         <Z>0</Z>
       </Rotation>
     </SceneSaveData>
