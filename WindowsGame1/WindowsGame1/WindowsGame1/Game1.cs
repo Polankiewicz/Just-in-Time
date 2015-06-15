@@ -81,6 +81,15 @@ namespace WindowsGame1
         public void LoadSceneFromXml(string path)
         {
             actualScene.LoadFromXML(path);
+            if (path.Contains("scene2"))
+            {
+                var tmp = new List<string>();
+                tmp.Add("Models\\human_chodzenie");
+                tmp.Add("Models\\human_cios");
+
+                actualScene.AddEnemy(tmp, new Vector3(7, 3.5f, 2), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
+                actualScene.AddEnemy(tmp, new Vector3(8, 3.5f, 0), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
+            }
             foreach (StaticModel m in actualScene.staticModelsList)
             {
                 m.SetCustomEffect(simpleEffect);
@@ -172,7 +181,7 @@ namespace WindowsGame1
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
-            
+
             playerInteractions.catchInteraction(camera, this);
 
             actualScene.Update(gameTime);
@@ -231,7 +240,7 @@ namespace WindowsGame1
 
             hud.drawHud(spriteBatch, hudTab[camera.BulletsAmount], this);
             hud.drawPointer(spriteBatch, hudPointer, this);
-            if(playerInteractions.drawMenu == true)
+            if (playerInteractions.drawMenu == true)
             {
                 hud.drawHud(spriteBatch, hudMenuGame, this);
             }
@@ -261,7 +270,7 @@ namespace WindowsGame1
             //     hand.Draw(camera);
             //     handWorldMatrix = cameraWorldMartix;
 
-          //  hand.Model = handWorldMatrix;
+            //  hand.Model = handWorldMatrix;
 
 
 
