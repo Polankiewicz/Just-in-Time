@@ -92,21 +92,19 @@ namespace WindowsGame1
                     continue;
 
                 // load new scene
-                if(boundingBoxesList[i].name.Equals("scene2"))
+                if (boundingBoxesList[i].name.Contains("scene"))
                 {
                     if(cameraBoundingSphere.Intersects(boundingBoxesList[i].boundingBox))
                     {
+                        String boxName = boundingBoxesList[i].name;
+
                         actualScene.unloadContent();
-                        game.LoadSceneFromXml("../../../../scene2.xml");
-                        
-                        tmp.Add("Models\\przeciwnik");
-                        actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
+                        loadNewSceneCollision(boxName);
 
                         // bounding sphere for enemy
                         dynamicBoundingSpheresList.Clear();
                         initDynamicModelsBoundingSpherePosition(); 
 
-                        camera.Position = new Vector3(9.3f, 1.5f, -2f);
                         camera.clearCameraLookAt();
 
                         return true;
@@ -179,7 +177,19 @@ namespace WindowsGame1
             }
         }
 
+        public void loadNewSceneCollision(String boxName)
+        {
+            if (boxName.Equals("scene2"))
+            {
+                game.LoadSceneFromXml("../../../../scene2.xml");
+                camera.Position = new Vector3(9.3f, 1.5f, -2f);
+                tmp.Clear();
+                tmp.Add("Models\\przeciwnik");
+                actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
+            }
+            // ...
 
+        }
 
 
     }
