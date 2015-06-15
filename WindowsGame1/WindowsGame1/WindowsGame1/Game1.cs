@@ -23,7 +23,7 @@ namespace WindowsGame1
         Camera camera;
         Floor floor;
         BasicEffect effect;
-        DynamicModel hand;
+        public DynamicModel hand { get; set; }
         RenderTarget2D renderTarget;
         Texture2D shadowMap;
         PlayerInteractions playerInteractions;
@@ -108,12 +108,14 @@ namespace WindowsGame1
 
             //jako parametr do konstruktora przekazuje sie liste nazw modeli, domyslnie odpalana jest pierwsza;
             var tmp = new List<string>();
-            tmp.Add("Models\\przeciwnik");
+            tmp.Add("Models\\human_chodzenie");
+            tmp.Add("Models\\human_cios");
+
             actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
 
             var temp = new List<Model>();
-            temp.Add(Content.Load<Model>("Models\\hand"));
-            hand = new DynamicModel(GraphicsDevice, temp, new Vector3(1, 1.2f, 1), new Vector3(-45, 90, 90), 0.02f, "hand");
+            temp.Add(Content.Load<Model>("Models\\prawa_wyciaganie"));
+            hand = new DynamicModel(GraphicsDevice, temp, new Vector3(-10, 1.2f, 1), new Vector3(0), 0.02f, "hand");
 
             // renderTarget = new RenderTarget2D(GraphicsDevice, 1024, 1024, true, GraphicsDevice.DisplayMode.Format, DepthFormat.Depth24);
             // hud texts
@@ -214,7 +216,7 @@ namespace WindowsGame1
             GraphicsDevice.RasterizerState = RasterizerState.CullNone;
 
             actualScene.Draw();
-
+            hand.Draw(camera);
 
             //     cameraWorldMartix = Matrix.Invert(camera.View);
             //     handWorldMatrix = cameraWorldMartix;
@@ -248,17 +250,17 @@ namespace WindowsGame1
                     hud.drawHud(spriteBatch, hudPoison, this);
                 }
             }
-            //     hand.Draw(camera);
-            //     handWorldMatrix = cameraWorldMartix;
+            
+            handWorldMatrix = cameraWorldMartix;
 
-            //     handWorldMatrix.Translation += (cameraWorldMartix.Forward * 1.4f) +
-            //                                 (-cameraWorldMartix.Down * 0.1f) +
-            //                                (cameraWorldMartix.Right * 0.9f);
+            handWorldMatrix.Translation += (cameraWorldMartix.Forward * 1.4f) +
+                                        (-cameraWorldMartix.Down * 0.1f) +
+                                       (cameraWorldMartix.Right * 0.9f);
 
-            //     hand.Model = handWorldMatrix;
+          //  hand.Model = handWorldMatrix;
 
 
-            //     hand.Draw(camera);
+            
 
             // DrawShadowMaps();
             base.Draw(gameTime);
