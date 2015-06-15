@@ -48,6 +48,7 @@ namespace WindowsGame1
         private Texture2D hudPoison;
         private Texture2D hudKey;
         private Texture2D hudText;
+        private Texture2D hudTree;
 
         Effect simpleEffect;
         RasterizerState wireFrameState;
@@ -66,7 +67,7 @@ namespace WindowsGame1
 
         protected override void Initialize()
         {
-            camera = new Camera(this, new Vector3(10f, 1f, 5f), Vector3.Zero, 5f);
+            camera = new Camera(this, new Vector3(-15f, 1f, 5f), Vector3.Zero, 5f);
             Components.Add(camera);
             //  graphics.ToggleFullScreen();
             floor = new Floor(GraphicsDevice, 20, 20);
@@ -133,6 +134,7 @@ namespace WindowsGame1
             hudPoison = Content.Load<Texture2D>("Sprites\\hudPoison");
             hudKey = Content.Load<Texture2D>("Sprites\\hudKey");
             hudText = Content.Load<Texture2D>("Sprites\\hText");
+            hudTree = Content.Load<Texture2D>("Sprites\\sadzonka");
 
             // set all objects to interact with player (Distance)
             playerInteractions = new PlayerInteractions(this, hudTexts, actualScene.getStaticModelsList(), actualScene.getDynamicModelsList());
@@ -247,7 +249,13 @@ namespace WindowsGame1
                 {
                     hud.drawHud(spriteBatch, hudPoison, this);
                 }
+
+                if (camera.equipment[i].Name == "sadzonka2")
+                {
+                    hud.drawHud(spriteBatch, hudTree, this);
+                }
             }
+
             //     hand.Draw(camera);
             //     handWorldMatrix = cameraWorldMartix;
 

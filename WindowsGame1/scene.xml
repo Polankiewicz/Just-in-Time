@@ -1051,6 +1051,21 @@
         <Z>0</Z>
       </Rotation>
     </SceneSaveData>
+    <SceneSaveData>
+      <Scale>0.013</Scale>
+      <Name>sadzonka2</Name>
+      <path>Models\sadzonka2</path>
+      <Position>
+        <X>46</X>
+        <Y>0</Y>
+        <Z>10</Z>
+      </Position>
+      <Rotation>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </Rotation>
+    </SceneSaveData>
   </modelsList>
   <boundingBoxesList>
     <BoundingBoxSaveData>
