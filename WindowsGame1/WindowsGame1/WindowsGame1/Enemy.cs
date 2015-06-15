@@ -64,7 +64,11 @@ namespace WindowsGame1
         {
             Console.WriteLine("Atakuj!");
             //a tutaj zamiast atakuj mozna zrobic cos takiego np by zmienic animacje:
-            //this.model = modelList[1];
+            if (this.model != modelList[1])
+            {
+                this.model = modelList[1];
+                this.SwitchAnimation(1);
+            }
         }
 
 
@@ -73,6 +77,11 @@ namespace WindowsGame1
             Console.WriteLine("move");
             this.Position = Vector3.Lerp(this.Position, c.Position, moveSpeed);
             this.Model = Matrix.CreateTranslation(this.Position.X, height, this.Position.Z);
+            if (this.model != modelList[0])
+            {
+                this.model = modelList[0];
+                this.SwitchAnimation(0);
+            }
         }
 
         public float GetDistance(Camera c)
