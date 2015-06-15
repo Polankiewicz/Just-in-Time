@@ -27,6 +27,7 @@ namespace WindowsGame1
         RenderTarget2D renderTarget;
         Texture2D shadowMap;
         PlayerInteractions playerInteractions;
+        ParticleSystem fireParticles;
 
 
         //display texts
@@ -62,6 +63,8 @@ namespace WindowsGame1
             graphics.PreferredBackBufferHeight = 720;
             graphics.PreferredBackBufferWidth = 1280;
             Content.RootDirectory = "Content";
+            fireParticles = new FireParticleSystem(this, Content);
+            Components.Add(fireParticles);
 
         }
 
@@ -187,7 +190,7 @@ namespace WindowsGame1
 
             actualScene.Update(gameTime);
             hand.Update(gameTime);
-
+            UpdateFire();
             base.Update(gameTime);
         }
         void DrawShadowMaps()
@@ -226,6 +229,7 @@ namespace WindowsGame1
             GraphicsDevice.BlendState = BlendState.Opaque;
             GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
             GraphicsDevice.RasterizerState = RasterizerState.CullNone;
+
 
             actualScene.Draw();
             hand.Draw(camera);
@@ -275,10 +279,21 @@ namespace WindowsGame1
 
 
 
-
+            fireParticles.SetCamera(camera.View, camera.Projection);
             // DrawShadowMaps();
             base.Draw(gameTime);
         }
 
+        void UpdateFire()
+        {
+            const int fireParticlesPerFrame = 1;
+
+            // Create a number of fire particles, randomly positioned around a circle.
+            for (int i = 0; i < fireParticlesPerFrame; i++)
+            {
+                fireParticles.AddParticle(new Vector3(-15f, 1f, 5f), Vector3.Zero);
+            }
+
+        }
     }
 }

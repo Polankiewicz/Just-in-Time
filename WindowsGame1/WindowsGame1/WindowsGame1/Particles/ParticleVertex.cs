@@ -1,9 +1,7 @@
-﻿#region Using Statements
-
+#region Using Statements
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Graphics.PackedVector;
-
 #endregion
 
 namespace WindowsGame1
@@ -11,7 +9,7 @@ namespace WindowsGame1
     /// <summary>
     /// Custom vertex structure for drawing particles.
     /// </summary>
-    public struct ParticleVertex
+    struct ParticleVertex
     {
         // Stores which corner of the particle quad this vertex represents.
         public Short2 Corner;
