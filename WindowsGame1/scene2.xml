@@ -1222,5 +1222,57 @@
       </max>
       <name>wall-2</name>
     </BoundingBoxSaveData>
+    <BoundingBoxSaveData>
+      <min>
+        <X>-7</X>
+        <Y>0</Y>
+        <Z>7.4</Z>
+      </min>
+      <max>
+        <X>-5.5</X>
+        <Y>1</Y>
+        <Z>8</Z>
+      </max>
+      <name>scene1d</name>
+    </BoundingBoxSaveData>
+    <BoundingBoxSaveData>
+      <min>
+        <X>-7</X>
+        <Y>0</Y>
+        <Z>-4</Z>
+      </min>
+      <max>
+        <X>-5.5</X>
+        <Y>1</Y>
+        <Z>-2.4</Z>
+      </max>
+      <name>scene1c</name>
+    </BoundingBoxSaveData>
+    <BoundingBoxSaveData>
+      <min>
+        <X>9</X>
+        <Y>0</Y>
+        <Z>-4</Z>
+      </min>
+      <max>
+        <X>10</X>
+        <Y>1</Y>
+        <Z>-2.4</Z>
+      </max>
+      <name>scene1a</name>
+    </BoundingBoxSaveData>
+    <BoundingBoxSaveData>
+      <min>
+        <X>9</X>
+        <Y>0</Y>
+        <Z>7.4</Z>
+      </min>
+      <max>
+        <X>10</X>
+        <Y>1</Y>
+        <Z>8</Z>
+      </max>
+      <name>scene1b</name>
+    </BoundingBoxSaveData>
   </boundingBoxesList>
 </SceneSaveDataNew>
