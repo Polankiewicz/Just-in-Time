@@ -97,7 +97,7 @@ namespace WindowsGame1
                     if(cameraBoundingSphere.Intersects(boundingBoxesList[i].boundingBox))
                     {
                         String boxName = boundingBoxesList[i].name;
-
+                        tmp.Clear();
                         actualScene.unloadContent();
                         loadNewSceneCollision(boxName);
 
@@ -179,15 +179,34 @@ namespace WindowsGame1
 
         public void loadNewSceneCollision(String boxName)
         {
-            if (boxName.Equals("scene2"))
+            if (boxName.Equals("scene2a"))
             {
                 game.LoadSceneFromXml("../../../../scene2.xml");
                 camera.Position = new Vector3(9.3f, 1.5f, -2f);
-                tmp.Clear();
                 tmp.Add("Models\\przeciwnik");
                 actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
             }
-            // ...
+            else if (boxName.Equals("scene2b"))
+            {
+                game.LoadSceneFromXml("../../../../scene2.xml");
+                camera.Position = new Vector3(-6f, 1.5f, -2f);
+                tmp.Add("Models\\przeciwnik");
+                actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
+            }
+            else if (boxName.Equals("scene2c"))
+            {
+                game.LoadSceneFromXml("../../../../scene2.xml");
+                camera.Position = new Vector3(-6f, 1.5f, 6f);
+                tmp.Add("Models\\przeciwnik");
+                actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
+            }
+            else if (boxName.Equals("scene2d"))
+            {
+                game.LoadSceneFromXml("../../../../scene2.xml");
+                camera.Position = new Vector3(9.3f, 1.5f, 6f);
+                tmp.Add("Models\\przeciwnik");
+                actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
+            }
 
         }
 
