@@ -11,8 +11,6 @@ float CurrentTime;
 
 // Parameters describing how the particles animate.
 float Duration;
-float DurationRandomness;
-float3 Gravity;
 float EndVelocity;
 float4 MinColor;
 float4 MaxColor;
@@ -65,8 +63,7 @@ struct VertexShaderOutput
 
 
 // Vertex shader helper for computing the position of a particle.
-float4 ComputeParticlePosition(float3 position, float3 velocity,
-                               float age, float normalizedAge)
+float4 ComputeParticlePosition(float3 position, float3 velocity, float age)
 {
     float startVelocity = length(velocity);
 
@@ -80,14 +77,12 @@ float4 ComputeParticlePosition(float3 position, float3 velocity,
     // To compute the position directly, we must integrate the velocity
     // equation. Integrating S + (E-S)*T for T produces S*T + (E-S)*T*T/2.
 
-    float velocityIntegral = startVelocity * normalizedAge +
-                             (endVelocity - startVelocity) * normalizedAge *
-                                                             normalizedAge / 2;
+    float velocityIntegral = startVelocity + (endVelocity - startVelocity);
      
     position += normalize(velocity) * velocityIntegral * Duration;
     
     // Apply the gravitational force.
-    position += Gravity * age * normalizedAge;
+    position += age;
     
     // Apply the camera view and projection transforms.
     return mul(mul(float4(position, 1), View), Projection);
@@ -95,14 +90,14 @@ float4 ComputeParticlePosition(float3 position, float3 velocity,
 
 
 // Vertex shader helper for computing the size of a particle.
-float ComputeParticleSize(float randomValue, float normalizedAge)
+float ComputeParticleSize(float randomValue, float age)
 {
     // Apply a random factor to make each particle a slightly different size.
     float startSize = lerp(StartSize.x, StartSize.y, randomValue);
     float endSize = lerp(EndSize.x, EndSize.y, randomValue);
     
     // Compute the actual size based on the age of the particle.
-    float size = lerp(startSize, endSize, normalizedAge);
+    float size = lerp(startSize, endSize, age);
     
     // Project the size into screen coordinates.
     return size * Projection._m11;
@@ -110,8 +105,7 @@ float ComputeParticleSize(float randomValue, float normalizedAge)
 
 
 // Vertex shader helper for computing the color of a particle.
-float4 ComputeParticleColor(float4 projectedPosition,
-                            float randomValue, float normalizedAge)
+float4 ComputeParticleColor(float4 projectedPosition, float randomValue, float age)
 {
     // Apply a random factor to make each particle a slightly different color.
     float4 color = lerp(MinColor, MaxColor, randomValue);
@@ -122,7 +116,7 @@ float4 ComputeParticleColor(float4 projectedPosition,
     // this looks like. The 6.7 scaling factor normalizes the curve so the alpha
     // will reach all the way up to fully solid.
     
-    color.a *= normalizedAge * (1-normalizedAge) * (1-normalizedAge) * 6.7;
+    color.a *= age * (1-age) * (1-age) * 6.7;
    
     return color;
 }
@@ -151,23 +145,16 @@ VertexShaderOutput ParticleVertexShader(VertexShaderInput input)
     
     // Compute the age of the particle.
     float age = CurrentTime - input.Time;
-    
-    // Apply a random factor to make different particles age at different rates.
-    age *= 1 + input.Random.x * DurationRandomness;
-    
-    // Normalize the age into the range zero to one.
-    float normalizedAge = saturate(age / Duration);
 
     // Compute the particle position, size, color, and rotation.
-    output.Position = ComputeParticlePosition(input.Position, input.Velocity,
-                                              age, normalizedAge);
+    output.Position = ComputeParticlePosition(input.Position, input.Velocity, age);
 
-    float size = ComputeParticleSize(input.Random.y, normalizedAge);
+    float size = ComputeParticleSize(input.Random.y, age);
     float2x2 rotation = ComputeParticleRotation(input.Random.w, age);
 
     output.Position.xy += mul(input.Corner, rotation) * size * ViewportScale;
     
-    output.Color = ComputeParticleColor(output.Position, input.Random.z, normalizedAge);
+    output.Color = ComputeParticleColor(output.Position, input.Random.z, age);
     output.TextureCoordinate = (input.Corner + 1) / 2;
     
     return output;

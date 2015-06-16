@@ -78,8 +78,7 @@
     <Compile Include="Enemy.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Hud.cs" />
-    <Compile Include="Particles\FireParticleSystem.cs" />
-    <Compile Include="Particles\ParticleEmitter.cs" />
+    <Compile Include="Particles\TimeParticleSystem.cs" />
     <Compile Include="Particles\ParticleSettings.cs" />
     <Compile Include="Particles\ParticleSystem.cs" />
     <Compile Include="Particles\ParticleVertex.cs" />

@@ -54,18 +54,6 @@ namespace WindowsGame1
 
             for (int i = 0; i < staticModelsList.Count; i++)
             {
-                /* destroy scaner
-                if (staticModelsList[i].Name == "scaner" && Vector3.Distance(staticModelsList[i].Position, camera.Position) < 3.0f)
-                {
-                    hudTexts.DisplayText = "Press X/E to destroy scaner!";
-
-                    if ((GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed) || (currentKeyboardState.IsKeyDown(Keys.Escape) && (lastKeyboardState.IsKeyUp(Keys.Escape))))
-                        staticModelsList.RemoveAt(i);
-                }
-                else
-                {
-                    hudTexts.DisplayText = "";
-                }*/
 
                 if (staticModelsList[i].Name == "poison_box" && Vector3.Distance(staticModelsList[i].Position, camera.Position) < 1.5f)
                 {
@@ -131,7 +119,7 @@ namespace WindowsGame1
                     a.EnemyAI(camera);
                     for (int j = 0; j < staticModelsList.Count; j++)
                     {                       
-                        if (staticModelsList[j].Name == "trigger1" && Vector3.Distance(staticModelsList[j].Position, camera.Position) < 1.5f && a.Id == 1)
+                        if (staticModelsList[j].Name == "trigger1" && Vector3.Distance(staticModelsList[j].Position, camera.Position) < 1.5f)
                         {
                             a.Condition = true;
                         }

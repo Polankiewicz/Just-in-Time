@@ -27,7 +27,7 @@ namespace WindowsGame1
         RenderTarget2D renderTarget;
         Texture2D shadowMap;
         PlayerInteractions playerInteractions;
-        ParticleSystem fireParticles;
+        ParticleSystem timeParticles;
 
 
         //display texts
@@ -63,8 +63,8 @@ namespace WindowsGame1
             graphics.PreferredBackBufferHeight = 720;
             graphics.PreferredBackBufferWidth = 1280;
             Content.RootDirectory = "Content";
-            fireParticles = new FireParticleSystem(this, Content);
-            Components.Add(fireParticles);
+            timeParticles = new TimeParticleSystem(this, Content);
+            Components.Add(timeParticles);
 
         }
 
@@ -190,7 +190,7 @@ namespace WindowsGame1
 
             actualScene.Update(gameTime);
             hand.Update(gameTime);
-            UpdateFire();
+            UpdateTimeParticle();
             base.Update(gameTime);
         }
         void DrawShadowMaps()
@@ -279,19 +279,19 @@ namespace WindowsGame1
 
 
 
-            fireParticles.SetCamera(camera.View, camera.Projection);
+            timeParticles.SetCamera(camera.View, camera.Projection);
             // DrawShadowMaps();
             base.Draw(gameTime);
         }
 
-        void UpdateFire()
+        void UpdateTimeParticle()
         {
-            const int fireParticlesPerFrame = 1;
+            const int timeParticlesPerFrame = 1;
 
-            // Create a number of fire particles, randomly positioned around a circle.
-            for (int i = 0; i < fireParticlesPerFrame; i++)
+            // Create a number of time particles, randomly positioned around a circle.
+            for (int i = 0; i < timeParticlesPerFrame; i++)
             {
-                fireParticles.AddParticle(new Vector3(-15f, 1f, 5f), Vector3.Zero);
+                timeParticles.AddParticle(new Vector3(-15f, 1f, 5f), Vector3.Zero);
             }
 
         }

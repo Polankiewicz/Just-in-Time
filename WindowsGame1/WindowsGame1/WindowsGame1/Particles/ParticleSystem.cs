@@ -1,11 +1,9 @@
-
-#region Using Statements
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Graphics.PackedVector;
-#endregion
+
 
 namespace WindowsGame1
 {
@@ -14,7 +12,6 @@ namespace WindowsGame1
     /// </summary>
     public abstract class ParticleSystem : DrawableGameComponent
     {
-        #region Fields
 
 
         // Settings class controls the appearance and animation of this particle system.
@@ -139,12 +136,6 @@ namespace WindowsGame1
         // Shared random number generator.
         static Random random = new Random();
 
-
-        #endregion
-
-        #region Initialization
-
-
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -162,7 +153,7 @@ namespace WindowsGame1
         {
             InitializeSettings(settings);
 
-            // Allocate the particle array, and fill in the corner fields (which never change).
+            // Allocate the particle array.
             particles = new ParticleVertex[settings.MaxParticles * 4];
 
             for (int i = 0; i < settings.MaxParticles; i++)
@@ -232,7 +223,6 @@ namespace WindowsGame1
 
             EffectParameterCollection parameters = particleEffect.Parameters;
 
-            // Look up shortcuts for parameters that change every frame.
             effectViewParameter = parameters["View"];
             effectProjectionParameter = parameters["Projection"];
             effectViewportScaleParameter = parameters["ViewportScale"];
@@ -240,20 +230,13 @@ namespace WindowsGame1
 
             // Set the values of parameters that do not change.
             parameters["Duration"].SetValue((float)settings.Duration.TotalSeconds);
-            parameters["DurationRandomness"].SetValue(settings.DurationRandomness);
-            parameters["Gravity"].SetValue(settings.Gravity);
             parameters["EndVelocity"].SetValue(settings.EndVelocity);
             parameters["MinColor"].SetValue(settings.MinColor.ToVector4());
             parameters["MaxColor"].SetValue(settings.MaxColor.ToVector4());
-
-            parameters["RotateSpeed"].SetValue(
-                new Vector2(settings.MinRotateSpeed, settings.MaxRotateSpeed));
             
-            parameters["StartSize"].SetValue(
-                new Vector2(settings.MinStartSize, settings.MaxStartSize));
+            parameters["StartSize"].SetValue(new Vector2(settings.MinStartSize, settings.MaxStartSize));
             
-            parameters["EndSize"].SetValue(
-                new Vector2(settings.MinEndSize, settings.MaxEndSize));
+            parameters["EndSize"].SetValue(new Vector2(settings.MinEndSize, settings.MaxEndSize));
 
             // Load the particle texture, and set it onto the effect.
             Texture2D texture = content.Load<Texture2D>(settings.TextureName);
@@ -261,8 +244,6 @@ namespace WindowsGame1
             parameters["Texture"].SetValue(texture);
         }
 
-
-        #endregion
 
         #region Update and Draw
 
@@ -276,7 +257,7 @@ namespace WindowsGame1
                 throw new ArgumentNullException("gameTime");
 
             currentTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
-
+            
             RetireActiveParticles();
             FreeRetiredParticles();
 
@@ -285,7 +266,7 @@ namespace WindowsGame1
             // would render incorrectly. An easy way to prevent this is to notice
             // that the time value doesn't matter when no particles are being drawn,
             // so we can reset it back to zero any time the active queue is empty.
-
+            
             if (firstActiveParticle == firstFreeParticle)
                 currentTime = 0;
 
@@ -502,9 +483,6 @@ namespace WindowsGame1
             if (nextFreeParticle == firstRetiredParticle)
                 return;
 
-            // Adjust the input velocity based on how much
-            // this particle system wants to be affected by it.
-            velocity *= settings.EmitterVelocitySensitivity;
 
             // Add in some random amount of horizontal velocity.
             float horizontalVelocity = MathHelper.Lerp(settings.MinHorizontalVelocity,
