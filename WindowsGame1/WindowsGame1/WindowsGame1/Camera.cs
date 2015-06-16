@@ -160,8 +160,8 @@ namespace WindowsGame1
                 Vector3 moveVector = Vector3.Zero;
 
                 // left ThumbStick control
-                moveVector.Z = gamePad.ThumbSticks.Left.Y;
-                moveVector.X = -gamePad.ThumbSticks.Left.X;
+                moveVector.Z = gamePad.ThumbSticks.Left.Y/2;
+                moveVector.X = -gamePad.ThumbSticks.Left.X/2;
 
                 // keyboard and DPad control
                 if (ks.IsKeyDown(Keys.W) || gamePad.DPad.Up == ButtonState.Pressed)

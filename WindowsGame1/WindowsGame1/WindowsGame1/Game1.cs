@@ -94,6 +94,20 @@ namespace WindowsGame1
                 actualScene.AddEnemy(tmp, new Vector3(7, 3.5f, 2), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
                 actualScene.AddEnemy(tmp, new Vector3(8, 3.5f, 0), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
             }
+            if (path.Equals("../../../../scene.xml"))
+            {
+                //jako parametr do konstruktora przekazuje sie liste nazw modeli, domyslnie odpalana jest pierwsza;
+                var tmp = new List<string>();
+                tmp.Add("Models\\human_chodzenie");
+                tmp.Add("Models\\human_cios");
+
+                actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
+
+                var temp = new List<Model>();
+                temp.Add(Content.Load<Model>("Models\\prawa_wyciaganie"));
+                hand = new DynamicModel(GraphicsDevice, temp, new Vector3(-10, 1.2f, 1), new Vector3(0), 0.02f, "hand");
+            }
+
             foreach (StaticModel m in actualScene.staticModelsList)
             {
                 m.SetCustomEffect(simpleEffect);
@@ -120,16 +134,7 @@ namespace WindowsGame1
 
 
 
-            //jako parametr do konstruktora przekazuje sie liste nazw modeli, domyslnie odpalana jest pierwsza;
-            var tmp = new List<string>();
-            tmp.Add("Models\\human_chodzenie");
-            tmp.Add("Models\\human_cios");
 
-            actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
-
-            var temp = new List<Model>();
-            temp.Add(Content.Load<Model>("Models\\prawa_wyciaganie"));
-            hand = new DynamicModel(GraphicsDevice, temp, new Vector3(-10, 1.2f, 1), new Vector3(0), 0.02f, "hand");
 
             // renderTarget = new RenderTarget2D(GraphicsDevice, 1024, 1024, true, GraphicsDevice.DisplayMode.Format, DepthFormat.Depth24);
             // hud texts
@@ -232,7 +237,7 @@ namespace WindowsGame1
 
 
             actualScene.Draw();
-            hand.Draw(camera);
+            //     hand.Draw(camera);
 
             //     cameraWorldMartix = Matrix.Invert(camera.View);
             //     handWorldMatrix = cameraWorldMartix;
