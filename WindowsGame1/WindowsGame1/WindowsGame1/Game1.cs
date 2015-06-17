@@ -50,6 +50,7 @@ namespace WindowsGame1
         private Texture2D hudKey;
         private Texture2D hudText;
         private Texture2D hudTree;
+        private Texture2D hudHealth;
 
         Effect simpleEffect;
         RasterizerState wireFrameState;
@@ -155,6 +156,7 @@ namespace WindowsGame1
             hudKey = Content.Load<Texture2D>("Sprites\\hudKey");
             hudText = Content.Load<Texture2D>("Sprites\\hText");
             hudTree = Content.Load<Texture2D>("Sprites\\sadzonka");
+            hudHealth = Content.Load<Texture2D>("Sprites\\HP");
 
             // set all objects to interact with player (Distance)
             playerInteractions = new PlayerInteractions(this, hudTexts, actualScene.getStaticModelsList(), actualScene.getDynamicModelsList());
@@ -196,6 +198,7 @@ namespace WindowsGame1
             actualScene.Update(gameTime);
             hand.Update(gameTime);
             UpdateTimeParticle();
+
             base.Update(gameTime);
         }
         void DrawShadowMaps()
@@ -248,8 +251,12 @@ namespace WindowsGame1
 
             //     hand.Model = handWorldMatrix;
 
-            hud.drawHud(spriteBatch, hudTab[camera.BulletsAmount], this);
-            hud.drawPointer(spriteBatch, hudPointer, this);
+            if (playerInteractions.drawFight)
+            {
+                hud.drawHud(spriteBatch, hudTab[camera.BulletsAmount], this);
+                hud.drawPointer(spriteBatch, hudPointer, this);
+                hud.drawHealth(spriteBatch, hudHealth, this, camera);
+            }
             if (playerInteractions.drawMenu == true)
             {
                 hud.drawHud(spriteBatch, hudMenuGame, this);
@@ -276,6 +283,11 @@ namespace WindowsGame1
                     hud.drawHud(spriteBatch, hudTree, this);
                 }
             }
+
+           /* if (camera.Hp <= 0)
+            {
+                hud.drawHud(spriteBatch, hudGameOver, this);
+            }*/
 
             //     hand.Draw(camera);
             //     handWorldMatrix = cameraWorldMartix;

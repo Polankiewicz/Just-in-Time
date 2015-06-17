@@ -31,7 +31,15 @@ namespace WindowsGame1
         List<Bullet> listOfBullets;
         private int bulletsAmount;
         public List<StaticModel> equipment = new List<StaticModel>();
+        private int hp = 120;
+        public Rectangle healthRectangle;
         //Properties
+
+        public int Hp
+        {
+            get { return hp; }
+            set { hp = value; }
+        }
 
         public Vector3 Position
         {
@@ -261,7 +269,7 @@ namespace WindowsGame1
                 {
                     //Rotation = new Vector3(MathHelper.Clamp(-gamePad.ThumbSticks.Right.Y, MathHelper.ToRadians(-75.0f), MathHelper.ToRadians(75.0f)),
                     //-gamePad.ThumbSticks.Right.X, 0);
-
+                    
                     if (holderForMouseRotation.X < MathHelper.ToRadians(-75.0f))
                         holderForMouseRotation.X = holderForMouseRotation.X - (holderForMouseRotation.X - MathHelper.ToRadians(-75.0f));
                     if (holderForMouseRotation.X > MathHelper.ToRadians(55.0f))
@@ -311,6 +319,9 @@ namespace WindowsGame1
                         //throw new Exception("Tak szybko niszczy szczala");
                     }
                 }
+
+
+                healthRectangle = new Rectangle(15, 120, Hp, 20);
 
                 base.Update(gameTime);
             }

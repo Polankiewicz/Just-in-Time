@@ -22,5 +22,12 @@ namespace WindowsGame1
             spriteBatch.Draw(t2, new Vector2((g.GraphicsDevice.Viewport.Width / 2 )-40, (g.GraphicsDevice.Viewport.Height / 2)-40), Color.White);
             spriteBatch.End();
         }
+
+        public void drawHealth(SpriteBatch spriteBatch, Texture2D t2, Game g, Camera c)
+        {
+            spriteBatch.Begin();
+            spriteBatch.Draw(t2, c.healthRectangle, Color.White);
+            spriteBatch.End();
+        }
     }
 }

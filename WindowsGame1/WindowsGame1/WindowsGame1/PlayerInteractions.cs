@@ -19,6 +19,7 @@ namespace WindowsGame1
         private KeyboardState lastKeyboardState;
         public bool drawMenu;
         public bool drawText;
+        public bool drawFight;
        
 
         public PlayerInteractions(Game game, HudTexts hudTexts, List<StaticModel> staticModelsList, List<DynamicModel> dynamicModelsList)
@@ -98,7 +99,7 @@ namespace WindowsGame1
 
                 }
 
-                if (staticModelsList[i].Name == "sadzonka2" && Vector3.Distance(staticModelsList[i].Position, camera.Position) < 3.0f)
+                if (staticModelsList[i].Name == "sadzonka2" && Vector3.Distance(staticModelsList[i].Position, camera.Position) < 1.0f)
                 {
                     drawText = true;
                     if ((GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed) || (currentKeyboardState.IsKeyDown(Keys.E) && (lastKeyboardState.IsKeyUp(Keys.E))))
@@ -122,6 +123,7 @@ namespace WindowsGame1
                         if (staticModelsList[j].Name == "trigger1" && Vector3.Distance(staticModelsList[j].Position, camera.Position) < 1.5f)
                         {
                             a.Condition = true;
+                            drawFight = a.Condition;
                         }
                     }
                 }
