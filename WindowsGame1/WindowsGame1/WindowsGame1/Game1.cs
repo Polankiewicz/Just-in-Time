@@ -301,6 +301,10 @@ namespace WindowsGame1
             base.Draw(gameTime);
         }
 
+
+        Vector3 tempParticleVector1 = new Vector3(-13f, 5f, 6f);
+        Vector3 tempParticleVector2 = new Vector3(46f, 0f, 10f);
+
         void UpdateTimeParticle()
         {
             const int timeParticlesPerFrame = 1;
@@ -308,7 +312,8 @@ namespace WindowsGame1
             // Create a number of time particles, randomly positioned around a circle.
             for (int i = 0; i < timeParticlesPerFrame; i++)
             {
-                timeParticles.AddParticle(new Vector3(-15f, 1f, 5f), Vector3.Zero);
+                timeParticles.AddParticle(tempParticleVector1, Vector3.Zero); // trucizna
+                timeParticles.AddParticle(tempParticleVector2, Vector3.Zero); // sadzonka
             }
 
         }
