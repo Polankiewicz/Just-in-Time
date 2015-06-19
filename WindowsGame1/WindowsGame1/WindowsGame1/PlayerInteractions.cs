@@ -99,7 +99,7 @@ namespace WindowsGame1
 
                 }
 
-                if (staticModelsList[i].Name == "sadzonka2" && Vector3.Distance(staticModelsList[i].Position, camera.Position) < 1.0f)
+                if (staticModelsList[i].Name == "sadzonka2" && Vector3.Distance(staticModelsList[i].Position, camera.Position) < 3.0f)
                 {
                     drawText = true;
                     if ((GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed) || (currentKeyboardState.IsKeyDown(Keys.E) && (lastKeyboardState.IsKeyUp(Keys.E))))

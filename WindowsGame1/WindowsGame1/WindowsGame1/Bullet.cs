@@ -22,7 +22,7 @@ namespace WindowsGame1
 
         public Bullet(Vector3 center)
         {
-            radius = 0.1f;
+            radius = 1.1f; // 0.1f
             speed = 5f;
             distance = 35f; 
 

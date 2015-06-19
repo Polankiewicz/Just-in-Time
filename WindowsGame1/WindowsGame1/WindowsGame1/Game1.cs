@@ -86,15 +86,15 @@ namespace WindowsGame1
         public void LoadSceneFromXml(string path)
         {
             actualScene.LoadFromXML(path);
-            if (path.Contains("scene2"))
-            {
-                var tmp = new List<string>();
-                tmp.Add("Models\\human_chodzenie");
-                tmp.Add("Models\\human_cios");
+            //if (path.Contains("scene2"))
+            //{
+            //    var tmp = new List<string>();
+            //    tmp.Add("Models\\human_chodzenie");
+            //    tmp.Add("Models\\human_cios");
 
-                actualScene.AddEnemy(tmp, new Vector3(7, 3.5f, 2), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
-                actualScene.AddEnemy(tmp, new Vector3(8, 3.5f, 0), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
-            }
+            //    actualScene.AddEnemy(tmp, new Vector3(7, 3.5f, 2), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
+            //    actualScene.AddEnemy(tmp, new Vector3(8, 3.5f, 0), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
+            //}
             if (path.Equals("../../../../scene.xml"))
             {
                 //jako parametr do konstruktora przekazuje sie liste nazw modeli, domyslnie odpalana jest pierwsza;
@@ -229,8 +229,8 @@ namespace WindowsGame1
             GraphicsDevice.RasterizerState = wireFrameState;
 
             // CreateDrawableBoxes();
-            foreach (var x in actualScene.boundingBoxesList)
-                x.Draw(camera);
+            //foreach (var x in actualScene.boundingBoxesList)
+            //    x.Draw(camera);
 
             // fixing GraphicsDevice after spriteBatch.Begin() method
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
