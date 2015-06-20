@@ -50,6 +50,7 @@ namespace WindowsGame1
         private Texture2D hudKey;
         private Texture2D hudText;
         private Texture2D hudTree;
+        private Texture2D hudHealth;
 
         Effect simpleEffect;
         RasterizerState wireFrameState;
@@ -86,15 +87,15 @@ namespace WindowsGame1
         public void LoadSceneFromXml(string path)
         {
             actualScene.LoadFromXML(path);
-            if (path.Contains("scene2"))
-            {
-                var tmp = new List<string>();
-                tmp.Add("Models\\enemy\\enemy_walk");
-                tmp.Add("Models\\enemy\\enemy_punch");
+            //if (path.Contains("scene2"))
+            //{
+            //    var tmp = new List<string>();
+            //    tmp.Add("Models\\human_chodzenie");
+            //    tmp.Add("Models\\human_cios");
 
-                actualScene.AddEnemy(tmp, new Vector3(7, 3.5f, 2), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
-                actualScene.AddEnemy(tmp, new Vector3(8, 3.5f, 0), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
-            }
+            //    actualScene.AddEnemy(tmp, new Vector3(7, 3.5f, 2), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
+            //    actualScene.AddEnemy(tmp, new Vector3(8, 3.5f, 0), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
+            //}
             if (path.Equals("../../../../scene.xml"))
             {
                 //jako parametr do konstruktora przekazuje sie liste nazw modeli, domyslnie odpalana jest pierwsza;
@@ -156,6 +157,7 @@ namespace WindowsGame1
             hudKey = Content.Load<Texture2D>("Sprites\\hudKey");
             hudText = Content.Load<Texture2D>("Sprites\\hText");
             hudTree = Content.Load<Texture2D>("Sprites\\sadzonka");
+            hudHealth = Content.Load<Texture2D>("Sprites\\HP");
 
             // set all objects to interact with player (Distance)
             playerInteractions = new PlayerInteractions(this, hudTexts, actualScene.getStaticModelsList(), actualScene.getDynamicModelsList());
@@ -197,6 +199,7 @@ namespace WindowsGame1
             actualScene.Update(gameTime);
             hand.Update(gameTime);
             UpdateTimeParticle();
+
             base.Update(gameTime);
         }
         void DrawShadowMaps()
@@ -227,8 +230,8 @@ namespace WindowsGame1
             GraphicsDevice.RasterizerState = wireFrameState;
 
             // CreateDrawableBoxes();
-            foreach (var x in actualScene.boundingBoxesList)
-                x.Draw(camera);
+            //foreach (var x in actualScene.boundingBoxesList)
+            //    x.Draw(camera);
 
             // fixing GraphicsDevice after spriteBatch.Begin() method
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
@@ -249,8 +252,12 @@ namespace WindowsGame1
 
             //     hand.Model = handWorldMatrix;
 
+            if (playerInteractions.drawFight)
+            {
             hud.drawHud(spriteBatch, hudTab[camera.BulletsAmount], this);
             hud.drawPointer(spriteBatch, hudPointer, this);
+                hud.drawHealth(spriteBatch, hudHealth, this, camera);
+            }
             if (playerInteractions.drawMenu == true)
             {
                 hud.drawHud(spriteBatch, hudMenuGame, this);
@@ -278,6 +285,11 @@ namespace WindowsGame1
                 }
             }
 
+           /* if (camera.Hp <= 0)
+            {
+                hud.drawHud(spriteBatch, hudGameOver, this);
+            }*/
+
             //     hand.Draw(camera);
             //     handWorldMatrix = cameraWorldMartix;
 
@@ -290,6 +302,10 @@ namespace WindowsGame1
             base.Draw(gameTime);
         }
 
+
+        Vector3 tempParticleVector1 = new Vector3(-13f, 5f, 6f);
+        Vector3 tempParticleVector2 = new Vector3(46f, 0f, 10f);
+
         void UpdateTimeParticle()
         {
             const int timeParticlesPerFrame = 1;
@@ -297,7 +313,8 @@ namespace WindowsGame1
             // Create a number of time particles, randomly positioned around a circle.
             for (int i = 0; i < timeParticlesPerFrame; i++)
             {
-                timeParticles.AddParticle(new Vector3(-15f, 1f, 5f), Vector3.Zero);
+                timeParticles.AddParticle(tempParticleVector1, Vector3.Zero); // trucizna
+                timeParticles.AddParticle(tempParticleVector2, Vector3.Zero); // sadzonka
             }
 
         }

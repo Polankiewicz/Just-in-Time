@@ -68,6 +68,7 @@ namespace WindowsGame1
             {
                 this.model = modelList[1];
                 this.SwitchAnimation(1);
+                c.Hp = c.Hp - 1;
             }
         }
 

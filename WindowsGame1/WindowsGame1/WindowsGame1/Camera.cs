@@ -31,7 +31,15 @@ namespace WindowsGame1
         List<Bullet> listOfBullets;
         private int bulletsAmount;
         public List<StaticModel> equipment = new List<StaticModel>();
+        private int hp = 120;
+        public Rectangle healthRectangle;
         //Properties
+
+        public int Hp
+        {
+            get { return hp; }
+            set { hp = value; }
+        }
 
         public Vector3 Position
         {
@@ -160,8 +168,8 @@ namespace WindowsGame1
                 Vector3 moveVector = Vector3.Zero;
 
                 // left ThumbStick control
-                moveVector.Z = gamePad.ThumbSticks.Left.Y/2;
-                moveVector.X = -gamePad.ThumbSticks.Left.X/2;
+                moveVector.Z = gamePad.ThumbSticks.Left.Y/3;
+                moveVector.X = -gamePad.ThumbSticks.Left.X/3;
 
                 // keyboard and DPad control
                 if (ks.IsKeyDown(Keys.W) || gamePad.DPad.Up == ButtonState.Pressed)
@@ -261,14 +269,14 @@ namespace WindowsGame1
                 {
                     //Rotation = new Vector3(MathHelper.Clamp(-gamePad.ThumbSticks.Right.Y, MathHelper.ToRadians(-75.0f), MathHelper.ToRadians(75.0f)),
                     //-gamePad.ThumbSticks.Right.X, 0);
-
+                    
                     if (holderForMouseRotation.X < MathHelper.ToRadians(-75.0f))
                         holderForMouseRotation.X = holderForMouseRotation.X - (holderForMouseRotation.X - MathHelper.ToRadians(-75.0f));
                     if (holderForMouseRotation.X > MathHelper.ToRadians(55.0f))
                         holderForMouseRotation.X = holderForMouseRotation.X - (holderForMouseRotation.X - MathHelper.ToRadians(55.0f));
 
-                    holderForMouseRotation.X += -MathHelper.Clamp(gamePad.ThumbSticks.Right.Y, MathHelper.ToRadians(-75.0f), MathHelper.ToRadians(75.0f)) * 0.05f;
-                    holderForMouseRotation.Y += MathHelper.WrapAngle(-gamePad.ThumbSticks.Right.X) * 0.05f;
+                    holderForMouseRotation.X += -MathHelper.Clamp((gamePad.ThumbSticks.Right.Y/3)*2, MathHelper.ToRadians(-75.0f), MathHelper.ToRadians(75.0f)) * 0.05f;
+                    holderForMouseRotation.Y += MathHelper.WrapAngle(-gamePad.ThumbSticks.Right.X/3)*2 * 0.05f;
                     holderForMouseRotation.Z = 0;
                     Rotation = holderForMouseRotation;
                 }
@@ -311,6 +319,9 @@ namespace WindowsGame1
                         //throw new Exception("Tak szybko niszczy szczala");
                     }
                 }
+
+
+                healthRectangle = new Rectangle(15, 120, Hp, 20);
 
                 base.Update(gameTime);
             }
