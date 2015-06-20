@@ -67,7 +67,7 @@ namespace WindowsGame1
             enemySkin = model.Tag as SkinningData;
 
             enemy = new AnimationPlayer(enemySkin);
-            enemyClip = enemySkin.AnimationClips["Take 001"];
+            enemyClip = enemySkin.AnimationClips.First().Value;
             enemy.StartClip(enemyClip);
 
 
@@ -77,7 +77,7 @@ namespace WindowsGame1
             enemySkin = modelList[number].Tag as SkinningData;
 
             enemy = new AnimationPlayer(enemySkin);
-            enemyClip = enemySkin.AnimationClips["Take 001"];
+            enemyClip = enemySkin.AnimationClips.First().Value;
             enemy.StartClip(enemyClip);
         }
 

@@ -62,6 +62,7 @@ namespace WindowsGame1
             graphics.IsFullScreen = false;
             graphics.PreferredBackBufferHeight = 720;
             graphics.PreferredBackBufferWidth = 1280;
+            graphics.GraphicsProfile = GraphicsProfile.HiDef;
             Content.RootDirectory = "Content";
             timeParticles = new TimeParticleSystem(this, Content);
             Components.Add(timeParticles);
@@ -88,8 +89,8 @@ namespace WindowsGame1
             if (path.Contains("scene2"))
             {
                 var tmp = new List<string>();
-                tmp.Add("Models\\human_chodzenie");
-                tmp.Add("Models\\human_cios");
+                tmp.Add("Models\\enemy\\enemy_walk");
+                tmp.Add("Models\\enemy\\enemy_punch");
 
                 actualScene.AddEnemy(tmp, new Vector3(7, 3.5f, 2), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
                 actualScene.AddEnemy(tmp, new Vector3(8, 3.5f, 0), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
@@ -98,8 +99,8 @@ namespace WindowsGame1
             {
                 //jako parametr do konstruktora przekazuje sie liste nazw modeli, domyslnie odpalana jest pierwsza;
                 var tmp = new List<string>();
-                tmp.Add("Models\\human_chodzenie");
-                tmp.Add("Models\\human_cios");
+                tmp.Add("Models\\enemy\\enemy_walk");
+                tmp.Add("Models\\enemy\\enemy_punch");
 
                 actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
 
@@ -123,7 +124,7 @@ namespace WindowsGame1
         protected override void LoadContent()
         {
             PresentationParameters pp = GraphicsDevice.PresentationParameters;
-            renderTarget = new RenderTarget2D(GraphicsDevice, 2048, 2048, true, GraphicsDevice.DisplayMode.Format, DepthFormat.Depth24);
+            renderTarget = new RenderTarget2D(GraphicsDevice, 4096, 4096, true, GraphicsDevice.DisplayMode.Format, DepthFormat.Depth24);
 
             //  actualScene.AddStaticModel("Models\\test", new Vector3(0), new Vector3(0), 1, "test");
             simpleEffect = Content.Load<Effect>("Effects\\shadows");
