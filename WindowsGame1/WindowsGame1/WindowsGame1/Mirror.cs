@@ -20,9 +20,9 @@ namespace WindowsGame1
         public Material Material { get; set; }
         String objectName;
         Vector3 rotationVector;
-        public Texture2D shadowMap { get; set; }
+       
         public Texture2D reflectionMap { get; set; }
-        BasicEffect back;
+      
         public Model fbxModel
         {
             get { return model; }
@@ -86,10 +86,7 @@ namespace WindowsGame1
             lightPower = 1.2f;
             GenerateTags();
         }
-        public void CreateShadowMaps()
-        {
-            this.shadowMap = new Texture2D(device, 4096, 4096);
-        }
+   
         public void SetCustomEffect(Effect effect, bool force = false)
         {
             UpdateLightData();
@@ -108,11 +105,8 @@ namespace WindowsGame1
                         toSet.SetEffectParameter("DiffuseColor", tag.Color);
                         toSet.SetEffectParameter("SpecularPower", tag.SpecularPower);
 
-                        toSet.Parameters["xLightPos"].SetValue(lightPos);
-                        toSet.Parameters["xLightPower"].SetValue(lightPower);
                         toSet.Parameters["xAmbient"].SetValue(ambientPower);
-                        toSet.Parameters["xLightsWorldViewProjection"].SetValue(Matrix.Identity * lightsViewProjectionMatrix);
-
+                      
 
                         part.Effect = toSet;
                     }
@@ -145,21 +139,12 @@ namespace WindowsGame1
                         * Matrix.CreateRotationY(MathHelper.ToRadians(rotationVector.Y))
                         * Matrix.CreateRotationZ(MathHelper.ToRadians(rotationVector.Z));
 
-                   
-                        effect.CurrentTechnique = effect.Techniques[tech];
+                        
                         Matrix worldMatrix = transforms[mesh.ParentBone.Index] * this.rotation * Matrix.CreateScale(Scale) * Matrix.CreateTranslation(offset);
 
                         effect.SetEffectParameter("xWorld", worldMatrix);
                         effect.SetEffectParameter("xWorldViewProjection", transforms[mesh.ParentBone.Index] * this.rotation * Matrix.CreateScale(Scale) * Matrix.CreateTranslation(offset) * camera.View * camera.Projection);
-
-
-                        effect.Parameters["xLightPos"].SetValue(lightPos);
-                        effect.Parameters["xLightPower"].SetValue(lightPower);
-                        effect.Parameters["xAmbient"].SetValue(ambientPower);
-                        effect.Parameters["xLightsWorldViewProjection"].SetValue(worldMatrix * lightsViewProjectionMatrix);
-                        effect.Parameters["xShadowMap"].SetValue(shadowMap);
-
-                    
+                       
                 }
 
                 mesh.Draw();

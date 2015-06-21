@@ -40,7 +40,7 @@ namespace WindowsGame1
             get { return hp; }
             set { hp = value; }
         }
-
+        public Matrix rotationMatrix { get; set; }
         public Vector3 Position
         {
             get { return cameraPosition; }
@@ -117,7 +117,7 @@ namespace WindowsGame1
         private void UpdateLookAt()
         {
             //build a rotation matrix
-            Matrix rotationMatrix = Matrix.CreateRotationX(cameraRotation.X) * Matrix.CreateRotationY(cameraRotation.Y);
+            rotationMatrix = Matrix.CreateRotationX(cameraRotation.X) * Matrix.CreateRotationY(cameraRotation.Y);
             //build look at offset vector
             Vector3 lookAtOffset = Vector3.Transform(Vector3.UnitZ, rotationMatrix);
             //update our camera's look at vector
