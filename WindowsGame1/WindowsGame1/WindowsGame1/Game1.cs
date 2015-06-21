@@ -106,9 +106,7 @@ namespace WindowsGame1
 
                 actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
 
-                var temp = new List<Model>();
-                temp.Add(Content.Load<Model>("Models\\righthand\\pull"));
-                hand = new DynamicModel(GraphicsDevice, temp, new Vector3(-10, 1.2f, 1), new Vector3(0), 0.02f, "hand");
+              
             }
 
             foreach (StaticModel m in actualScene.staticModelsList)
@@ -137,7 +135,11 @@ namespace WindowsGame1
 
             skybox = new Skybox("Skyboxes\\333Sunset", Content);
 
-
+            var temp = new List<Model>();
+            temp.Add(Content.Load<Model>("Models\\righthand\\pull"));
+            temp.Add(Content.Load<Model>("Models\\righthand\\pulled"));
+            temp.Add(Content.Load<Model>("Models\\righthand\\shot"));
+            hand = new DynamicModel(GraphicsDevice, temp, new Vector3(-10, 1.2f, 1), new Vector3(0), 0.02f, "hand");
 
             // renderTarget = new RenderTarget2D(GraphicsDevice, 1024, 1024, true, GraphicsDevice.DisplayMode.Format, DepthFormat.Depth24);
             // hud texts
