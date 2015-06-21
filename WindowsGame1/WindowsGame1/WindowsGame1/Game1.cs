@@ -52,6 +52,7 @@ namespace WindowsGame1
         private Texture2D hudTree;
         private Texture2D hudHealth;
 
+        Skybox skybox;
         Effect simpleEffect;
         RasterizerState wireFrameState;
 
@@ -106,7 +107,7 @@ namespace WindowsGame1
                 actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
 
                 var temp = new List<Model>();
-                temp.Add(Content.Load<Model>("Models\\prawa_wyciaganie"));
+                temp.Add(Content.Load<Model>("Models\\righthand\\pull"));
                 hand = new DynamicModel(GraphicsDevice, temp, new Vector3(-10, 1.2f, 1), new Vector3(0), 0.02f, "hand");
             }
 
@@ -134,7 +135,7 @@ namespace WindowsGame1
 
             LoadSceneFromXml("../../../../scene.xml");
 
-
+            skybox = new Skybox("Skyboxes\\333Sunset", Content);
 
 
 
@@ -239,18 +240,27 @@ namespace WindowsGame1
             GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
             GraphicsDevice.RasterizerState = RasterizerState.CullNone;
 
+            RasterizerState originalRasterizerState = graphics.GraphicsDevice.RasterizerState;
+            RasterizerState rasterizerState = new RasterizerState();
+            rasterizerState.CullMode = CullMode.None;
+            graphics.GraphicsDevice.RasterizerState = rasterizerState;
+            skybox.Draw(camera.View, camera.Projection, camera.Position);
+
+            graphics.GraphicsDevice.RasterizerState = originalRasterizerState;
+           
 
             actualScene.Draw();
-            //     hand.Draw(camera);
+            hand.Draw(camera);
 
-            //     cameraWorldMartix = Matrix.Invert(camera.View);
-            //     handWorldMatrix = cameraWorldMartix;
+            cameraWorldMartix = Matrix.Invert(camera.View);
+            handWorldMatrix = cameraWorldMartix;
 
-            //     handWorldMatrix.Translation += (cameraWorldMartix.Forward * 1.4f) +
-            //                                (-cameraWorldMartix.Down * 0.1f) +
-            //                                (-cameraWorldMartix.Right * 0.3f);
+            handWorldMatrix.Translation += (cameraWorldMartix.Forward * 1.4f) +
+                                       (-cameraWorldMartix.Down * 0.1f) +
+                                       (-cameraWorldMartix.Right * 0.3f);
 
-            //     hand.Model = handWorldMatrix;
+            hand.Model = handWorldMatrix;
+            hand.Draw(camera);
 
             if (playerInteractions.drawFight)
             {
