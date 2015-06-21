@@ -581,6 +581,7 @@
       <Name>shot</Name>
       <Importer>XImporter</Importer>
       <Processor>SkinnedModelProcessor</Processor>
+      <ProcessorParameters_Scale>0.5</ProcessorParameters_Scale>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -588,6 +589,7 @@
       <Name>pulled</Name>
       <Importer>XImporter</Importer>
       <Processor>SkinnedModelProcessor</Processor>
+      <ProcessorParameters_Scale>0.5</ProcessorParameters_Scale>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
