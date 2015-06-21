@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -20,16 +21,15 @@ namespace WindowsGame1
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Camera camera;
+        Camera camera,mirrorCamera;
         Floor floor;
         BasicEffect effect;
         public DynamicModel hand { get; set; }
-        RenderTarget2D renderTarget;
-        Texture2D shadowMap;
+        RenderTarget2D renderTarget, reflectionRenderTarget;
+        Texture2D shadowMap, reflectionMap;
         PlayerInteractions playerInteractions;
         ParticleSystem timeParticles;
-
-
+      
         //display texts
         SpriteFont spriteFont;
         HudTexts hudTexts = new HudTexts();
@@ -37,7 +37,7 @@ namespace WindowsGame1
         public Scene actualScene { get; set; }
         Matrix cameraWorldMartix;
         Matrix handWorldMatrix;
-
+        Matrix reflectionViewMatrix;
 
         Hud hud = new Hud();
         private Texture2D[] hudTab = new Texture2D[7];
@@ -55,6 +55,7 @@ namespace WindowsGame1
         Skybox skybox;
         Effect simpleEffect;
         RasterizerState wireFrameState;
+        Mirror mirror;
 
 
         public Game1()
@@ -73,7 +74,7 @@ namespace WindowsGame1
 
         protected override void Initialize()
         {
-            camera = new Camera(this, new Vector3(-15f, 1f, 5f), Vector3.Zero, 5f);
+           
             camera = new Camera(this, new Vector3(-20f, 1f, -5f), Vector3.Zero, 5f);
             Components.Add(camera);
             //  graphics.ToggleFullScreen();
@@ -108,7 +109,8 @@ namespace WindowsGame1
 
               
             }
-
+            mirror = new Mirror(GraphicsDevice, Content.Load<Model>("Models\\lustro"), new Vector3(-10, 0.2f, 1), new Vector3(0), 0.02f, "mirror", "Models\\lustro");
+            mirror.SetCustomEffect(simpleEffect);
             foreach (StaticModel m in actualScene.staticModelsList)
             {
                 m.SetCustomEffect(simpleEffect);
@@ -119,13 +121,16 @@ namespace WindowsGame1
             actualScene.shadowMap = shadowMap;
             foreach (var x in actualScene.staticModelsList)
                 x.shadowMap = shadowMap;
+            
+            DrawReflectionMap();
+            mirror.RefreshTexture(reflectionMap);
         }
 
         protected override void LoadContent()
         {
             PresentationParameters pp = GraphicsDevice.PresentationParameters;
             renderTarget = new RenderTarget2D(GraphicsDevice, 4096, 4096, true, GraphicsDevice.DisplayMode.Format, DepthFormat.Depth24);
-
+            reflectionRenderTarget = new RenderTarget2D(GraphicsDevice, 2048, 2048, true, GraphicsDevice.DisplayMode.Format, DepthFormat.Depth24);
             //  actualScene.AddStaticModel("Models\\test", new Vector3(0), new Vector3(0), 1, "test");
             simpleEffect = Content.Load<Effect>("Effects\\shadows");
 
@@ -134,6 +139,10 @@ namespace WindowsGame1
             LoadSceneFromXml("../../../../scene.xml");
 
             skybox = new Skybox("Skyboxes\\333Sunset", Content);
+
+           // actualScene.AddStaticModel("Models\\lustro", new Vector3(-10, 1.2f, 1), new Vector3(0), 0.02f, "mirror"); //= new StaticModel(GraphicsDevice, Content.Load<Model>("Models\\lustro"), new Vector3(-10, 1.2f, 1), new Vector3(0), 0.02f, "mirror", "Models\\lustro");
+          
+            
 
             var temp = new List<Model>();
             temp.Add(Content.Load<Model>("Models\\righthand\\pull"));
@@ -164,7 +173,7 @@ namespace WindowsGame1
 
             // set all objects to interact with player (Distance)
             playerInteractions = new PlayerInteractions(this, hudTexts, actualScene.getStaticModelsList(), actualScene.getDynamicModelsList());
-
+           
             wireFrameState = new RasterizerState()
             {
                 FillMode = FillMode.WireFrame,
@@ -202,7 +211,8 @@ namespace WindowsGame1
             actualScene.Update(gameTime);
             hand.Update(gameTime);
             UpdateTimeParticle();
-
+            
+            
             base.Update(gameTime);
         }
         void DrawShadowMaps()
@@ -221,6 +231,39 @@ namespace WindowsGame1
 
 
         }
+        void DrawReflectionMap()
+        {
+            GraphicsDevice.SetRenderTarget(reflectionRenderTarget);
+            GraphicsDevice.DepthStencilState = DepthStencilState.Default;
+            GraphicsDevice.BlendState = BlendState.Opaque;
+            GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
+            GraphicsDevice.RasterizerState = RasterizerState.CullNone;
+
+            Vector3 symetrical = new Vector3(2 * mirror.Position.X - camera.Position.X, camera.Position.Y , 2 * mirror.Position.Z - camera.Position.Z);
+            reflectionViewMatrix = Matrix.CreateLookAt(mirror.Position, symetrical, Vector3.Up);
+
+            foreach (var x in actualScene.staticModelsList)
+            {
+                if (Vector3.Distance(mirror.Position, x.Position) < 10)
+                {
+                    x.SetCustomEffect(simpleEffect, false);
+                    x.Draw(reflectionViewMatrix, Matrix.CreatePerspectiveFieldOfView(
+                MathHelper.PiOver4,
+                GraphicsDevice.Viewport.AspectRatio,
+                0.1f,
+                100.0f), "ShadowedScene");
+                }
+            }
+
+            GraphicsDevice.SetRenderTarget(null);
+            reflectionMap = (Texture2D)reflectionRenderTarget;
+            
+            mirror.RefreshTexture(reflectionMap);
+            //Stream stream = new FileStream("test.png", FileMode.Create);
+            //reflectionRenderTarget.SaveAsPng(stream, 2048, 2048);
+            //stream.Close();
+
+        }
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -235,13 +278,13 @@ namespace WindowsGame1
             // CreateDrawableBoxes();
             //foreach (var x in actualScene.boundingBoxesList)
             //    x.Draw(camera);
-
+            DrawReflectionMap();
             // fixing GraphicsDevice after spriteBatch.Begin() method
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             GraphicsDevice.BlendState = BlendState.Opaque;
             GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
             GraphicsDevice.RasterizerState = RasterizerState.CullNone;
-
+           
             RasterizerState originalRasterizerState = graphics.GraphicsDevice.RasterizerState;
             RasterizerState rasterizerState = new RasterizerState();
             rasterizerState.CullMode = CullMode.None;
@@ -252,6 +295,8 @@ namespace WindowsGame1
            
 
             actualScene.Draw();
+            
+            mirror.Draw(camera);
          //   hand.Draw(camera);
 
             cameraWorldMartix = Matrix.Invert(camera.View);

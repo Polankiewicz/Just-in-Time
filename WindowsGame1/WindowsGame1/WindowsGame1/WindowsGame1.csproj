@@ -78,6 +78,7 @@
     <Compile Include="Enemy.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Hud.cs" />
+    <Compile Include="Mirror.cs" />
     <Compile Include="Particles\TimeParticleSystem.cs" />
     <Compile Include="Particles\ParticleSettings.cs" />
     <Compile Include="Particles\ParticleSystem.cs" />
