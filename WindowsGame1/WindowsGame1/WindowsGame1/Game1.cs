@@ -250,14 +250,14 @@ namespace WindowsGame1
            
 
             actualScene.Draw();
-            hand.Draw(camera);
+         //   hand.Draw(camera);
 
             cameraWorldMartix = Matrix.Invert(camera.View);
             handWorldMatrix = cameraWorldMartix;
 
-            handWorldMatrix.Translation += (cameraWorldMartix.Forward * 1.4f) +
-                                       (-cameraWorldMartix.Down * 0.1f) +
-                                       (-cameraWorldMartix.Right * 0.3f);
+            handWorldMatrix.Translation += (cameraWorldMartix.Forward * 0.33f) +
+                                       (cameraWorldMartix.Down * 0.25f) +
+                                       (cameraWorldMartix.Right * 0.15f);
 
             hand.Model = handWorldMatrix;
             hand.Draw(camera);

@@ -534,6 +534,7 @@
       <Importer>XImporter</Importer>
       <Processor>SkinnedModelProcessor</Processor>
       <ProcessorParameters_ResizeTexturesToPowerOfTwo>True</ProcessorParameters_ResizeTexturesToPowerOfTwo>
+      <ProcessorParameters_Scale>0.5</ProcessorParameters_Scale>
     </Compile>
     <Compile Include="Models\righthand\wood_BUMP.tga">
       <Name>wood_BUMP</Name>
