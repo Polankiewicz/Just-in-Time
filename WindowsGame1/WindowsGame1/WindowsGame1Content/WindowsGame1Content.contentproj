@@ -329,12 +329,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\human_chodzenie.FBX">
-      <Name>human_chodzenie</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>SkinnedModelProcessor</Processor>
-      <ProcessorParameters_ResizeTexturesToPowerOfTwo>True</ProcessorParameters_ResizeTexturesToPowerOfTwo>
-    </Compile>
     <Compile Include="Models\human_cios.FBX">
       <Name>human_cios</Name>
       <Importer>FbxImporter</Importer>
