@@ -69,7 +69,7 @@ namespace WindowsGame1
 
                 }
 
-                if (staticModelsList[i].Name == "shop" && Vector3.Distance(staticModelsList[i].Position, camera.Position) < 1.5f)
+                if (staticModelsList[i].Name == "miska" && Vector3.Distance(staticModelsList[i].Position, camera.Position) < 1.5f)
                 {
                     for (int j = 0; j < camera.equipment.Count; j++)
                     {
