@@ -25,7 +25,7 @@ namespace WindowsGame1
         public bool pastCondition = false;
         public bool onceBool = false;
         public int gMenu = 0;
-  
+        public int mMenu = 0;
        
 
         public PlayerInteractions(Game game, HudTexts hudTexts, List<StaticModel> staticModelsList, List<DynamicModel> dynamicModelsList, String p)
@@ -77,7 +77,41 @@ namespace WindowsGame1
                 drawMenu = false;
             }
 
+            if (gMenu == 2 && drawMenu == true && currentKeyboardState.IsKeyDown(Keys.Enter) && (lastKeyboardState.IsKeyUp(Keys.Enter)))
+            {
+                drawMenu = false;
+                mMenu = 0;
+                g.drawMainMenu = true;
+            }
+
             if (gMenu == 5 && drawMenu == true && currentKeyboardState.IsKeyDown(Keys.Enter) && (lastKeyboardState.IsKeyUp(Keys.Enter)))
+            {
+                g.Exit();
+            }
+
+            if (g.drawMainMenu == true && currentKeyboardState.IsKeyDown(Keys.Up) && (lastKeyboardState.IsKeyUp(Keys.Up)))
+            {
+                if (mMenu > 0)
+                {
+                    mMenu--;
+                }
+
+            }
+
+            if (g.drawMainMenu == true && currentKeyboardState.IsKeyDown(Keys.Down) && (lastKeyboardState.IsKeyUp(Keys.Down)))
+            {
+                if (mMenu < 4)
+                {
+                    mMenu++;
+                }
+            }
+
+            if (mMenu == 1 && g.drawMainMenu == true && currentKeyboardState.IsKeyDown(Keys.Enter) && (lastKeyboardState.IsKeyUp(Keys.Enter)))
+            {
+                g.drawMainMenu = false;
+            }
+
+            if (mMenu == 4 && g.drawMainMenu == true && currentKeyboardState.IsKeyDown(Keys.Enter) && (lastKeyboardState.IsKeyUp(Keys.Enter)))
             {
                 g.Exit();
             }
@@ -171,7 +205,7 @@ namespace WindowsGame1
                     Enemy a = (Enemy)dynamicModelsList[i];
                     a.EnemyAI(camera);
                     for (int j = 0; j < staticModelsList.Count; j++)
-                    {                       
+                    {
                         if (staticModelsList[j].Name == "trigger1" && Vector3.Distance(staticModelsList[j].Position, camera.Position) < 1.5f)
                         {
                             a.Condition = true;

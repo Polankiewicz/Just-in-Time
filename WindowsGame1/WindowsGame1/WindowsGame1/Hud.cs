@@ -5,10 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+
 namespace WindowsGame1
 {
     class Hud
     {
+
         public void drawHud(SpriteBatch spriteBatch, Texture2D t2, Game g)
         {
             spriteBatch.Begin();

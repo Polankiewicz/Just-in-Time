@@ -43,7 +43,7 @@ namespace WindowsGame1
         Hud hud = new Hud();
         private Texture2D[] hudTab = new Texture2D[14];
         private Texture2D[] hudMenuGame = new Texture2D[6];
-        private Texture2D[] hudMenuMain = new Texture2D[6];
+        private Texture2D[] hudMenuMain = new Texture2D[5];
         private Texture2D hudPointer;
         private Texture2D hudPoison;
         private Texture2D hudKey;
@@ -52,11 +52,10 @@ namespace WindowsGame1
         private Texture2D hudHealth2;
         private Texture2D hudHealth;
         private Texture2D hudGameOver;
+        public bool drawMainMenu = true;
 
         Skybox skybox;
         Effect simpleEffect;
-        Effect simpleEffect1;
-        Effect tmp;
         RasterizerState wireFrameState;
         Mirror mirror;
         String p;
@@ -187,6 +186,12 @@ namespace WindowsGame1
             hudMenuGame[3] = Content.Load<Texture2D>("Sprites\\GameMenu\\pause_credits_02");
             hudMenuGame[4] = Content.Load<Texture2D>("Sprites\\GameMenu\\pause_about_02");
             hudMenuGame[5] = Content.Load<Texture2D>("Sprites\\GameMenu\\pause_exit_02");
+
+            hudMenuMain[0] = Content.Load<Texture2D>("Sprites\\MainMenu\\0");
+            hudMenuMain[1] = Content.Load<Texture2D>("Sprites\\MainMenu\\1");
+            hudMenuMain[2] = Content.Load<Texture2D>("Sprites\\MainMenu\\2");
+            hudMenuMain[3] = Content.Load<Texture2D>("Sprites\\MainMenu\\3");
+            hudMenuMain[4] = Content.Load<Texture2D>("Sprites\\MainMenu\\4");
 
             hudPointer = Content.Load<Texture2D>("Sprites\\celownik");
             //hudGameOver = Content.Load<Texture2D>("Sprites\\GameOver");
@@ -407,13 +412,13 @@ namespace WindowsGame1
             hand.Model = handWorldMatrix;
             hand.Draw(camera);
 
-            //if (playerInteractions.drawFight)
-           // {
+            if (playerInteractions.drawFight)
+            {
             hud.drawHud(spriteBatch, hudTab[camera.BulletsAmount], this);
             hud.drawHud(spriteBatch, hudPointer, this);
             hud.drawHud(spriteBatch, hudHealth2, this);
             hud.drawHealth(spriteBatch, hudHealth, this, camera);
-          //  }
+            }
             if (playerInteractions.drawMenu == true)
             {
                hud.drawHud(spriteBatch, hudMenuGame[playerInteractions.gMenu], this);
@@ -423,6 +428,10 @@ namespace WindowsGame1
                 hud.drawHud(spriteBatch, hudText, this);
             }
 
+            if (drawMainMenu == true)
+            {
+                hud.drawHud(spriteBatch, hudMenuMain[playerInteractions.mMenu], this);
+            }
 
 
             for (int i = 0; i < camera.equipment.Count; i++)
