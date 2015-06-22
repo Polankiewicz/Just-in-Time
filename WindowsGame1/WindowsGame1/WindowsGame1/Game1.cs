@@ -157,9 +157,10 @@ namespace WindowsGame1
             
 
             var temp = new List<Model>();
-            temp.Add(Content.Load<Model>("Models\\righthand\\pull"));
+          
             temp.Add(Content.Load<Model>("Models\\righthand\\pulled"));
-            temp.Add(Content.Load<Model>("Models\\righthand\\shot"));
+            temp.Add(Content.Load<Model>("Models\\righthand\\pull"));
+           
             hand = new DynamicModel(GraphicsDevice, temp, new Vector3(-10, 1.2f, 1), new Vector3(0), 0.02f, "hand");
 
             // renderTarget = new RenderTarget2D(GraphicsDevice, 1024, 1024, true, GraphicsDevice.DisplayMode.Format, DepthFormat.Depth24);
