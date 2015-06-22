@@ -24,6 +24,7 @@ namespace WindowsGame1
         public bool backCondition = false;
         public bool pastCondition = false;
         public bool onceBool = false;
+        public int gMenu = 0;
   
        
 
@@ -45,12 +46,40 @@ namespace WindowsGame1
             {
                 if (drawMenu == false)
                 {
+                    gMenu = 0;
                     drawMenu = true;
                 }
                 else
                 {
                     drawMenu = false;
                 }
+            }
+            
+            if (drawMenu == true && currentKeyboardState.IsKeyDown(Keys.Up) && (lastKeyboardState.IsKeyUp(Keys.Up)))
+            {
+                if(gMenu > 0)
+                {
+                    gMenu--;
+                }
+                
+            }
+            
+            if (drawMenu == true && currentKeyboardState.IsKeyDown(Keys.Down) && (lastKeyboardState.IsKeyUp(Keys.Down)))
+            {
+                if (gMenu < 5)
+                {
+                    gMenu++;
+                }
+            }
+
+            if (gMenu == 1 && drawMenu == true && currentKeyboardState.IsKeyDown(Keys.Enter) && (lastKeyboardState.IsKeyUp(Keys.Enter)))
+            {
+                drawMenu = false;
+            }
+
+            if (gMenu == 5 && drawMenu == true && currentKeyboardState.IsKeyDown(Keys.Enter) && (lastKeyboardState.IsKeyUp(Keys.Enter)))
+            {
+                g.Exit();
             }
 
             if (currentKeyboardState.IsKeyDown(Keys.B) && (lastKeyboardState.IsKeyUp(Keys.B)))
@@ -68,11 +97,6 @@ namespace WindowsGame1
                     onceBool = true;
                     return;
                 }
-            }
-
-            if (currentKeyboardState.IsKeyDown(Keys.M) && (lastKeyboardState.IsKeyUp(Keys.M)) && drawMenu == true)
-            {
-                g.Exit();
             }
 
             for (int i = 0; i < staticModelsList.Count; i++)
@@ -137,6 +161,7 @@ namespace WindowsGame1
                 {
                     backCondition = true;
                 }
+
             } 
 
             for (int i = 0; i < dynamicModelsList.Count; i++)

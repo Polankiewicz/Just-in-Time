@@ -40,17 +40,17 @@ namespace WindowsGame1
         Matrix reflectionViewMatrix;
 
         Hud hud = new Hud();
-        private Texture2D[] hudTab = new Texture2D[7];
-        private Texture2D hudBloody;
-        private Texture2D hudGameOver;
-        private Texture2D hudMenuGame;
-        private Texture2D hudMenuMain;
+        private Texture2D[] hudTab = new Texture2D[14];
+        private Texture2D[] hudMenuGame = new Texture2D[6];
+        private Texture2D[] hudMenuMain = new Texture2D[6];
         private Texture2D hudPointer;
         private Texture2D hudPoison;
         private Texture2D hudKey;
         private Texture2D hudText;
         private Texture2D hudTree;
+        private Texture2D hudHealth2;
         private Texture2D hudHealth;
+        private Texture2D hudGameOver;
 
         Skybox skybox;
         Effect simpleEffect;
@@ -162,23 +162,38 @@ namespace WindowsGame1
             // renderTarget = new RenderTarget2D(GraphicsDevice, 1024, 1024, true, GraphicsDevice.DisplayMode.Format, DepthFormat.Depth24);
             // hud texts
             spriteFont = Content.Load<SpriteFont>("Sprites\\PressXtoInteract");
-            hudTab[6] = Content.Load<Texture2D>("Sprites\\6");
-            hudTab[5] = Content.Load<Texture2D>("Sprites\\5");
-            hudTab[4] = Content.Load<Texture2D>("Sprites\\4");
-            hudTab[3] = Content.Load<Texture2D>("Sprites\\3");
-            hudTab[2] = Content.Load<Texture2D>("Sprites\\2");
-            hudTab[1] = Content.Load<Texture2D>("Sprites\\1");
-            hudTab[0] = Content.Load<Texture2D>("Sprites\\0");
-            hudBloody = Content.Load<Texture2D>("Sprites\\Bloody");
-            hudGameOver = Content.Load<Texture2D>("Sprites\\GameOver");
-            hudMenuGame = Content.Load<Texture2D>("Sprites\\MenuGame");
-            hudMenuMain = Content.Load<Texture2D>("Sprites\\MenuMain");
-            hudPointer = Content.Load<Texture2D>("Sprites\\Pointer");
+
+            hudTab[13] = Content.Load<Texture2D>("Sprites\\Bullets\\gun_add_6");
+            hudTab[12] = Content.Load<Texture2D>("Sprites\\Bullets\\gun_add_5");
+            hudTab[11] = Content.Load<Texture2D>("Sprites\\Bullets\\gun_add_4");
+            hudTab[10] = Content.Load<Texture2D>("Sprites\\Bullets\\gun_add_3");
+            hudTab[9] = Content.Load<Texture2D>("Sprites\\Bullets\\gun_add_2");
+            hudTab[8] = Content.Load<Texture2D>("Sprites\\Bullets\\gun_add_1");
+            hudTab[7] = Content.Load<Texture2D>("Sprites\\Bullets\\gun_add_0");
+            hudTab[6] = Content.Load<Texture2D>("Sprites\\Bullets\\gun_bullet_6");
+            hudTab[5] = Content.Load<Texture2D>("Sprites\\Bullets\\gun_bullet_5");
+            hudTab[4] = Content.Load<Texture2D>("Sprites\\Bullets\\gun_bullet_4");
+            hudTab[3] = Content.Load<Texture2D>("Sprites\\Bullets\\gun_bullet_3");
+            hudTab[2] = Content.Load<Texture2D>("Sprites\\Bullets\\gun_bullet_2");
+            hudTab[1] = Content.Load<Texture2D>("Sprites\\Bullets\\gun_bullet_1");
+            hudTab[0] = Content.Load<Texture2D>("Sprites\\Bullets\\gun");
+
+            hudMenuGame[0] = Content.Load<Texture2D>("Sprites\\GameMenu\\pause_state_0");
+            hudMenuGame[1] = Content.Load<Texture2D>("Sprites\\GameMenu\\pause_back_02");
+            hudMenuGame[2] = Content.Load<Texture2D>("Sprites\\GameMenu\\pause_main_menu_02");
+            hudMenuGame[3] = Content.Load<Texture2D>("Sprites\\GameMenu\\pause_credits_02");
+            hudMenuGame[4] = Content.Load<Texture2D>("Sprites\\GameMenu\\pause_about_02");
+            hudMenuGame[5] = Content.Load<Texture2D>("Sprites\\GameMenu\\pause_exit_02");
+
+            hudPointer = Content.Load<Texture2D>("Sprites\\celownik");
+            //hudGameOver = Content.Load<Texture2D>("Sprites\\GameOver");
+            hudHealth = Content.Load<Texture2D>("Sprites\\health_2px");
+            hudHealth2 = Content.Load<Texture2D>("Sprites\\health_frame");
             hudPoison = Content.Load<Texture2D>("Sprites\\hudPoison");
             hudKey = Content.Load<Texture2D>("Sprites\\hudKey");
             hudText = Content.Load<Texture2D>("Sprites\\hText");
             hudTree = Content.Load<Texture2D>("Sprites\\sadzonka");
-            hudHealth = Content.Load<Texture2D>("Sprites\\HP");
+            
 
             // set all objects to interact with player (Distance)
             playerInteractions = new PlayerInteractions(this, hudTexts, actualScene.getStaticModelsList(), actualScene.getDynamicModelsList(), p);
@@ -355,15 +370,16 @@ namespace WindowsGame1
             hand.Model = handWorldMatrix;
             hand.Draw(camera);
 
-            if (playerInteractions.drawFight)
-            {
+            //if (playerInteractions.drawFight)
+           // {
             hud.drawHud(spriteBatch, hudTab[camera.BulletsAmount], this);
-            hud.drawPointer(spriteBatch, hudPointer, this);
-                hud.drawHealth(spriteBatch, hudHealth, this, camera);
-            }
+            hud.drawHud(spriteBatch, hudPointer, this);
+            hud.drawHud(spriteBatch, hudHealth2, this);
+            hud.drawHealth(spriteBatch, hudHealth, this, camera);
+          //  }
             if (playerInteractions.drawMenu == true)
             {
-                hud.drawHud(spriteBatch, hudMenuGame, this);
+               hud.drawHud(spriteBatch, hudMenuGame[playerInteractions.gMenu], this);
             }
             if (playerInteractions.drawText == true)
             {

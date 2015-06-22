@@ -31,7 +31,7 @@ namespace WindowsGame1
         List<Bullet> listOfBullets;
         private int bulletsAmount;
         public List<StaticModel> equipment = new List<StaticModel>();
-        private int hp = 120;
+        private int hp = 199;
         public Rectangle healthRectangle;
         //Properties
 
@@ -97,7 +97,7 @@ namespace WindowsGame1
             prevMouseState = Mouse.GetState();
             fallingspeed = 0;
             listOfBullets = new List<Bullet>();
-            bulletsAmount = 6;
+            bulletsAmount = 12;
         }
 
         public void setCameraCollision(Scene actualScene)
@@ -323,7 +323,7 @@ namespace WindowsGame1
                 }
 
 
-                healthRectangle = new Rectangle(15, 120, Hp, 20);
+                healthRectangle = new Rectangle(28, 103, Hp, 29);
 
                 base.Update(gameTime);
             }
