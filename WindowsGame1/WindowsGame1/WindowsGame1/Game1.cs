@@ -55,8 +55,11 @@ namespace WindowsGame1
 
         Skybox skybox;
         Effect simpleEffect;
+        Effect simpleEffect1;
+        Effect tmp;
         RasterizerState wireFrameState;
         Mirror mirror;
+        String p;
         Glass glass;
 
         public Game1()
@@ -90,6 +93,7 @@ namespace WindowsGame1
         public void LoadSceneFromXml(string path)
         {
             actualScene.LoadFromXML(path);
+            p = path;
             //if (path.Contains("scene2"))
             //{
             //    var tmp = new List<string>();
@@ -107,7 +111,7 @@ namespace WindowsGame1
                 tmp.Add("Models\\enemy\\enemy_punch");
 
                 actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
-  
+
             }
             mirror = new Mirror(GraphicsDevice, Content.Load<Model>("Models\\lustro"), new Vector3(-10, 0.2f, 1), new Vector3(0), 0.02f, "mirror", "Models\\lustro");
             mirror.SetCustomEffect(Content.Load<Effect>("Effects\\mirror"));
@@ -128,6 +132,8 @@ namespace WindowsGame1
             mirror.RefreshTexture(reflectionMap);
         }
 
+
+
         protected override void LoadContent()
         {
             PresentationParameters pp = GraphicsDevice.PresentationParameters;
@@ -135,7 +141,10 @@ namespace WindowsGame1
             reflectionRenderTarget = new RenderTarget2D(GraphicsDevice, 2048, 2048, true, GraphicsDevice.DisplayMode.Format, DepthFormat.Depth24);
             glassRenderTarget = new RenderTarget2D(GraphicsDevice, 2048, 2048, true, GraphicsDevice.DisplayMode.Format, DepthFormat.Depth24);
             //  actualScene.AddStaticModel("Models\\test", Vector3 nwew(0), new Vector3(0), 1, "test");
-            simpleEffect = Content.Load<Effect>("Effects\\sepia");
+            simpleEffect = Content.Load<Effect>("Effects\\shadows");
+
+           
+            
 
             // simpleEffect.CurrentTechnique = simpleEffect.Techniques["Simplest"];
 
@@ -175,7 +184,7 @@ namespace WindowsGame1
             hudHealth = Content.Load<Texture2D>("Sprites\\HP");
 
             // set all objects to interact with player (Distance)
-            playerInteractions = new PlayerInteractions(this, hudTexts, actualScene.getStaticModelsList(), actualScene.getDynamicModelsList());
+            playerInteractions = new PlayerInteractions(this, hudTexts, actualScene.getStaticModelsList(), actualScene.getDynamicModelsList(), p);
            
             wireFrameState = new RasterizerState()
             {
@@ -185,7 +194,7 @@ namespace WindowsGame1
 
             // camera/player collisions with everything
             camera.setCameraCollision(actualScene);
-           
+
 
         }
 
@@ -210,6 +219,39 @@ namespace WindowsGame1
                 this.Exit();
 
             playerInteractions.catchInteraction(camera, this);
+            if (playerInteractions.pastCondition == true && playerInteractions.onceBool == true)
+            {
+                playerInteractions.backCondition = false;
+                playerInteractions.onceBool = false;
+                simpleEffect = Content.Load<Effect>("Effects\\sepia");
+                if (p.Equals("../../../../scene2.xml"))
+                {
+                    actualScene.unloadContent();
+                    LoadSceneFromXml("../../../../scene2.xml");
+                }
+                if (p.Equals("../../../../scene.xml"))
+                {
+                    actualScene.unloadContent();
+                    LoadSceneFromXml("../../../../scene.xml");
+                }
+                
+            }
+            if (playerInteractions.pastCondition == false && playerInteractions.onceBool == true)
+            {
+                playerInteractions.backCondition = false;
+                playerInteractions.onceBool = false;
+                simpleEffect = Content.Load<Effect>("Effects\\shadows");
+                if (p.Equals("../../../../scene2.xml"))
+                {
+                    actualScene.unloadContent();
+                    LoadSceneFromXml("../../../../scene2.xml");
+                }
+                if (p.Equals("../../../../scene.xml"))
+                {
+                    actualScene.unloadContent();
+                    LoadSceneFromXml("../../../../scene.xml");
+                }
+            }
 
             actualScene.Update(gameTime);
             hand.Update(gameTime);
@@ -242,8 +284,8 @@ namespace WindowsGame1
             GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
             GraphicsDevice.RasterizerState = RasterizerState.CullNone;
 
-            Vector3 symetrical = new Vector3(2 * mirror.Position.X - camera.Position.X, -camera.Position.Y , 2 * mirror.Position.Z - camera.Position.Z);
-            Vector3 mirrorCameraPos = new Vector3(mirror.Position.X, -mirror.Position.Y , mirror.Position.Z);
+            Vector3 symetrical = new Vector3(2 * mirror.Position.X - camera.Position.X, camera.Position.Y , 2 * mirror.Position.Z - camera.Position.Z);
+            Vector3 mirrorCameraPos = new Vector3(mirror.Position.X, mirror.Position.Y , mirror.Position.Z);
 
             Vector3 up = Vector3.Cross(symetrical - mirrorCameraPos, camera.Position );
 
@@ -366,6 +408,7 @@ namespace WindowsGame1
             }
 
 
+
             for (int i = 0; i < camera.equipment.Count; i++)
             {
                 if (camera.equipment[i].Name == "klucz")
@@ -401,8 +444,9 @@ namespace WindowsGame1
         }
 
 
-        Vector3 tempParticleVector1 = new Vector3(-13f, 5f, 6f);
-        Vector3 tempParticleVector2 = new Vector3(46f, 0f, 10f);
+        Vector3 tempParticleVector1 = new Vector3(-6.5f, 5.4f, 1.8f);
+        Vector3 tempParticleVector2 = new Vector3(9f, 5.4f, 1.8f);
+        Vector3 tempParticleVector3 = new Vector3(46f, 0f, 10f);
 
         void UpdateTimeParticle()
         {
@@ -411,7 +455,8 @@ namespace WindowsGame1
             // Create a number of time particles, randomly positioned around a circle.
             for (int i = 0; i < timeParticlesPerFrame; i++)
             {
-                timeParticles.AddParticle(tempParticleVector1, Vector3.Zero); // trucizna
+                timeParticles.AddParticle(tempParticleVector1, Vector3.Zero); // wnetrze
+                timeParticles.AddParticle(tempParticleVector1, Vector3.Zero); // wnetrze
                 timeParticles.AddParticle(tempParticleVector2, Vector3.Zero); // sadzonka
             }
 

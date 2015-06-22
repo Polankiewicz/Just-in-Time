@@ -82,31 +82,27 @@ namespace Editor
          
 
             var listNames = new List<string>();
-            listNames.Add("Models\\scan");
-            listNames.Add("Models\\7pieter");
             listNames.Add("Models\\shop");
-            listNames.Add("Models\\sidewalk_grass");
             listNames.Add("Models\\2klatki-13pieter");
             listNames.Add("Models\\2klatki-3pietra");
             listNames.Add("Models\\2klatki-7pieter");
             listNames.Add("Models\\3klatki-5pieter");
-            listNames.Add("Models\\metal_fence");
             listNames.Add("Models\\street_dumbster");
             listNames.Add("Models\\street_lantern");
             listNames.Add("Models\\trigger1");
-            listNames.Add("Models\\test");
             listNames.Add("Models\\blok-wnetrze");
             listNames.Add("Models\\klucz");
             listNames.Add("Models\\dwie_strony");
             listNames.Add("Models\\korytarz_fixed");
             listNames.Add("Models\\poison_box");
             listNames.Add("Models\\metal_fence_v3");
-            listNames.Add("Models\\powierzchnia");
             listNames.Add("Models\\sadzonka2");
             listNames.Add("Models\\drzewo_v2");
             listNames.Add("Models\\ziemia");
             listNames.Add("Models\\parking");
             listNames.Add("Models\\chodnik");
+            listNames.Add("Models\\miska");
+            listNames.Add("Models\\trigger2");
             wireFrameState = new RasterizerState()
             {
                 FillMode = FillMode.WireFrame,

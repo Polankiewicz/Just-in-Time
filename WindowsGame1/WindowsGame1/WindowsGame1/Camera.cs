@@ -290,12 +290,14 @@ namespace WindowsGame1
                     {
                         if (bulletsAmount > 0)
                         {
-                            if(listOfBullets.Count == 0) // shooting only when previous bullet was destroyed
+                            if (listOfBullets.Count == 0) // shooting only when previous bullet was destroyed
                             {
                                 listOfBullets.Add(new Bullet(Position));
                                 bulletsAmount--;
                             }
                         }
+                        else
+                            bulletsAmount = 6;
                     }
 
                     // update bullet position

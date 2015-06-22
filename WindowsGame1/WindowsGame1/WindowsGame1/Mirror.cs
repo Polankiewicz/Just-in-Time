@@ -20,9 +20,9 @@ namespace WindowsGame1
         public Material Material { get; set; }
         String objectName;
         Vector3 rotationVector;
-       
+
         public Texture2D reflectionMap { get; set; }
-      
+
         public Model fbxModel
         {
             get { return model; }
@@ -79,14 +79,14 @@ namespace WindowsGame1
             this.offset = position;
             this.rotationVector = rotationDegrees;
             this.Material = new Material();
-            this.reflectionMap = new Texture2D(device,2048,2048);
+            this.reflectionMap = new Texture2D(device, 2048, 2048);
             lightPower = 2f;
             ambientPower = 0.2f;
             lightPos = new Vector3(-20, 20, -20);
             lightPower = 1.2f;
             GenerateTags();
         }
-   
+
         public void SetCustomEffect(Effect effect, bool force = false)
         {
             UpdateLightData();
@@ -97,22 +97,22 @@ namespace WindowsGame1
 
                     MeshTag tag = ((MeshTag)part.Tag);
                     Material.SetEffectParameters(effect);
-                    
-                        toSet.SetEffectParameter("xTexture", reflectionMap);
 
-                        toSet.SetEffectParameter("TextureEnabled", true);
+                    toSet.SetEffectParameter("xTexture", reflectionMap);
 
-                        toSet.SetEffectParameter("DiffuseColor", tag.Color);
-                        toSet.SetEffectParameter("SpecularPower", tag.SpecularPower);
+                    toSet.SetEffectParameter("TextureEnabled", true);
 
-                        toSet.Parameters["xAmbient"].SetValue(ambientPower);
-                      
+                    toSet.SetEffectParameter("DiffuseColor", tag.Color);
+                    toSet.SetEffectParameter("SpecularPower", tag.SpecularPower);
 
-                        part.Effect = toSet;
-                    }
-            
+                    toSet.Parameters["xAmbient"].SetValue(ambientPower);
 
-                
+
+                    part.Effect = toSet;
+                }
+
+
+
         }
         public void RefreshTexture(Texture2D tex)
         {
@@ -139,12 +139,12 @@ namespace WindowsGame1
                         * Matrix.CreateRotationY(MathHelper.ToRadians(rotationVector.Y))
                         * Matrix.CreateRotationZ(MathHelper.ToRadians(rotationVector.Z));
 
-                        
-                        Matrix worldMatrix = transforms[mesh.ParentBone.Index] * this.rotation * Matrix.CreateScale(Scale) * Matrix.CreateTranslation(offset);
 
-                        effect.SetEffectParameter("xWorld", worldMatrix);
-                        effect.SetEffectParameter("xWorldViewProjection", transforms[mesh.ParentBone.Index] * this.rotation * Matrix.CreateScale(Scale) * Matrix.CreateTranslation(offset) * camera.View * camera.Projection);
-                       
+                    Matrix worldMatrix = transforms[mesh.ParentBone.Index] * this.rotation * Matrix.CreateScale(Scale) * Matrix.CreateTranslation(offset);
+
+                    effect.SetEffectParameter("xWorld", worldMatrix);
+                    effect.SetEffectParameter("xWorldViewProjection", transforms[mesh.ParentBone.Index] * this.rotation * Matrix.CreateScale(Scale) * Matrix.CreateTranslation(offset) * camera.View * camera.Projection);
+
                 }
 
                 mesh.Draw();

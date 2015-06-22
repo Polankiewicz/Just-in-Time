@@ -15,19 +15,25 @@ namespace WindowsGame1
         List<DynamicModel> dynamicModelsList;
         Game game;
         HudTexts hudTexts;
+        String p;
         private KeyboardState currentKeyboardState;
         private KeyboardState lastKeyboardState;
-        public bool drawMenu;
-        public bool drawText;
-        public bool drawFight;
+        public bool drawMenu = false;
+        public bool drawText = false;
+        public bool drawFight = false;
+        public bool backCondition = false;
+        public bool pastCondition = false;
+        public bool onceBool = false;
+  
        
 
-        public PlayerInteractions(Game game, HudTexts hudTexts, List<StaticModel> staticModelsList, List<DynamicModel> dynamicModelsList)
+        public PlayerInteractions(Game game, HudTexts hudTexts, List<StaticModel> staticModelsList, List<DynamicModel> dynamicModelsList, String p)
         {
             this.staticModelsList = staticModelsList;
             this.dynamicModelsList = dynamicModelsList;
             this.game = game;
             this.hudTexts = hudTexts;
+            this.p = p;
         }
 
         public void catchInteraction(Camera camera, Game1 g)
@@ -37,7 +43,6 @@ namespace WindowsGame1
 
             if (currentKeyboardState.IsKeyDown(Keys.Escape) && (lastKeyboardState.IsKeyUp(Keys.Escape)))
             {
-                Console.WriteLine("esc");
                 if (drawMenu == false)
                 {
                     drawMenu = true;
@@ -45,6 +50,23 @@ namespace WindowsGame1
                 else
                 {
                     drawMenu = false;
+                }
+            }
+
+            if (currentKeyboardState.IsKeyDown(Keys.B) && (lastKeyboardState.IsKeyUp(Keys.B)))
+            {
+                if(pastCondition == true)
+                {
+                    pastCondition = false;
+                    onceBool = true;
+                    return;
+                }
+                if(pastCondition == false && backCondition == true)
+                {
+                    pastCondition = true;
+                    backCondition = false;
+                    onceBool = true;
+                    return;
                 }
             }
 
@@ -69,7 +91,7 @@ namespace WindowsGame1
 
                 }
 
-                if (staticModelsList[i].Name == "shop" && Vector3.Distance(staticModelsList[i].Position, camera.Position) < 1.5f)
+                if (staticModelsList[i].Name == "miska" && Vector3.Distance(staticModelsList[i].Position, camera.Position) < 1.5f)
                 {
                     for (int j = 0; j < camera.equipment.Count; j++)
                     {
@@ -109,6 +131,11 @@ namespace WindowsGame1
                         drawText = false;
                     }
 
+                }
+
+                if (staticModelsList[i].Name == "trigger2" && Vector3.Distance(staticModelsList[i].Position, camera.Position) < 2f)
+                {
+                    backCondition = true;
                 }
             } 
 
