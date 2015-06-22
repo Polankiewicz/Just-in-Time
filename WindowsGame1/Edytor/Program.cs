@@ -11,7 +11,7 @@ namespace Editor
         [STAThread]
         static void Main(string[] args)
         {
-            bool useEditor = true;
+            bool useEditor = false;
             if (useEditor)
             {
                 EditorForm mainForm = new EditorForm();

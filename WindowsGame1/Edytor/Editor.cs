@@ -102,6 +102,7 @@ namespace Editor
             listNames.Add("Models\\parking");
             listNames.Add("Models\\chodnik");
             listNames.Add("Models\\miska");
+            listNames.Add("Models\\trigger2");
             wireFrameState = new RasterizerState()
             {
                 FillMode = FillMode.WireFrame,

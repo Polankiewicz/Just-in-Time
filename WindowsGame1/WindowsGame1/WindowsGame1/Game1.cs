@@ -54,8 +54,11 @@ namespace WindowsGame1
 
         Skybox skybox;
         Effect simpleEffect;
+        Effect simpleEffect1;
+        Effect tmp;
         RasterizerState wireFrameState;
         Mirror mirror;
+        String p;
 
 
         public Game1()
@@ -89,6 +92,7 @@ namespace WindowsGame1
         public void LoadSceneFromXml(string path)
         {
             actualScene.LoadFromXML(path);
+            p = path;
             //if (path.Contains("scene2"))
             //{
             //    var tmp = new List<string>();
@@ -126,13 +130,18 @@ namespace WindowsGame1
             mirror.RefreshTexture(reflectionMap);
         }
 
+
+
         protected override void LoadContent()
         {
             PresentationParameters pp = GraphicsDevice.PresentationParameters;
             renderTarget = new RenderTarget2D(GraphicsDevice, 4096, 4096, true, GraphicsDevice.DisplayMode.Format, DepthFormat.Depth24);
             reflectionRenderTarget = new RenderTarget2D(GraphicsDevice, 2048, 2048, true, GraphicsDevice.DisplayMode.Format, DepthFormat.Depth24);
             //  actualScene.AddStaticModel("Models\\test", Vector3 nwew(0), new Vector3(0), 1, "test");
-            simpleEffect = Content.Load<Effect>("Effects\\sepia");
+            simpleEffect = Content.Load<Effect>("Effects\\shadows");
+            
+           
+            
 
             // simpleEffect.CurrentTechnique = simpleEffect.Techniques["Simplest"];
 
@@ -172,7 +181,7 @@ namespace WindowsGame1
             hudHealth = Content.Load<Texture2D>("Sprites\\HP");
 
             // set all objects to interact with player (Distance)
-            playerInteractions = new PlayerInteractions(this, hudTexts, actualScene.getStaticModelsList(), actualScene.getDynamicModelsList());
+            playerInteractions = new PlayerInteractions(this, hudTexts, actualScene.getStaticModelsList(), actualScene.getDynamicModelsList(), p);
            
             wireFrameState = new RasterizerState()
             {
@@ -207,6 +216,33 @@ namespace WindowsGame1
                 this.Exit();
 
             playerInteractions.catchInteraction(camera, this);
+            if (playerInteractions.pastCondition == true && playerInteractions.onceBool == true)
+            {
+                playerInteractions.onceBool = false;
+                simpleEffect = Content.Load<Effect>("Effects\\sepia");
+                if (p.Equals("../../../../scene2.xml"))
+                {
+                    LoadSceneFromXml("../../../../scene2.xml");
+                }
+                if (p.Equals("../../../../scene.xml"))
+                {
+                    LoadSceneFromXml("../../../../scene.xml");
+                }
+                
+            }
+            if (playerInteractions.pastCondition == false && playerInteractions.onceBool == true)
+            {
+                playerInteractions.onceBool = false;
+                simpleEffect = Content.Load<Effect>("Effects\\shadows");
+                if (p.Equals("../../../../scene2.xml"))
+                {
+                    LoadSceneFromXml("../../../../scene2.xml");
+                }
+                if (p.Equals("../../../../scene.xml"))
+                {
+                    LoadSceneFromXml("../../../../scene.xml");
+                }
+            }
 
             actualScene.Update(gameTime);
             hand.Update(gameTime);
@@ -327,6 +363,7 @@ namespace WindowsGame1
             {
                 hud.drawHud(spriteBatch, hudText, this);
             }
+            
 
 
             for (int i = 0; i < camera.equipment.Count; i++)
