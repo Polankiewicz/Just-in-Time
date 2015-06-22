@@ -491,6 +491,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\glass.FBX">
+      <Name>glass</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Effects\glass.fx">
+      <Name>glass</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Models\trigger2.FBX">
       <Name>trigger2</Name>
       <Importer>FbxImporter</Importer>

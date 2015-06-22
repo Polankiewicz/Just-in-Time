@@ -13,7 +13,7 @@ namespace WindowsGame1
         private Vector3 cameraPosition;
         private Vector3 cameraRotation;
         private float cameraSpeed;
-        private Vector3 cameraLookAt;
+        public Vector3 cameraLookAt { get; set; }
         //mouse
         private Vector3 mouseRotationBuffer;
         private Vector3 holderForMouseRotation;

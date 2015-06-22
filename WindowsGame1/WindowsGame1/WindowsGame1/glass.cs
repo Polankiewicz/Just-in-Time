@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 namespace WindowsGame1
 {
-    public class Mirror
+    public class Glass
     {
 
 
@@ -21,7 +21,7 @@ namespace WindowsGame1
         String objectName;
         Vector3 rotationVector;
 
-        public Texture2D reflectionMap { get; set; }
+        public Texture2D glassMap { get; set; }
 
         public Model fbxModel
         {
@@ -37,7 +37,7 @@ namespace WindowsGame1
         public Vector3 Position
         {
             get { return offset; }
-            set { offset = value; }
+          
         }
         public Vector3 Rotation
         {
@@ -69,7 +69,7 @@ namespace WindowsGame1
         }
         public float Scale { get; set; }
         public string path { get; set; }
-        public Mirror(GraphicsDevice device, Model model, Vector3 position, Vector3 rotationDegrees, float scale, string objectName, string path)
+        public Glass(GraphicsDevice device, Model model, Vector3 position, Vector3 rotationDegrees, float scale, string objectName, string path)
         {
             this.device = device;
             this.model = model;
@@ -79,7 +79,7 @@ namespace WindowsGame1
             this.offset = position;
             this.rotationVector = rotationDegrees;
             this.Material = new Material();
-            this.reflectionMap = new Texture2D(device, 2048, 2048);
+            this.glassMap = new Texture2D(device, 2048, 2048);
             lightPower = 2f;
             ambientPower = 0.2f;
             lightPos = new Vector3(-20, 20, -20);
@@ -98,13 +98,11 @@ namespace WindowsGame1
                     MeshTag tag = ((MeshTag)part.Tag);
                     Material.SetEffectParameters(effect);
 
-                    toSet.SetEffectParameter("xTexture", reflectionMap);
+                    toSet.SetEffectParameter("xTexture", glassMap);
 
                     toSet.SetEffectParameter("TextureEnabled", true);
 
-                    toSet.SetEffectParameter("DiffuseColor", tag.Color);
-                    toSet.SetEffectParameter("SpecularPower", tag.SpecularPower);
-
+                    
                     toSet.Parameters["xAmbient"].SetValue(ambientPower);
 
 
@@ -144,7 +142,7 @@ namespace WindowsGame1
 
                     effect.SetEffectParameter("xWorld", worldMatrix);
                     effect.SetEffectParameter("xWorldViewProjection", transforms[mesh.ParentBone.Index] * this.rotation * Matrix.CreateScale(Scale) * Matrix.CreateTranslation(offset) * camera.View * camera.Projection);
-
+                    effect.Parameters["xLightsWorldViewProjection"].SetValue(worldMatrix * lightsViewProjectionMatrix);
                 }
 
                 mesh.Draw();

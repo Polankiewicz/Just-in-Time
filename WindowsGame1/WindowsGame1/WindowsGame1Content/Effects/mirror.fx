@@ -42,13 +42,13 @@ PixelToFrame OurFirstPixelShader(VertexToPixel PSIn)
 {
 	PixelToFrame Output = (PixelToFrame)0;
 
-	
+
 
 	PSIn.TexCoords.y--;
 	float4 baseColor = tex2D(TextureSampler, PSIn.TexCoords);
-		baseColor.r *=0.8;
+		baseColor.r *= 0.8;
 	baseColor.g *= 0.8;
-		Output.Color = baseColor;
+	Output.Color = baseColor;
 
 	return Output;
 }
