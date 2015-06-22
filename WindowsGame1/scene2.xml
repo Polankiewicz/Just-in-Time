@@ -77,7 +77,7 @@
       </Rotation>
     </SceneSaveData>
     <SceneSaveData>
-      <Scale>1</Scale>
+      <Scale>0.00001</Scale>
       <Name>trigger2</Name>
       <path>Models\trigger2</path>
       <Position>
@@ -92,7 +92,7 @@
       </Rotation>
     </SceneSaveData>
     <SceneSaveData>
-      <Scale>1</Scale>
+      <Scale>0.00001</Scale>
       <Name>trigger2</Name>
       <path>Models\trigger2</path>
       <Position>

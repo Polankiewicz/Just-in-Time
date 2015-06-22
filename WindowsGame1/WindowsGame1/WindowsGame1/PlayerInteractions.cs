@@ -133,7 +133,7 @@ namespace WindowsGame1
 
                 }
 
-                if (staticModelsList[i].Name == "trigger2" && Vector3.Distance(staticModelsList[i].Position, camera.Position) < 5f)
+                if (staticModelsList[i].Name == "trigger2" && Vector3.Distance(staticModelsList[i].Position, camera.Position) < 2f)
                 {
                     backCondition = true;
                 }

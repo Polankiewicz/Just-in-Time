@@ -218,28 +218,34 @@ namespace WindowsGame1
             playerInteractions.catchInteraction(camera, this);
             if (playerInteractions.pastCondition == true && playerInteractions.onceBool == true)
             {
+                playerInteractions.backCondition = false;
                 playerInteractions.onceBool = false;
                 simpleEffect = Content.Load<Effect>("Effects\\sepia");
                 if (p.Equals("../../../../scene2.xml"))
                 {
+                    actualScene.unloadContent();
                     LoadSceneFromXml("../../../../scene2.xml");
                 }
                 if (p.Equals("../../../../scene.xml"))
                 {
+                    actualScene.unloadContent();
                     LoadSceneFromXml("../../../../scene.xml");
                 }
                 
             }
             if (playerInteractions.pastCondition == false && playerInteractions.onceBool == true)
             {
+                playerInteractions.backCondition = false;
                 playerInteractions.onceBool = false;
                 simpleEffect = Content.Load<Effect>("Effects\\shadows");
                 if (p.Equals("../../../../scene2.xml"))
                 {
+                    actualScene.unloadContent();
                     LoadSceneFromXml("../../../../scene2.xml");
                 }
                 if (p.Equals("../../../../scene.xml"))
                 {
+                    actualScene.unloadContent();
                     LoadSceneFromXml("../../../../scene.xml");
                 }
             }
@@ -401,8 +407,9 @@ namespace WindowsGame1
         }
 
 
-        Vector3 tempParticleVector1 = new Vector3(-13f, 5f, 6f);
-        Vector3 tempParticleVector2 = new Vector3(46f, 0f, 10f);
+        Vector3 tempParticleVector1 = new Vector3(-6.5f, 5.4f, 1.8f);
+        Vector3 tempParticleVector2 = new Vector3(9f, 5.4f, 1.8f);
+        Vector3 tempParticleVector3 = new Vector3(46f, 0f, 10f);
 
         void UpdateTimeParticle()
         {
@@ -411,7 +418,8 @@ namespace WindowsGame1
             // Create a number of time particles, randomly positioned around a circle.
             for (int i = 0; i < timeParticlesPerFrame; i++)
             {
-                timeParticles.AddParticle(tempParticleVector1, Vector3.Zero); // trucizna
+                timeParticles.AddParticle(tempParticleVector1, Vector3.Zero); // wnetrze
+                timeParticles.AddParticle(tempParticleVector1, Vector3.Zero); // wnetrze
                 timeParticles.AddParticle(tempParticleVector2, Vector3.Zero); // sadzonka
             }
 
