@@ -10,7 +10,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-
 namespace WindowsGame1
 {
     /// <summary>
@@ -61,6 +60,12 @@ namespace WindowsGame1
         String p;
         Glass glass;
 
+        public Video vid;
+        public VideoPlayer vidPlayer;
+        public Texture2D vidTexture;
+        public Rectangle vidRectangle;
+        public int level = 0;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -85,7 +90,7 @@ namespace WindowsGame1
             effect = new BasicEffect(GraphicsDevice);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             actualScene = new Scene(Content, GraphicsDevice, camera);
-
+            vidPlayer = new VideoPlayer();
 
             base.Initialize();
         }
@@ -188,6 +193,13 @@ namespace WindowsGame1
             hudMenuGame[4] = Content.Load<Texture2D>("Sprites\\GameMenu\\pause_about_02");
             hudMenuGame[5] = Content.Load<Texture2D>("Sprites\\GameMenu\\pause_exit_02");
 
+            vid = Content.Load<Video>("Sprites\\MainMenu\\MainMenu");
+            vidRectangle = new Rectangle(GraphicsDevice.Viewport.X, GraphicsDevice.Viewport.Y, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+
+            if (drawMainMenu == true)
+            {
+                vidPlayer.Play(vid);
+            }
             hudMenuMain[0] = Content.Load<Texture2D>("Sprites\\MainMenu\\0");
             hudMenuMain[1] = Content.Load<Texture2D>("Sprites\\MainMenu\\1");
             hudMenuMain[2] = Content.Load<Texture2D>("Sprites\\MainMenu\\2");
@@ -431,6 +443,17 @@ namespace WindowsGame1
 
             if (drawMainMenu == true)
             {
+                vidTexture = vidPlayer.GetTexture();
+
+                spriteBatch.Begin();
+                spriteBatch.Draw(vidTexture, vidRectangle, Color.White);
+                if(vidPlayer.State == MediaState.Stopped)
+                {
+                    vidPlayer.Play(vid);
+                }
+                 
+                spriteBatch.End();
+
                 hud.drawHud(spriteBatch, hudMenuMain[playerInteractions.mMenu], this);
             }
 
