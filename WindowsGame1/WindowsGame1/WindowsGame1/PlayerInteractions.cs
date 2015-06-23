@@ -116,7 +116,7 @@ namespace WindowsGame1
                 g.Exit();
             }
 
-            if (currentKeyboardState.IsKeyDown(Keys.B) && (lastKeyboardState.IsKeyUp(Keys.B)))
+            if ((currentKeyboardState.IsKeyDown(Keys.B) && (lastKeyboardState.IsKeyUp(Keys.B))) || (GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed))
             {
                 if(pastCondition == true)
                 {
