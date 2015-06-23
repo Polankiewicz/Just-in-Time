@@ -22,9 +22,9 @@ namespace WindowsGame1
 
         public Bullet(Vector3 center)
         {
-            radius = 1.1f; // 0.1f
+            radius = 2.0f; // 0.1f
             speed = 5f;
-            distance = 55f; 
+            distance = 100f; 
 
             _boundingSphere = new BoundingSphere(center, radius);
         }
