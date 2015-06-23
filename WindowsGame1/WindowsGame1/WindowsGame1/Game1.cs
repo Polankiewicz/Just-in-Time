@@ -394,8 +394,11 @@ namespace WindowsGame1
             // CreateDrawableBoxes();
             //foreach (var x in actualScene.boundingBoxesList)
             //    x.Draw(camera);
-            DrawReflectionMap();
-            DrawGlassMap();
+            if (p.Equals("../../../../scene.xml"))
+            {
+                DrawReflectionMap();
+                DrawGlassMap();
+            }
             // fixing GraphicsDevice after spriteBatch.Begin() method
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             GraphicsDevice.BlendState = BlendState.Opaque;
@@ -412,8 +415,11 @@ namespace WindowsGame1
            
 
             actualScene.Draw();
-            glass.Draw(camera);
-            mirror.Draw(camera);
+            if (p.Equals("../../../../scene.xml"))
+            {
+                glass.Draw(camera);
+                mirror.Draw(camera);
+            }
          //   hand.Draw(camera);
 
             cameraWorldMartix = Matrix.Invert(camera.View);
