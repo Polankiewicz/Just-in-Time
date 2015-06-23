@@ -1052,21 +1052,6 @@
       </Rotation>
     </SceneSaveData>
     <SceneSaveData>
-      <Scale>0.013</Scale>
-      <Name>sadzonka2</Name>
-      <path>Models\sadzonka2</path>
-      <Position>
-        <X>46</X>
-        <Y>0</Y>
-        <Z>10</Z>
-      </Position>
-      <Rotation>
-        <X>0</X>
-        <Y>0</Y>
-        <Z>0</Z>
-      </Rotation>
-    </SceneSaveData>
-    <SceneSaveData>
       <Scale>0.1</Scale>
       <Name>Models\trigger1</Name>
       <path>Models\trigger1</path>
@@ -1082,7 +1067,7 @@
       </Rotation>
     </SceneSaveData>
     <SceneSaveData>
-      <Scale>1</Scale>
+      <Scale>0.00001</Scale>
       <Name>trigger2</Name>
       <path>Models\trigger2</path>
       <Position>

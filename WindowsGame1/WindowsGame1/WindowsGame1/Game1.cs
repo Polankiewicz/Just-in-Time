@@ -283,6 +283,7 @@ namespace WindowsGame1
                 {
                     actualScene.unloadContent();
                     LoadSceneFromXml("../../../../scene.xml");
+                    actualScene.AddStaticModel("Models\\sadzonka2", new Vector3(46f, 0f, 10f), new Vector3(0), 0.0013f, "sadzonka2");
                 }
             }
 
@@ -495,7 +496,7 @@ namespace WindowsGame1
 
         Vector3 tempParticleVector1 = new Vector3(-6.5f, 5.4f, 1.8f);
         Vector3 tempParticleVector2 = new Vector3(9f, 5.4f, 1.8f);
-        Vector3 tempParticleVector3 = new Vector3(46f, 0f, 10f);
+        Vector3 tempParticleVector3 = new Vector3(44f, 0f, 10f);
 
         void UpdateTimeParticle()
         {
@@ -505,8 +506,8 @@ namespace WindowsGame1
             for (int i = 0; i < timeParticlesPerFrame; i++)
             {
                 timeParticles.AddParticle(tempParticleVector1, Vector3.Zero); // wnetrze
-                timeParticles.AddParticle(tempParticleVector1, Vector3.Zero); // wnetrze
-                timeParticles.AddParticle(tempParticleVector2, Vector3.Zero); // sadzonka
+                timeParticles.AddParticle(tempParticleVector2, Vector3.Zero); // wnetrze
+                timeParticles.AddParticle(tempParticleVector3, Vector3.Zero); // sadzonka
             }
 
         }
