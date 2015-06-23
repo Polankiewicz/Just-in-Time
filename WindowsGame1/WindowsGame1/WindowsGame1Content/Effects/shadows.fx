@@ -160,8 +160,11 @@ SScenePixelToFrame ShadowedScenePixelShader(SSceneVertexToPixel PSIn)
 	}
 
 	float4 baseColor = tex2D(TextureSampler, PSIn.TexCoords);
+		
 		Output.Color = baseColor*(diffuseLightingFactor + xAmbient);
-
+	Output.Color.r += 0.3;
+	Output.Color.g += 0.3;
+	Output.Color.b += 0.3;
 	return Output;
 }
 
