@@ -119,7 +119,7 @@ namespace WindowsGame1
             }
             mirror = new Mirror(GraphicsDevice, Content.Load<Model>("Models\\lustro"), new Vector3(-10, 0.2f, 1), new Vector3(0), 0.02f, "mirror", "Models\\lustro");
             mirror.SetCustomEffect(Content.Load<Effect>("Effects\\mirror"));
-            glass = new Glass(GraphicsDevice, Content.Load<Model>("Models\\glass"), new Vector3(-10, -0.4f, -2), new Vector3(0), 0.06f, "glass", "Models\\glass");
+            glass = new Glass(GraphicsDevice, Content.Load<Model>("Models\\glass"), new Vector3(-7.5f, -0.3f, -2), new Vector3(0,0,-10f), 0.06f, "glass", "Models\\glass");
             glass.SetCustomEffect(Content.Load<Effect>("Effects\\glass"));
             foreach (StaticModel m in actualScene.staticModelsList)
             {
@@ -143,7 +143,7 @@ namespace WindowsGame1
             PresentationParameters pp = GraphicsDevice.PresentationParameters;
             renderTarget = new RenderTarget2D(GraphicsDevice, 4096, 4096, true, GraphicsDevice.DisplayMode.Format, DepthFormat.Depth24);
             reflectionRenderTarget = new RenderTarget2D(GraphicsDevice, 2048, 2048, true, GraphicsDevice.DisplayMode.Format, DepthFormat.Depth24);
-            glassRenderTarget = new RenderTarget2D(GraphicsDevice, 2048, 2048, true, GraphicsDevice.DisplayMode.Format, DepthFormat.Depth24);
+            glassRenderTarget = new RenderTarget2D(GraphicsDevice, 512, 512, true, GraphicsDevice.DisplayMode.Format, DepthFormat.Depth24);
             //  actualScene.AddStaticModel("Models\\test", Vector3 nwew(0), new Vector3(0), 1, "test");
             simpleEffect = Content.Load<Effect>("Effects\\shadows");
 
@@ -366,7 +366,7 @@ namespace WindowsGame1
                     x.Draw(glassViewMatrix, Matrix.CreatePerspectiveFieldOfView(
                 MathHelper.PiOver4,
                 GraphicsDevice.Viewport.AspectRatio,
-                0.1f,
+                1f,
                 100.0f), "ShadowedScene");
                 }
             }
