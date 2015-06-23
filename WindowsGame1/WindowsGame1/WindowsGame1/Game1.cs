@@ -143,7 +143,7 @@ namespace WindowsGame1
             PresentationParameters pp = GraphicsDevice.PresentationParameters;
             renderTarget = new RenderTarget2D(GraphicsDevice, 4096, 4096, true, GraphicsDevice.DisplayMode.Format, DepthFormat.Depth24);
             reflectionRenderTarget = new RenderTarget2D(GraphicsDevice, 2048, 2048, true, GraphicsDevice.DisplayMode.Format, DepthFormat.Depth24);
-            //glassRenderTarget = new RenderTarget2D(GraphicsDevice, 2048, 2048, true, GraphicsDevice.DisplayMode.Format, DepthFormat.Depth24);
+            glassRenderTarget = new RenderTarget2D(GraphicsDevice, 2048, 2048, true, GraphicsDevice.DisplayMode.Format, DepthFormat.Depth24);
             //  actualScene.AddStaticModel("Models\\test", Vector3 nwew(0), new Vector3(0), 1, "test");
             simpleEffect = Content.Load<Effect>("Effects\\shadows");
 
@@ -347,7 +347,7 @@ namespace WindowsGame1
             //stream.Close();
 
         }
-        /*void DrawGlassMap()
+        void DrawGlassMap()
         {
             GraphicsDevice.SetRenderTarget(glassRenderTarget);
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
@@ -355,12 +355,12 @@ namespace WindowsGame1
             GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
             GraphicsDevice.RasterizerState = RasterizerState.CullNone;
            
-            Matrix glassViewMatrix = Matrix.CreateLookAt(camera.Position, glass.Position, Vector3.Up);
-            //Matrix glassViewMatrix = camera.View;
-            //glassViewMatrix.Translation += camera.View.Forward * Vector3.Distance(glass.Position, camera.Position);
+           // Matrix glassViewMatrix = Matrix.CreateLookAt(camera.Position, glass.Position, Vector3.Up);
+            Matrix glassViewMatrix = camera.View;
+            glassViewMatrix.Translation += camera.View.Forward * Vector3.Distance(glass.Position, camera.Position);
             foreach (var x in actualScene.staticModelsList)
             {
-                if (Vector3.Distance(mirror.Position, x.Position) < 25)
+                if (Vector3.Distance(mirror.Position, x.Position) < 10)
                 {
                     x.SetCustomEffect(simpleEffect, false);
                     x.Draw(glassViewMatrix, Matrix.CreatePerspectiveFieldOfView(
@@ -379,7 +379,7 @@ namespace WindowsGame1
             //reflectionRenderTarget.SaveAsPng(stream, 2048, 2048);
             //stream.Close();
 
-        }*/
+        }
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -395,7 +395,7 @@ namespace WindowsGame1
             //foreach (var x in actualScene.boundingBoxesList)
             //    x.Draw(camera);
             DrawReflectionMap();
-            //DrawGlassMap();
+            DrawGlassMap();
             // fixing GraphicsDevice after spriteBatch.Begin() method
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             GraphicsDevice.BlendState = BlendState.Opaque;
@@ -412,7 +412,7 @@ namespace WindowsGame1
            
 
             actualScene.Draw();
-            //glass.Draw(camera);
+            glass.Draw(camera);
             mirror.Draw(camera);
          //   hand.Draw(camera);
 
