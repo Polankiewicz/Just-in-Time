@@ -305,9 +305,19 @@ namespace WindowsGame1
                     {
                         // TODO: przeniesc to do klasy Bullet pod jakas metode i przerobic na konkretne strzelanie tam gdzie sie paczy gracz
                         // i sie zamieni ciagle tworzenie wektora na jakiegos tam stalego bo pamiec :P
+                        float LookAtX = cameraLookAt.X;
+
+                        if (Rotation.Y < -1.7f || Rotation.Y > 1.7f)
+                            LookAtX = -LookAtX;
+
                         BoundingSphere xxx = listOfBullets[i].boundingSphere;
-                        xxx.Center += new Vector3(0f, 0f, 5.0f);
+
+                        xxx.Center.Z += 10 * dt * Rotation.X * LookAtX;
+                        xxx.Center.X += 10 * dt * Rotation.Y * cameraLookAt.Y;
+                        xxx.Center.Y = Position.Y;
                         listOfBullets[i].boundingSphere = xxx;
+
+                        //Position = listOfBullets[i].boundingSphere.Center;
                     }
 
                     // check for bullet collision
@@ -318,7 +328,7 @@ namespace WindowsGame1
                     {
                         if (listOfBullets[i].checkIfBulletIsTooFarAway(Position))
                             listOfBullets.RemoveAt(i);
-                        //throw new Exception("Tak szybko niszczy szczala");
+                        //throw new Exception("cameraLookAt " + Rotation);
                     }
                 }
 

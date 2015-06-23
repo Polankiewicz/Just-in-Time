@@ -172,8 +172,9 @@ namespace WindowsGame1
                 }
                 
                 // temp
-                //if (boundingBoxesList[0].boundingBox.Intersects(listOfBullets[i].boundingSphere))
-                //    throw new Exception("wykryto kolizje pocisku z blokiem, liczba pociskow: " + listOfBullets.Count);
+               // if (boundingBoxesList[0].boundingBox.Intersects(listOfBullets[i].boundingSphere))
+                //    throw new Exception("wykryto kolizje pocisku z blokiem, liczba pociskow: " + listOfBullets[0].boundingSphere.Center 
+                //        + " a kamera " + camera.Position);
             }
         }
 
