@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="26dea35d-395f-4e1a-bb12-9e4ccf6da373"
+  name="SkinnedModel"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="66ac8509-8c51-48b3-b48f-19f694ddfabb"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DSkinnedModel"
+      tag="ViewCode" />
+  </referencesInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="f77190f5-15aa-4881-8d1f-6113270b8ed2">
+      <profileInstance
+        Id="0c6a17ca-da09-4317-876d-52c047173c5b"
+        name="CSharpProfile" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="bb6ae30a-4d7f-425d-b7cb-28b7c31c986b"
+        name="AnimationPlayer"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="366a5cb5-be20-42c2-92d6-fae2ba9bee3d"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FD:%2Fhome%2FDesktop%2Fstudia%2FPBL%2FJust-in-Time%2FWindowsGame1%2FSkinnedModel%2Fbin%2Fx86%2FDebug%2FSkinnedModel.dll Namespace%3DSkinnedModel Type%3DAnimationPlayer"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="285c163f-451f-44d5-8849-2dcaf74a49fb"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c6dae52a-08c1-4ae0-8c76-dc9608a4e808">
+                <propertyInstance
+                  Id="4d72bb63-0360-4d52-aa4a-469760285c2b"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b5ba6e96-b931-40b4-a2fa-c9a2e8e72c97">
+                <propertyInstance
+                  Id="c6de11fa-5a0f-4ecb-85ec-06a3e09acd18"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f8e58501-5aed-4278-9c1d-2676c46d71e7">
+                <propertyInstance
+                  Id="f2e14018-1571-4b77-bddb-7993b0b18835"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="678fc010-a5e1-446b-9c68-5208a81c9808">
+                <propertyInstance
+                  Id="eb2af383-fbb2-4c5b-af03-d3ec1ce4055d"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6cd99f5c-4a4b-483b-8175-a7be4fbce82d">
+                <propertyInstance
+                  Id="c3ed5839-309a-4cd4-8680-0cfe93a59777"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="6ae05415-f2b1-4345-883d-4fbd63b9b1eb"
+        name="AnimationClip"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="c3f10298-ee8f-45a9-9c04-7b4441721244"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FD:%2Fhome%2FDesktop%2Fstudia%2FPBL%2FJust-in-Time%2FWindowsGame1%2FSkinnedModel%2Fbin%2Fx86%2FDebug%2FSkinnedModel.dll Namespace%3DSkinnedModel Type%3DAnimationClip"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="888b994a-6edf-49d5-a984-fa81d8430741"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="02b117aa-06e7-4691-9186-78851ac64c2c">
+                <propertyInstance
+                  Id="db908d79-9727-4948-8f7f-d50274328815"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="bca17335-a87a-4a28-97e7-e8daf36677d2">
+                <propertyInstance
+                  Id="1204852a-85c2-454b-abea-b1af5ba3210f"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0dd635d2-3fbb-409f-9d7a-af5307ef9609">
+                <propertyInstance
+                  Id="3ae0341c-ddd6-4061-8cc7-c1ff50d56dee"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5ca96901-8be9-49a2-870a-ba031b2f3cf5">
+                <propertyInstance
+                  Id="f9ad2833-f65a-4f85-88ed-2448835048f1"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="04c6a83e-b01a-4d82-9afb-3a6964133645">
+                <propertyInstance
+                  Id="d17fc0d7-8504-4497-8c4a-b682846af798"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="0c1d02a1-973a-4b91-8f7f-115f25b22057"
+        name="SkinningData"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="3ef38db9-e0bc-4810-bf77-ba32ed0578b6"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FD:%2Fhome%2FDesktop%2Fstudia%2FPBL%2FJust-in-Time%2FWindowsGame1%2FSkinnedModel%2Fbin%2Fx86%2FDebug%2FSkinnedModel.dll Namespace%3DSkinnedModel Type%3DSkinningData"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="daae39a6-e165-429d-9884-2c46803997cd"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="391834f8-6f44-4f1c-9edc-5aa2f0c7ffe1">
+                <propertyInstance
+                  Id="0f4bce36-6495-4715-a069-67c079e3a320"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="993d3c66-4d78-4473-ab0c-035aa1582108">
+                <propertyInstance
+                  Id="4133f40f-10ac-46b9-8e1f-f00dfe60acb5"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f786ba7d-8d04-4eea-b09c-c281a01a1883">
+                <propertyInstance
+                  Id="cc470e3c-428c-497b-9f73-78ecbd917d67"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e4187b09-bd53-4644-be53-2e7f1a409c5f">
+                <propertyInstance
+                  Id="ccb613cc-3a97-4678-9350-eb1657515590"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="da2d3cb7-6057-4780-ab2d-d37b2876bd95">
+                <propertyInstance
+                  Id="92f55d0e-340b-4f9d-972b-b59afe3613eb"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

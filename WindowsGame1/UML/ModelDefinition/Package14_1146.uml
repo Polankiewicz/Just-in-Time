@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="2b9e9a31-0742-41e4-8ea9-7dec03016fe7"
+  name="Media"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="8cc45123-e121-4ea4-8509-1ab95c1929b7"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DMicrosoft.Xna.Framework.Media"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="c5680233-c1d6-4354-aa2c-9539a176db48"
+        name="Video"
+        isAbstract="false"
+        isLeaf="true"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="9f2136ba-0058-4115-8585-84ca0141edd1"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FMicrosoft XNA%2FXNA Game Studio%2Fv4.0%2FReferences%2FWindows%2Fx86%2FMicrosoft.Xna.Framework.Video.dll&quot; Namespace%3DMicrosoft.Xna.Framework.Media Type%3DVideo"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="3f157a3e-1916-40dd-87e6-a9b926e46be5"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6e15d5a7-5bbb-450d-9637-13523f7c85d3">
+                <propertyInstance
+                  Id="4b8dae0a-3687-4b10-834b-34644072c04c"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1be999e5-835e-4a15-9b14-170b6ae08e34">
+                <propertyInstance
+                  Id="4ec0457e-5d29-4b6f-ab49-61c11d8ed971"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6a58cf2b-a769-43b2-ad38-8c29c590019d">
+                <propertyInstance
+                  Id="dea5ad74-0b13-4ec3-b8dc-4423b324b195"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d1d1a38d-44ae-4f17-abe5-ccdd6999b74f">
+                <propertyInstance
+                  Id="0a1f26dd-bace-4c9d-bc27-38c66bcb8d24"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="fe5cf7c5-b092-436b-8361-c6447028d2a8">
+                <propertyInstance
+                  Id="4590c15f-e0a1-44df-b551-ecccd53fb3fd"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="8ce984a3-3fd3-412f-92e2-5ca30d71db51"
+        name="VideoPlayer"
+        isAbstract="false"
+        isLeaf="true"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="664af11a-0f7e-45fc-b07b-e148605067b3"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FMicrosoft XNA%2FXNA Game Studio%2Fv4.0%2FReferences%2FWindows%2Fx86%2FMicrosoft.Xna.Framework.Video.dll&quot; Namespace%3DMicrosoft.Xna.Framework.Media Type%3DVideoPlayer"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="07850007-0ebf-4c0c-89e4-12b21e20ce73"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="dde75b07-4681-4121-861d-3503b9d4b972">
+                <propertyInstance
+                  Id="6d24e660-fe26-4359-bced-d23e9ab619b7"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b0cfb5f5-d6bc-4458-896e-44191a97e63e">
+                <propertyInstance
+                  Id="15eaf4dc-5852-4161-bed5-be8f1d619c42"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="81bf4acf-aa3f-45ed-903e-307a59f6bdfa">
+                <propertyInstance
+                  Id="aa876b7c-c583-42b9-a35f-164fef4153ab"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="cf6afe23-bb1f-403a-b829-855dcf4bca7f">
+                <propertyInstance
+                  Id="7164f46e-ffc8-4c0f-af73-a780805f9353"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d5d3f603-1f32-40ef-b08c-08eb9a730f0b">
+                <propertyInstance
+                  Id="71f8fc53-0df3-4071-b40c-6307ffea4105"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <suppliersInternal>
+          <interfaceRealization
+            Id="f7ace2f0-3ae3-47f6-84b4-36aca7219b03">
+            <interfaceMoniker
+              Id="b0c29294-8b08-4605-8b84-f7491b8d4327"
+              LastKnownName="IDisposable"
+              LastKnownLocation="Package4_1146.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
