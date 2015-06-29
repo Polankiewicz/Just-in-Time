@@ -70,7 +70,7 @@ namespace WindowsGame1
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferMultiSampling = true;
-            graphics.IsFullScreen = false;
+            graphics.IsFullScreen = true;
             graphics.PreferredBackBufferHeight = 720;
             graphics.PreferredBackBufferWidth = 1280;
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
@@ -113,7 +113,6 @@ namespace WindowsGame1
                 var tmp = new List<string>();
                 tmp.Add("Models\\enemy\\enemy_walk");
                 tmp.Add("Models\\enemy\\enemy_punch");
-
                 actualScene.AddEnemy(tmp, new Vector3(10, 0.2f, 10), new Vector3(0, 180, 0), 0.005f, "enemy", camera);
 
             }
@@ -283,7 +282,6 @@ namespace WindowsGame1
                 {
                     actualScene.unloadContent();
                     LoadSceneFromXml("../../../../scene.xml");
-                    actualScene.AddStaticModel("Models\\sadzonka2", new Vector3(46f, 0f, 10f), new Vector3(0), 0.0013f, "sadzonka2");
                 }
             }
 

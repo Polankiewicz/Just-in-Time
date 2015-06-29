@@ -18,6 +18,9 @@ namespace WindowsGame1
         String p;
         private KeyboardState currentKeyboardState;
         private KeyboardState lastKeyboardState;
+
+        private GamePadState currentGamepadState;
+        private GamePadState lastGamepadState;
         public bool drawMenu = false;
         public bool drawText = false;
         public bool drawFight = false;
@@ -42,6 +45,9 @@ namespace WindowsGame1
             lastKeyboardState = currentKeyboardState;
             currentKeyboardState = Keyboard.GetState();
 
+            lastGamepadState = currentGamepadState;
+            currentGamepadState = GamePad.GetState(PlayerIndex.One);
+
             if (currentKeyboardState.IsKeyDown(Keys.Escape) && (lastKeyboardState.IsKeyUp(Keys.Escape)))
             {
                 if (drawMenu == false)
@@ -54,8 +60,8 @@ namespace WindowsGame1
                     drawMenu = false;
                 }
             }
-            
-            if (drawMenu == true && currentKeyboardState.IsKeyDown(Keys.Up) && (lastKeyboardState.IsKeyUp(Keys.Up)))
+
+            if (drawMenu == true && currentKeyboardState.IsKeyDown(Keys.Up) && (lastKeyboardState.IsKeyUp(Keys.Up)) || (GamePad.GetState(PlayerIndex.One).DPad.Up == ButtonState.Pressed))
             {
                 if(gMenu > 0)
                 {
@@ -63,8 +69,8 @@ namespace WindowsGame1
                 }
                 
             }
-            
-            if (drawMenu == true && currentKeyboardState.IsKeyDown(Keys.Down) && (lastKeyboardState.IsKeyUp(Keys.Down)))
+
+            if (drawMenu == true && currentKeyboardState.IsKeyDown(Keys.Down) && (lastKeyboardState.IsKeyUp(Keys.Down)) || (GamePad.GetState(PlayerIndex.One).DPad.Down == ButtonState.Pressed))
             {
                 if (gMenu < 5)
                 {
@@ -72,24 +78,24 @@ namespace WindowsGame1
                 }
             }
 
-            if (gMenu == 1 && drawMenu == true && currentKeyboardState.IsKeyDown(Keys.Enter) && (lastKeyboardState.IsKeyUp(Keys.Enter)))
+            if (gMenu == 1 && drawMenu == true && currentKeyboardState.IsKeyDown(Keys.Enter) && (lastKeyboardState.IsKeyUp(Keys.Enter)) || (GamePad.GetState(PlayerIndex.One).Buttons.Y == ButtonState.Pressed))
             {
                 drawMenu = false;
             }
 
-            if (gMenu == 2 && drawMenu == true && currentKeyboardState.IsKeyDown(Keys.Enter) && (lastKeyboardState.IsKeyUp(Keys.Enter)))
+            if (gMenu == 2 && drawMenu == true && currentKeyboardState.IsKeyDown(Keys.Enter) && (lastKeyboardState.IsKeyUp(Keys.Enter)) || (GamePad.GetState(PlayerIndex.One).Buttons.Y == ButtonState.Pressed))
             {
                 drawMenu = false;
                 mMenu = 0;
                 g.drawMainMenu = true;
             }
 
-            if (gMenu == 5 && drawMenu == true && currentKeyboardState.IsKeyDown(Keys.Enter) && (lastKeyboardState.IsKeyUp(Keys.Enter)))
+            if (gMenu == 5 && drawMenu == true && currentKeyboardState.IsKeyDown(Keys.Enter) && (lastKeyboardState.IsKeyUp(Keys.Enter)) || (GamePad.GetState(PlayerIndex.One).Buttons.Y == ButtonState.Pressed))
             {
                 g.Exit();
             }
 
-            if (g.drawMainMenu == true && currentKeyboardState.IsKeyDown(Keys.Up) && (lastKeyboardState.IsKeyUp(Keys.Up)))
+            if (g.drawMainMenu == true && currentKeyboardState.IsKeyDown(Keys.Up) && (lastKeyboardState.IsKeyUp(Keys.Up)) || (GamePad.GetState(PlayerIndex.One).DPad.Up == ButtonState.Pressed))
             {
                 if (mMenu > 0)
                 {
@@ -98,7 +104,7 @@ namespace WindowsGame1
 
             }
 
-            if (g.drawMainMenu == true && currentKeyboardState.IsKeyDown(Keys.Down) && (lastKeyboardState.IsKeyUp(Keys.Down)))
+            if (g.drawMainMenu == true && currentKeyboardState.IsKeyDown(Keys.Down) && (lastKeyboardState.IsKeyUp(Keys.Down)) || (GamePad.GetState(PlayerIndex.One).DPad.Down == ButtonState.Pressed))
             {
                 if (mMenu < 4)
                 {
@@ -116,7 +122,7 @@ namespace WindowsGame1
                 g.Exit();
             }
 
-            if (currentKeyboardState.IsKeyDown(Keys.B) && (lastKeyboardState.IsKeyUp(Keys.B)))
+            if ((currentKeyboardState.IsKeyDown(Keys.B) && (lastKeyboardState.IsKeyUp(Keys.B))) || (GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed))
             {
                 if(pastCondition == true)
                 {
@@ -179,6 +185,11 @@ namespace WindowsGame1
 
                 }
 
+                if (staticModelsList[i].Name == "trigger2" && Vector3.Distance(staticModelsList[i].Position, camera.Position) < 2f)
+                {
+                    backCondition = true;
+                }
+
                 if (staticModelsList[i].Name == "sadzonka2" && Vector3.Distance(staticModelsList[i].Position, camera.Position) < 3.0f)
                 {
                     drawText = true;
@@ -191,10 +202,7 @@ namespace WindowsGame1
 
                 }
 
-                if (staticModelsList[i].Name == "trigger2" && Vector3.Distance(staticModelsList[i].Position, camera.Position) < 2f)
-                {
-                    backCondition = true;
-                }
+                
 
             } 
 
